@@ -27,7 +27,7 @@ import fetchers  # noqa: E402
 WEB_DIR = os.path.join(BASE_DIR, "web")
 PUBLIC_DIR = os.path.join(BASE_DIR, "public")
 DATA_DIR = os.path.join(BASE_DIR, "data")
-SEED_FILE = os.path.join(DATA_DIR, "seed.json")
+SEED_FILE = os.path.join(BASE_DIR, "seed.json")
 AUTO_FILE = os.path.join(DATA_DIR, "auto.json")
 CONFIG_FILE = os.path.join(BASE_DIR, "config.json")
 OUT_DATA = os.path.join(PUBLIC_DIR, "data.json")

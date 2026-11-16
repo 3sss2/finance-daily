@@ -31,7 +31,7 @@ import fetchers  # noqa: E402
 
 WEB_DIR = os.path.join(BASE_DIR, "web")
 DATA_DIR = os.path.join(BASE_DIR, "data")
-SEED_FILE = os.path.join(DATA_DIR, "seed.json")
+SEED_FILE = os.path.join(BASE_DIR, "seed.json")
 MANUAL_FILE = os.path.join(DATA_DIR, "manual.json")
 AUTO_FILE = os.path.join(DATA_DIR, "auto.json")
 META_FILE = os.path.join(DATA_DIR, "meta.json")
