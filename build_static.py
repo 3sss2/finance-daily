@@ -153,8 +153,9 @@ def main():
 
     shutil.copyfile(os.path.join(WEB_DIR, "index.html"),
                     os.path.join(PUBLIC_DIR, "index.html"))
-    # 本地服务也复用这批数据，避免两套内容不一致
+    # 本地服务也复用这批数据，避免两套内容不一致（CI 上没有 data/ 目录）
     if merged:
+        os.makedirs(DATA_DIR, exist_ok=True)
         with open(AUTO_FILE, "w", encoding="utf-8") as fh:
             json.dump({"items": merged}, fh, ensure_ascii=False, indent=1)
 
