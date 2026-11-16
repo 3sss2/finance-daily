@@ -13,6 +13,7 @@ build_static.py —— 生成可以放到任意静态托管（GitHub Pages / 对
 每小时做一次全量（搜索、公众号、B 站等）。本地也可以手动跑。
 """
 
+import hashlib
 import json
 import os
 import shutil
@@ -108,7 +109,6 @@ def merge(previous, fetched, cfg):
 
 def item_fingerprint(items):
     """只看内容本身，不含生成时间，用来判断这一轮是否真的有变化"""
-    import hashlib
     blob = json.dumps(items, ensure_ascii=False, sort_keys=True)
     return hashlib.sha256(blob.encode("utf-8")).hexdigest()
 
@@ -148,7 +148,10 @@ def main():
     items = list(seed) + auto_items
     items.sort(key=lambda i: (sort_stamp(i), i.get("id") or ""), reverse=True)
 
-    changed = item_fingerprint(items) != item_fingerprint(previous)
+    with open(os.path.join(WEB_DIR, "index.html"), "rb") as fh:
+        html_sha = hashlib.sha256(fh.read()).hexdigest()
+    changed = (item_fingerprint(items) != item_fingerprint(previous)
+               or html_sha != previous_meta.get("html_sha"))
     if changed or not previous_meta.get("last_updated"):
         last_updated = now.isoformat(timespec="seconds")
         version = int(now.timestamp())
@@ -161,6 +164,7 @@ def main():
         "version": version,
         "last_updated": last_updated,
         "checked_at": now.isoformat(timespec="seconds"),
+        "html_sha": html_sha,
         "next_update_at": (now + timedelta(minutes=5)).isoformat(timespec="seconds"),
         "interval_seconds": 300,
         "mode": "live" if live_only else "full",

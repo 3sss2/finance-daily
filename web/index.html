@@ -280,7 +280,7 @@ function paintMeta(meta){
   document.getElementById('stamp-updated').textContent =
     (MODE === 'static' ? '内容更新 ' : '上次更新 ') + fmt(meta.last_updated);
   document.getElementById('stamp-next').textContent = MODE === 'static'
-    ? (meta.checked_at ? '最近检查 ' + fmt(meta.checked_at) + '（每 5 分钟）' : '每 5 分钟抓取一次')
+    ? '每 5 分钟抓取一次'
     : '下次更新 ' + fmt(meta.next_update_at);
   if(MODE === 'static') document.getElementById('stamp-title').textContent = '实时更新';
   setDot(meta.updating ? 'busy' : 'ok', meta.updating ? '正在更新…' : (c.total ? '实时更新' : '等待首轮采集'));
