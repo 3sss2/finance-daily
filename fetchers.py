@@ -344,6 +344,14 @@ def enrich_images(items, limit=20, only_prefix="东方财富"):
     return done
 
 
+def normalize_categories(item):
+    """历史数据里的热榜条目当时被归成「市场快讯」，统一改成「社媒热议」"""
+    source = item.get("source") or ""
+    if source.startswith(("抖音", "微博")):
+        item["category"] = "社媒热议"
+    return item
+
+
 def ensure_video_outline(item):
     """给历史视频补大纲；已经是我们生成过的，按最新规则重算一次"""
     if not item.get("bvid"):
@@ -951,7 +959,7 @@ def fetch_douyin_hot():
         rank = row.get("position")
         items.append(make_item(
             kind="auto",
-            category=guess_category(word, "抖音"),
+            category="社媒热议",
             title=word,
             url="https://www.douyin.com/search/%s" % urllib.parse.quote(word),
             source="抖音 · 热榜",
@@ -1052,7 +1060,7 @@ def fetch_微博_hot():
         num = row.get("num") or 0
         items.append(make_item(
             kind="auto",
-            category=guess_category(word, "微博"),
+            category="社媒热议",
             title=word,
             url="https://s.weibo.com/微博?q=" + urllib.parse.quote("#%s#" % word),
             source="微博 · 热搜",

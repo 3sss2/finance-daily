@@ -162,6 +162,7 @@ def visible_items():
         kept.append(item)
     for item in kept:
         fetchers.ensure_video_outline(item)
+        fetchers.normalize_categories(item)
     return kept
 
 
@@ -185,6 +186,7 @@ def prune_auto(items):
         kept = kept[:limit]
     for item in kept:
         fetchers.ensure_video_outline(item)
+        fetchers.normalize_categories(item)
     return kept
 
 

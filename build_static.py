@@ -174,6 +174,7 @@ def main():
     items = kept
     for item in items:
         fetchers.ensure_video_outline(item)
+        fetchers.normalize_categories(item)
 
     if not live_only:
         try:
