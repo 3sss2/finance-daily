@@ -728,8 +728,12 @@ def fetch_wechat_search(keyword, max_items=5, max_age_days=10):
 # --------------------------------------------------------------------------
 # 编排
 # --------------------------------------------------------------------------
-def fetch_all(cfg):
-    """按配置抓一轮，返回 (items, errors, stats)"""
+def fetch_all(cfg, live_only=False):
+    """按配置抓一轮，返回 (items, errors, stats)
+
+    live_only=True 时只抓两个 7x24 快讯源，用于每 5 分钟的高频轮询；
+    搜索、公众号、B 站这些接口经不起高频请求，只在整点的全量轮次里跑。
+    """
     started = time.time()
     items, errors, stats = [], [], {}
 
@@ -744,6 +748,11 @@ def fetch_all(cfg):
 
     run("华尔街见闻7x24", fetch_wallstreetcn_lives, cfg.get("live_limit", 40))
     run("同花顺7x24", fetch_ths_lives, cfg.get("live_limit", 40))
+
+    if live_only:
+        stats["耗时秒"] = round(time.time() - started, 1)
+        return items, errors, stats
+
     run("国家统计局", fetch_stats_releases)
     run("央行·统计数据", fetch_pbc_statistics)
     run("央行·新闻发布", fetch_pbc_news)

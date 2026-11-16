@@ -1,6 +1,6 @@
 {
   "port": 8775,
-  "refresh_interval_seconds": 3600,
+  "refresh_interval_seconds": 300,
   "retention_days": 10,
   "max_auto_items": 500,
   "live_limit": 40,

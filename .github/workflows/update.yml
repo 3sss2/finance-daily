@@ -1,8 +1,9 @@
-name: 每小时更新财经日报
+name: 实时更新财经日报
 
 on:
   schedule:
-    - cron: "7 * * * *"      # 每小时第 7 分钟（避开整点拥堵）
+    - cron: "*/5 * * * *"    # 每 5 分钟：只抓两个 7x24 快讯源（GitHub 允许的最短间隔）
+    - cron: "7 * * * *"      # 每小时：全量（搜索、公众号、B 站、央行、统计局）
   workflow_dispatch:
 
 permissions:
@@ -17,16 +18,19 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.build.outputs.changed }}
+    env:
+      # 5 分钟那轮只跑快讯；整点那轮和手动触发跑全量
+      FETCH_MODE: ${{ (github.event.schedule == '*/5 * * * *') && 'live' || 'full' }}
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
-      - name: 恢复上一轮数据（用于去重与 10 天保留）
+      - name: 恢复上一轮数据（用于去重、保留期和变化比对）
         uses: actions/cache@v4
         with:
           path: public/data.json
@@ -35,6 +39,7 @@ jobs:
             finance-data-
 
       - name: 抓取并生成静态页
+        id: build
         run: python build_static.py
 
       - uses: actions/configure-pages@v5
@@ -45,6 +50,7 @@ jobs:
 
   deploy:
     needs: build
+    if: needs.build.outputs.changed == 'true'
     runs-on: ubuntu-latest
     environment:
       name: github-pages

@@ -97,6 +97,13 @@ AUTO = load_json(AUTO_FILE, {"items": []}).get("items", [])
 MANUAL = load_json(MANUAL_FILE, {"items": []}).get("items", [])
 SEED = load_json(SEED_FILE, {"items": []}).get("items", [])
 META = {**empty_meta(), **load_json(META_FILE, {})}
+META["interval_seconds"] = INTERVAL      # 配置改了间隔，以配置文件为准
+try:                                     # 旧状态里可能存着更远的下一轮，启动时收紧
+    _nxt = datetime.fromisoformat(META["next_update_at"])
+    if _nxt - datetime.now(CN) > timedelta(seconds=INTERVAL):
+        META["next_update_at"] = (datetime.now(CN) + timedelta(seconds=INTERVAL)).isoformat(timespec="seconds")
+except (TypeError, ValueError):
+    pass
 
 UPDATING = False
 SCHEDULER_STOP = threading.Event()
@@ -187,8 +194,12 @@ def build_payload():
 # --------------------------------------------------------------------------
 # 采集
 # --------------------------------------------------------------------------
-def run_fetch(reason="schedule"):
-    """跑一轮采集；同一时间只允许一个任务"""
+def run_fetch(reason="schedule", full=True):
+    """跑一轮采集；同一时间只允许一个任务。
+
+    full=False 时只抓两个 7x24 快讯源——5 分钟一轮的高频刷新走这条，
+    搜索、公众号、B 站这些接口经不起高频请求，仍然每小时跑一次全量。
+    """
     global AUTO, META, UPDATING
     if not FETCH_LOCK.acquire(blocking=False):
         return {"skipped": True, "message": "已有更新在进行中"}
@@ -197,7 +208,7 @@ def run_fetch(reason="schedule"):
     try:
         print("[fetch] 开始（%s）%s" % (reason, datetime.now(CN).strftime("%H:%M:%S")),
               flush=True)
-        fetched, errors, sources = fetchers.fetch_all(CFG)
+        fetched, errors, sources = fetchers.fetch_all(CFG, live_only=not full)
 
         with LOCK:
             existing_ids = {item_key(i) for i in AUTO}
@@ -243,6 +254,8 @@ def run_fetch(reason="schedule"):
             META["last_updated"] = run_info["at"]
             META["next_update_at"] = (finished + timedelta(seconds=INTERVAL)).isoformat(timespec="seconds")
             META["last_run"] = run_info
+            if full:
+                META["last_full_at"] = run_info["at"]
             META["last_error"] = errors[0] if errors else None
             META["version"] = int(META.get("version", 1)) + 1
             history = list(META.get("history") or [])[-23:]
@@ -278,7 +291,7 @@ def scheduler_loop():
             except ValueError:
                 stale = True
     if stale:
-        run_fetch(reason="startup")
+        run_fetch(reason="startup", full=True)
     while not SCHEDULER_STOP.is_set():
         with LOCK:
             nxt = META.get("next_update_at")
@@ -288,9 +301,19 @@ def scheduler_loop():
                 delay = max(15, (datetime.fromisoformat(nxt) - datetime.now(CN)).total_seconds())
             except ValueError:
                 delay = INTERVAL
+        delay = min(delay, INTERVAL)     # 旧状态里可能存着更远的下一轮，按当前间隔收紧
         if SCHEDULER_STOP.wait(delay):
             break
-        run_fetch(reason="schedule")
+        with LOCK:
+            last_full = META.get("last_full_at")
+        need_full = True
+        if last_full:
+            try:
+                need_full = (datetime.now(CN) - datetime.fromisoformat(last_full)
+                             ).total_seconds() >= 3600
+            except ValueError:
+                need_full = True
+        run_fetch(reason="schedule", full=need_full)
 
 
 # --------------------------------------------------------------------------
@@ -363,7 +386,8 @@ class Handler(BaseHTTPRequestHandler):
             if FETCH_LOCK.locked():
                 return self._send(202, {"ok": True, "started": False,
                                         "message": "已有更新在进行中"})
-            threading.Thread(target=run_fetch, kwargs={"reason": "manual"},
+            threading.Thread(target=run_fetch,
+                             kwargs={"reason": "manual", "full": True},
                              daemon=True).start()
             return self._send(202, {"ok": True, "started": True})
 

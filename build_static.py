@@ -9,7 +9,8 @@ build_static.py —— 生成可以放到任意静态托管（GitHub Pages / 对
 用法：
   python3 build_static.py
 
-每小时由 .github/workflows/update.yml 调用一次；本地也可以手动跑。
+由 .github/workflows/update.yml 调用：每 5 分钟抓一次快讯（FETCH_MODE=live），
+每小时做一次全量（搜索、公众号、B 站等）。本地也可以手动跑。
 """
 
 import json
@@ -105,6 +106,13 @@ def merge(previous, fetched, cfg):
     return seed, merged, len(added)
 
 
+def item_fingerprint(items):
+    """只看内容本身，不含生成时间，用来判断这一轮是否真的有变化"""
+    import hashlib
+    blob = json.dumps(items, ensure_ascii=False, sort_keys=True)
+    return hashlib.sha256(blob.encode("utf-8")).hexdigest()
+
+
 def main():
     cfg = load_json(CONFIG_FILE, {})
     cfg.setdefault("live_limit", 40)
@@ -115,7 +123,8 @@ def main():
     previous = previous_payload.get("items") or []
     previous_meta = previous_payload.get("meta") or {}
 
-    fetched, errors, sources = fetchers.fetch_all(cfg)
+    live_only = os.environ.get("FETCH_MODE", "full").lower() == "live"
+    fetched, errors, sources = fetchers.fetch_all(cfg, live_only=live_only)
     print("抓取 %d 条，错误 %d 个：%s" % (len(fetched), len(errors), sources), flush=True)
 
     seed, merged, added = merge(previous, fetched, cfg)
@@ -137,13 +146,24 @@ def main():
                   and (i.get("norm_title") or fetchers.norm_title(i.get("title", "")))
                   not in seed_titles]
     items = list(seed) + auto_items
-    items.sort(key=sort_stamp, reverse=True)
+    items.sort(key=lambda i: (sort_stamp(i), i.get("id") or ""), reverse=True)
+
+    changed = item_fingerprint(items) != item_fingerprint(previous)
+    if changed or not previous_meta.get("last_updated"):
+        last_updated = now.isoformat(timespec="seconds")
+        version = int(now.timestamp())
+    else:
+        # 内容没变：保留上次的内容更新时间，页面上的「上次更新」才诚实
+        last_updated = previous_meta.get("last_updated")
+        version = previous_meta.get("version") or int(now.timestamp())
 
     meta = {
-        "version": int(now.timestamp()),
-        "last_updated": now.isoformat(timespec="seconds"),
-        "next_update_at": (now + timedelta(hours=1)).isoformat(timespec="seconds"),
-        "interval_seconds": 3600,
+        "version": version,
+        "last_updated": last_updated,
+        "checked_at": now.isoformat(timespec="seconds"),
+        "next_update_at": (now + timedelta(minutes=5)).isoformat(timespec="seconds"),
+        "interval_seconds": 300,
+        "mode": "live" if live_only else "full",
         "last_run": {
             "at": now.isoformat(timespec="seconds"),
             "fetched": len(fetched),
@@ -170,7 +190,13 @@ def main():
         with open(AUTO_FILE, "w", encoding="utf-8") as fh:
             json.dump({"items": merged}, fh, ensure_ascii=False, indent=1)
 
-    print("生成完成：%d 条（新增 %d），输出 public/data.json" % (len(items), added), flush=True)
+    print("生成完成：%d 条（新增 %d，内容%s），输出 public/data.json"
+          % (len(items), added, "有更新" if changed else "无变化"), flush=True)
+
+    gh_out = os.environ.get("GITHUB_OUTPUT")
+    if gh_out:
+        with open(gh_out, "a", encoding="utf-8") as fh:
+            fh.write("changed=%s\n" % ("true" if changed else "false"))
 
 
 if __name__ == "__main__":

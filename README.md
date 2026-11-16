@@ -11,15 +11,17 @@
 | 谁在抓数据 | GitHub Actions 每小时跑一次 | 这台设备上的 systemd 服务 |
 | 访问范围 | 任何人、任何电脑 | 仅本机（桌面图标「财经日报」） |
 | 能否手动添加文章 | 不能（静态站） | 可以 |
-| 更新频率 | 每小时第 7 分钟 | 每小时一轮 |
+| 更新频率 | 每 5 分钟（整点做一次全量） | 每 5 分钟（整点做一次全量） |
 
 ## 公开站怎么更新
 
-`.github/workflows/update.yml` 每小时（UTC 第 7 分钟）在 GitHub 的机器上：
+`.github/workflows/update.yml` 在 GitHub 的机器上跑两种轮次：
 
-1. 还原上一轮的数据缓存（用于去重、保留最近 10 天）
-2. 跑 `build_static.py`，抓取并生成 `public/index.html` + `public/data.json`
-3. 打包部署到 GitHub Pages
+- **每 5 分钟**（GitHub 定时任务允许的最短间隔）：只抓华尔街见闻和同花顺的 7x24 快讯，约 2 秒完成
+- **每小时第 7 分钟**：全量，额外抓搜索、微信公众号、B 站、央行、统计局
+
+每轮都会：还原上一轮数据缓存（去重、保留期）→ 生成 `public/data.json` → **内容真有变化才重新部署**，
+没变化就跳过，既不浪费部署配额，页面上的「上次更新」也不会虚报。
 
 抓取失败时不会用空内容覆盖线上版本，页面上会提示「本轮数据源不可达，沿用上次内容」。
 
@@ -70,7 +72,7 @@ tail -f logs/server.log         # 看抓取日志
 
 编辑 `config.json` 后，本地 `systemctl --user restart finance-daily`；公开站下个整点自动生效。
 
-- `refresh_interval_seconds`：本地更新间隔，默认 3600
+- `refresh_interval_seconds`：本地刷新间隔，默认 300（5 分钟，全量仍每小时一次）
 - `tracked_companies`：要跟踪的公司名
 - `macro_keywords`：宏观关键词
 - `video_keywords`：B 站视频搜索词
