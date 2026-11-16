@@ -884,6 +884,35 @@ def fetch_36kr_flash(limit=15):
 
 
 # --------------------------------------------------------------------------
+# 14. 微博 热搜（公开接口，无需登录）
+# --------------------------------------------------------------------------
+def fetch_微博_hot():
+    url = "https://weibo.com/ajax/side/hotSearch"
+    data = http_get_json(url, headers={"Referer": "https://weibo.com/"})
+    rows = ((data.get("data") or {}).get("realtime")) or []
+    items = []
+    for row in rows:
+        word = (row.get("word") or row.get("note") or "").strip()
+        if not word or not any(w in word for w in DOUYIN_FINANCE_WORDS):
+            continue
+        num = row.get("num") or 0
+        items.append(make_item(
+            kind="auto",
+            category=guess_category(word, "微博"),
+            title=word,
+            url="https://s.weibo.com/微博?q=" + urllib.parse.quote("#%s#" % word),
+            source="微博 · 热搜",
+            summary="微博 热搜话题，讨论量约 %s。点开看大家在聊什么。" % (
+                ("%.1f 万" % (num / 10000.0)) if num else "未知"),
+            published=now_cn().strftime("%Y-%m-%d %H:%M"),
+            status="热搜话题 · 非深度内容",
+            verified=False,
+            dedupe_key="wb-hot-%s" % word,
+        ))
+    return items
+
+
+# --------------------------------------------------------------------------
 # 编排
 # --------------------------------------------------------------------------
 def fetch_all(cfg, live_only=False):
@@ -913,6 +942,7 @@ def fetch_all(cfg, live_only=False):
 
     run("国家统计局", fetch_stats_releases)
     run("抖音热榜", fetch_douyin_hot)
+    run("微博热搜", fetch_微博_hot)
     run("网易财经", fetch_sina_roll, 20)
     run("36氪快讯", fetch_36kr_flash)
     run("央行·统计数据", fetch_pbc_statistics)
