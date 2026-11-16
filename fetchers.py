@@ -771,6 +771,49 @@ def fetch_wechat_accounts(accounts, slots=3, max_age_days=14):
 
 
 # --------------------------------------------------------------------------
+# 11. 抖音热榜（不需要登录的公开接口）
+#   只有话题词，没有单个博主的视频；用财经关键词过滤，保留市场相关的条目。
+# --------------------------------------------------------------------------
+DOUYIN_FINANCE_WORDS = ("股", "黄金", "金价", "油价", "原油", "央行", "降息", "降准",
+                        "汇率", "人民币", "房价", "楼市", "地产", "基金", "债",
+                        "保险", "银行", "茅台", "比亚迪", "宁德", "腾讯", "阿里",
+                        "京东", "英伟达", "美联储", "关税", "GDP", "CPI", "PPI",
+                        "PMI", "社融", "消费", "外贸", "出口", "进口", "新能源",
+                        "芯片", "半导体", "就业", "物价", "通胀", "市值", "财报",
+                        "业绩", "上市", "市值", "贬值", "升值")
+
+
+def fetch_douyin_hot():
+    url = ("https://www.douyin.com/aweme/v1/web/hot/search/list/"
+           "?device_platform=webapp&aid=6383&channel=channel_pc_web&detail_list=1")
+    data = http_get_json(url, headers={"Referer": "https://www.douyin.com/"})
+    words = ((data.get("data") or {}).get("word_list")) or []
+    items = []
+    for row in words:
+        word = (row.get("word") or "").strip()
+        if not word or not any(w in word for w in DOUYIN_FINANCE_WORDS):
+            continue
+        hot = row.get("hot_value") or 0
+        rank = row.get("position")
+        items.append(make_item(
+            kind="auto",
+            category=guess_category(word, "抖音"),
+            title=word,
+            url="https://www.douyin.com/search/%s" % urllib.parse.quote(word),
+            source="抖音 · 热榜",
+            summary="抖音热榜%s，热度 %s，相关视频 %s 条。点击查看话题下大家在讨论什么。"
+                    % (("第 %s 位" % rank) if rank else "",
+                       ("%.1f 万" % (hot / 10000.0)) if hot else "未知",
+                       row.get("video_count") or 0),
+            published=now_cn().strftime("%Y-%m-%d %H:%M"),
+            status="热榜话题 · 非深度内容",
+            verified=False,
+            dedupe_key="dy-hot-%s" % (row.get("sentence_id") or word),
+        ))
+    return items
+
+
+# --------------------------------------------------------------------------
 # 编排
 # --------------------------------------------------------------------------
 def fetch_all(cfg, live_only=False):
@@ -799,6 +842,7 @@ def fetch_all(cfg, live_only=False):
         return items, errors, stats
 
     run("国家统计局", fetch_stats_releases)
+    run("抖音热榜", fetch_douyin_hot)
     run("央行·统计数据", fetch_pbc_statistics)
     run("央行·新闻发布", fetch_pbc_news)
 
