@@ -154,7 +154,9 @@ def main():
     kept, per_source = [], {}
     for item in items:
         source = (item.get("source") or "").split(" · ")[0]
-        if item.get("kind") != "auto":
+        # 整理稿、官方发布、金融数据类不受条数上限影响
+        if (item.get("kind") != "auto" or item.get("verified")
+                or item.get("category") == "金融数据"):
             kept.append(item)
             continue
         if per_source.get(source, 0) >= cap:
