@@ -48,13 +48,15 @@ RELEVANT_WORDS = ("股", "债", "汇", "央行", "财政", "经济", "涨", "跌
                   "统计局", "财政部", "降准", "降息", "汇率", "市值")
 
 # B 站搜索结果里个人 vlog 与券商广告很多，视频只留像财经内容的
-VIDEO_TITLE_WORDS = ("股票", "股市", "A股", "港股", "美股", "财报", "季报", "年报",
-                     "业绩", "营收", "净利", "经济", "GDP", "CPI", "PPI", "PMI",
-                     "社融", "央行", "降息", "降准", "美联储", "关税", "汇率",
-                     "债", "基金", "ETF", "半导体", "芯片", "新能源", "光伏",
-                     "锂", "白酒", "茅台", "比亚迪", "宁德", "腾讯", "京东",
-                     "阿里", "银行", "保险", "券商", "地产", "楼市", "黄金",
-                     "原油", "铜", "钢", "煤炭", "指数", "市值", "估值", "涨", "跌", "盘")
+VIDEO_TITLE_WORDS = ("A股", "港股", "美股", "大盘", "收盘", "涨停", "跌停", "财报",
+                     "季报", "年报", "营收", "净利", "业绩", "央行", "降息", "降准",
+                     "LPR", "CPI", "PPI", "PMI", "GDP", "社融", "M1", "M2", "基金",
+                     "ETF", "债券", "债市", "汇率", "美联储", "关税", "半导体", "芯片",
+                     "新能源", "光伏", "锂电", "白酒", "茅台", "比亚迪", "宁德", "腾讯",
+                     "阿里", "银行", "券商", "保险", "地产", "楼市", "原油", "煤炭",
+                     "市值", "估值", "通胀", "通缩", "加息", "板块")
+VIDEO_TITLE_EXCLUDE = ("黄金眼", "游戏", "动漫", "鬼畜", "我的世界", "王者荣耀",
+                       "演唱会", "直播回放", "合集", "预告片")
 
 TAG_RE = re.compile(r"<[^>]+>")
 SPACE_RE = re.compile(r"[ \t\r\f\v]+")
@@ -255,9 +257,11 @@ def is_finance_video(title, duration, plays):
     """B 站粗筛：标题像财经、时长不短、播放量有基本盘"""
     if not any(word in title for word in VIDEO_TITLE_WORDS):
         return False
-    if not duration or duration < 150:          # 少于 2.5 分钟的通常是切片/广告
+    if any(word in title for word in VIDEO_TITLE_EXCLUDE):
         return False
-    if (plays or 0) < 3000:
+    if not duration or duration < 45:           # 十几秒的多是切片/广告
+        return False
+    if (plays or 0) < 300:                       # 兼顾中小博主，但不要零播放
         return False
     return True
 
@@ -493,7 +497,7 @@ def _bili_get_json(path):
     raise last
 
 
-def fetch_bilibili_search(keyword, pages=1, max_age_days=7):
+def fetch_bilibili_search(keyword, pages=1, max_age_days=10):
     """按关键词抓候选视频，交给 fetch_bilibili_videos 统一筛"""
     items, cutoff = [], time.time() - max_age_days * 86400
     for page in range(1, pages + 1):
@@ -533,7 +537,7 @@ def fetch_bilibili_videos(keywords, total=12, max_per_author=2):
     for idx, keyword in enumerate(keywords):
         try:
             if idx:
-                time.sleep(1.2)        # 关键词之间留间隔，避免触发限流
+                time.sleep(1.0)        # 关键词之间留间隔，避免触发限流
             candidates.extend(fetch_bilibili_search(keyword))
         except Exception as exc:
             errors.append("B站·%s：%s" % (keyword, exc))
@@ -745,6 +749,28 @@ def fetch_wechat_search(keyword, max_items=5, max_age_days=10):
 
 
 # --------------------------------------------------------------------------
+# 10. 微信公众号 · 按账号轮询
+#   搜狗微信对同一 IP 有频次限制，一次只查几个账号，按分钟轮换。
+# --------------------------------------------------------------------------
+def fetch_wechat_accounts(accounts, slots=3, max_age_days=14):
+    if not accounts:
+        return []
+    now = time.localtime()
+    start = (now.tm_hour * 60 + now.tm_min) // 5 * slots
+    picked = [accounts[(start + i) % len(accounts)] for i in range(min(slots, len(accounts)))]
+
+    items, errors = [], []
+    for idx, account in enumerate(picked):
+        try:
+            if idx:
+                time.sleep(4)
+            items.extend(fetch_wechat_search(account, 4, max_age_days=max_age_days))
+        except Exception as exc:
+            errors.append("微信·%s：%s" % (account, exc))
+    return items, errors, picked
+
+
+# --------------------------------------------------------------------------
 # 编排
 # --------------------------------------------------------------------------
 def fetch_all(cfg, live_only=False):
@@ -787,19 +813,33 @@ def fetch_all(cfg, live_only=False):
     for keyword in cfg.get("macro_keywords", []):
         run("东方财富·" + keyword, fetch_eastmoney_search, keyword, 5)
 
-    for idx, query in enumerate(cfg.get("wechat_queries", [])):
+    accounts = cfg.get("wechat_accounts") or []
+    if accounts:
         try:
-            if idx:
-                time.sleep(2.5)      # 搜狗微信限速，关键词之间留间隔
-            got = fetch_wechat_search(query, 5)
-            stats["微信·" + query] = len(got)
-            items.extend(got)
+            wx_items, wx_errors, picked = fetch_wechat_accounts(
+                accounts, int(cfg.get("wechat_query_slots", 3)))
+            stats["微信公众号"] = len(wx_items)
+            errors.extend(wx_errors)
         except Exception as exc:
-            errors.append("微信·%s：%s" % (query, exc))
-            stats["微信·" + query] = 0
+            errors.append("微信公众号：%s" % exc)
+            stats["微信公众号"] = 0
+    else:
+        for idx, query in enumerate(cfg.get("wechat_queries", [])):
+            try:
+                if idx:
+                    time.sleep(2.5)
+                got = fetch_wechat_search(query, 5)
+                stats["微信·" + query] = len(got)
+                items.extend(got)
+            except Exception as exc:
+                errors.append("微信·%s：%s" % (query, exc))
+                stats["微信·" + query] = 0
 
     try:
-        videos, video_errors = fetch_bilibili_videos(cfg.get("video_keywords", []))
+        videos, video_errors = fetch_bilibili_videos(
+            cfg.get("video_keywords", []),
+            total=int(cfg.get("video_total", 20)),
+            max_per_author=1)
         stats["B站视频"] = len(videos)
         items.extend(videos)
         errors.extend(video_errors)
