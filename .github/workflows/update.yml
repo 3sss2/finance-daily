@@ -5,6 +5,15 @@ on:
     - cron: "*/5 * * * *"    # 每 5 分钟：只抓两个 7x24 快讯源（GitHub 允许的最短间隔）
     - cron: "7 * * * *"      # 每小时：全量（搜索、公众号、B 站、央行、统计局）
   workflow_dispatch:
+    inputs:
+      mode:
+        description: "抓取范围：live=只抓快讯，full=全量"
+        required: false
+        default: "full"
+        type: choice
+        options:
+          - full
+          - live
 
 permissions:
   contents: read
@@ -22,7 +31,7 @@ jobs:
       changed: ${{ steps.build.outputs.changed }}
     env:
       # 5 分钟那轮只跑快讯；整点那轮和手动触发跑全量
-      FETCH_MODE: ${{ (github.event.schedule == '*/5 * * * *') && 'live' || 'full' }}
+      FETCH_MODE: ${{ github.event.inputs.mode || ((github.event.schedule == '*/5 * * * *') && 'live' || 'full') }}
     steps:
       - uses: actions/checkout@v4
 

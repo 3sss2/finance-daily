@@ -21,7 +21,11 @@
 - **每小时第 7 分钟**：全量，额外抓搜索、微信公众号、B 站、央行、统计局
 
 每轮都会：还原上一轮数据缓存（去重、保留期）→ 生成 `public/data.json` → **内容真有变化才重新部署**，
-没变化就跳过，既不浪费部署配额，页面上的「上次更新」也不会虚报。
+没变化就跳过，既不浪费部署配额，页面上的「内容更新」也不会虚报；同时记录「最近检查」时间。
+
+GitHub 自带的定时任务本身是「尽力而为」，新仓库常有 5～30 分钟延迟，所以设备上还有一个兜底定时器
+（`finance-daily-nudge.timer`）：每 5 分钟检查一次，如果最近 6 分钟没有跑过，就用 `workflow_dispatch`
+补触发一轮。缺点是多了一个「设备要开着」的前提——设备关机时只靠 GitHub 自己的 cron。
 
 抓取失败时不会用空内容覆盖线上版本，页面上会提示「本轮数据源不可达，沿用上次内容」。
 
@@ -63,6 +67,7 @@ cd /home/ubuntu/.wegent/workspace/916580380855103/finance-daily
 
 ./start.sh                      # 启动
 ./stop.sh                       # 停止
+systemctl --user list-timers finance-daily-nudge.timer   # 看兜底触发器的下次执行
 systemctl --user status finance-daily     # 看状态
 systemctl --user restart finance-daily    # 改完配置后重启
 tail -f logs/server.log         # 看抓取日志

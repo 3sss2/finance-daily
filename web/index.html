@@ -277,9 +277,10 @@ function paintMeta(meta){
   document.getElementById('st-fresh').textContent = (run.reason === 'startup' ? (c.recent_hour ?? '—') : (run.added ?? '—'));
   document.getElementById('st-macro').textContent = (c.by_category || {})['宏观数据'] ?? 0;
   document.getElementById('st-earnings').textContent = (c.by_category || {})['公司财报'] ?? 0;
-  document.getElementById('stamp-updated').textContent = '上次更新 ' + fmt(meta.last_updated);
+  document.getElementById('stamp-updated').textContent =
+    (MODE === 'static' ? '内容更新 ' : '上次更新 ') + fmt(meta.last_updated);
   document.getElementById('stamp-next').textContent = MODE === 'static'
-    ? '实时更新 · 每 5 分钟抓取一次'
+    ? (meta.checked_at ? '最近检查 ' + fmt(meta.checked_at) + '（每 5 分钟）' : '每 5 分钟抓取一次')
     : '下次更新 ' + fmt(meta.next_update_at);
   if(MODE === 'static') document.getElementById('stamp-title').textContent = '实时更新';
   setDot(meta.updating ? 'busy' : 'ok', meta.updating ? '正在更新…' : (c.total ? '实时更新' : '等待首轮采集'));
