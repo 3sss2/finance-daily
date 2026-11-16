@@ -1,0 +1,588 @@
+# -*- coding: utf-8 -*-
+"""
+fetchers.py —— 财经日报的数据采集器（仅标准库）
+
+数据来源（都是公开接口，按小时轮询）：
+  * 华尔街见闻 7x24 快讯
+  * 同花顺财经 7x24 直播
+  * 东方财富 资讯搜索（按跟踪公司 / 宏观关键词）
+  * 华尔街见闻 文章搜索
+  * 国家统计局「数据发布」最新稿件
+  * B 站 视频搜索（财经关键词，可直接在网页内播放）
+
+每次返回统一结构的 item，交给 server.py 去重、合并、落盘。
+"""
+
+import hashlib
+import html as htmllib
+import http.cookiejar
+import json
+import re
+import time
+import urllib.parse
+import urllib.request
+from datetime import datetime, timedelta, timezone
+
+CN = timezone(timedelta(hours=8))
+_cookiejar = http.cookiejar.CookieJar()
+UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+      "(KHTML, like Gecko) Chrome/122.0 Safari/537.36")
+
+MACRO_WORDS = ("CPI", "PPI", "PMI", "GDP", "M1", "M2", "社融", "LPR", "央行",
+               "统计局", "财政部", "降准", "降息", "逆回购", "MLF", "国债",
+               "社会消费品零售", "固定资产投资", "进出口", "外贸", "人民币汇率",
+               "物价", "就业", "失业率", "财政政策", "货币政策")
+EARNINGS_WORDS = ("财报", "季报", "年报", "半年报", "业绩", "营收", "营业收入",
+                  "净利润", "归母", "扣非", "预增", "预亏", "毛利率", "分红")
+
+# 7x24 快讯里混着社会新闻，用财经词做一道粗筛
+RELEVANT_WORDS = ("股", "债", "汇", "央行", "财政", "经济", "涨", "跌", "盘", "指数",
+                  "银行", "保险", "券商", "基金", "期货", "黄金", "原油", "铜", "钢",
+                  "煤", "锂", "芯片", "半导体", "光伏", "楼市", "房地产", "汽车",
+                  "出口", "进口", "关税", "美联储", "通胀", "价格", "产量", "销量",
+                  "融资", "回购", "IPO", "财报", "业绩", "营收", "利润", "投资",
+                  "产能", "补贴", "监管", "政策", "能源", "电力", "算力", "消费",
+                  "统计局", "财政部", "降准", "降息", "汇率", "市值")
+
+# B 站搜索结果里个人 vlog 与券商广告很多，视频只留像财经内容的
+VIDEO_TITLE_WORDS = ("股票", "股市", "A股", "港股", "美股", "财报", "季报", "年报",
+                     "业绩", "营收", "净利", "经济", "GDP", "CPI", "PPI", "PMI",
+                     "社融", "央行", "降息", "降准", "美联储", "关税", "汇率",
+                     "债", "基金", "ETF", "半导体", "芯片", "新能源", "光伏",
+                     "锂", "白酒", "茅台", "比亚迪", "宁德", "腾讯", "京东",
+                     "阿里", "银行", "保险", "券商", "地产", "楼市", "黄金",
+                     "原油", "铜", "钢", "煤炭", "指数", "市值", "估值", "涨", "跌", "盘")
+
+TAG_RE = re.compile(r"<[^>]+>")
+SPACE_RE = re.compile(r"[ \t\r\f\v]+")
+EMPTY_LINE_RE = re.compile(r"\n{3,}")
+
+
+# --------------------------------------------------------------------------
+# 基础工具
+# --------------------------------------------------------------------------
+def http_get(url, timeout=15, headers=None, retries=2):
+    req_headers = {
+        "User-Agent": UA,
+        "Accept": "*/*",
+        "Accept-Language": "zh-CN,zh;q=0.9",
+    }
+    if headers:
+        req_headers.update(headers)
+    last_err = None
+    for attempt in range(retries + 1):
+        try:
+            req = urllib.request.Request(url, headers=req_headers)
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                return resp.read()
+        except Exception as exc:          # 网络抖动时重试一次
+            last_err = exc
+            if attempt < retries:
+                time.sleep(1.2 * (attempt + 1))
+    raise last_err
+
+
+def http_get_text(url, **kwargs):
+    raw = http_get(url, **kwargs)
+    for enc in ("utf-8", "gb18030"):
+        try:
+            return raw.decode(enc)
+        except UnicodeDecodeError:
+            continue
+    return raw.decode("utf-8", "ignore")
+
+
+def http_get_json(url, **kwargs):
+    text = http_get_text(url, **kwargs).strip()
+    if text.startswith("x("):             # 东方财富的 JSONP 包装
+        text = text[2:]
+        if text.endswith(")"):
+            text = text[:-1]
+    return json.loads(text)
+
+
+def clean(text):
+    if not text:
+        return ""
+    text = htmllib.unescape(str(text))
+    text = re.sub(r"<br\s*/?>", "\n", text, flags=re.I)
+    text = re.sub(r"</p\s*>", "\n", text, flags=re.I)
+    text = TAG_RE.sub("", text)          # 行内标签直接去掉，避免每个词占一行
+    text = text.replace(" ", " ").replace("　", " ")
+    text = SPACE_RE.sub(" ", text)
+    text = "\n".join(line.strip() for line in text.split("\n"))
+    return EMPTY_LINE_RE.sub("\n\n", text).strip()
+
+
+def now_cn():
+    return datetime.now(CN)
+
+
+def fmt_ts(epoch):
+    if not epoch:
+        return ""
+    try:
+        return datetime.fromtimestamp(int(epoch), CN).strftime("%Y-%m-%d %H:%M")
+    except (ValueError, OSError, OverflowError):
+        return ""
+
+
+def norm_title(text):
+    """用于跨来源去重的标题指纹"""
+    text = clean(text).lower()
+    text = re.sub(r"[\s　，。、；：！？,.;:!?\"'“”‘’（）()\[\]【】《》—\-·|/\\]", "", text)
+    return text[:70]
+
+
+def make_id(prefix, key):
+    return prefix + ":" + hashlib.sha1(key.encode("utf-8")).hexdigest()[:16]
+
+
+def guess_category(text, source=""):
+    blob = (text or "") + " " + (source or "")
+    if any(word in blob for word in EARNINGS_WORDS):
+        return "公司财报"
+    if any(word in blob for word in MACRO_WORDS):
+        return "宏观数据"
+    return "市场快讯"
+
+
+def extract_metrics(text, limit=4):
+    """从正文里保守地抽取「指标 + 数值」，标注为自动抽取，避免把口径写死"""
+    pattern = re.compile(
+        r"([一-龥A-Za-z]{2,12}?(?:同比|环比)?)"
+        r"(增长|下降|上涨|下跌|上升|回落|减少|增加|扩大|收窄|为)?"
+        r"\s*(?:了)?\s*(-?\d+(?:\.\d+)?)\s*(%|个百分点|万亿元|亿元|万亿)"
+    )
+    keep = ("营收", "收入", "净利", "利润", "毛利", "CPI", "PPI", "PMI", "GDP",
+            "M1", "M2", "社融", "出口", "进口", "投资", "零售", "消费", "贷款",
+            "融资", "产量", "销量", "价格", "指数", "增速", "市占")
+    metrics, seen = [], set()
+    for m in pattern.finditer(text):
+        label = m.group(1).strip()
+        if not any(word in label for word in keep):
+            continue
+        unit = m.group(4)
+        value = m.group(3).replace("-", "−")
+        key = (label, value, unit)
+        if key in seen:
+            continue
+        seen.add(key)
+        metrics.append({
+            "label": label,
+            "value": value,
+            "unit": unit,
+            "note": "自动抽取 · 原文「" + (m.group(0).strip()[:34] + ("…" if len(m.group(0).strip()) > 34 else "")) + "」",
+        })
+        if len(metrics) >= limit:
+            break
+    return metrics
+
+
+def make_item(*, kind, category, title, url, source, summary, published="",
+              period="", collected=None, status="", verified=False,
+              metrics=None, extra=None, dedupe_key=None):
+    key = dedupe_key or url or title
+    item = {
+        "id": make_id(kind, key),
+        "kind": kind,                      # auto / brief / manual
+        "category": category,
+        "title": clean(title)[:180],
+        "url": url,
+        "source": source,
+        "published": published,
+        "period": period,
+        "collected": collected or now_cn().isoformat(timespec="seconds"),
+        "summary": clean(summary)[:1200],
+        "metrics": metrics or [],
+        "verified": bool(verified),
+        "status": status,
+        "norm_title": norm_title(title),
+    }
+    if extra:
+        item.update(extra)
+    return item
+
+
+def _split_lead(text):
+    """把「【标题】正文」拆成标题和正文"""
+    text = clean(text)
+    m = re.match(r"^[【\[]([^】\]]{4,80})[】\]]\s*(.*)$", text, re.S)
+    if m:
+        return m.group(1).strip(), m.group(2).strip()
+    return "", text
+
+
+def _shorten(text, n=90):
+    text = clean(text).replace("\n", " ")
+    return text if len(text) <= n else text[:n].rstrip() + "…"
+
+
+def flash_title_summary(text):
+    """快讯没有【标题】时，用第一句做标题，剩下的放进摘要"""
+    lead, body = _split_lead(text)
+    if lead:
+        return lead, body
+    if len(text) <= 60:
+        return text, ""
+    m = re.match(r"^(.{2,60}?[。！？])", text, re.S)
+    if m:
+        return m.group(1), text[len(m.group(1)):].strip()
+    return text[:60].rstrip() + "…", text[60:].strip()
+
+
+def is_relevant(text):
+    return any(word in text for word in RELEVANT_WORDS)
+
+
+def is_finance_video(title, duration, plays):
+    """B 站粗筛：标题像财经、时长不短、播放量有基本盘"""
+    if not any(word in title for word in VIDEO_TITLE_WORDS):
+        return False
+    if not duration or duration < 150:          # 少于 2.5 分钟的通常是切片/广告
+        return False
+    if (plays or 0) < 3000:
+        return False
+    return True
+
+
+# --------------------------------------------------------------------------
+# 1. 华尔街见闻 7x24
+# --------------------------------------------------------------------------
+def fetch_wallstreetcn_lives(limit=40):
+    url = ("https://api-one.wallstcn.com/apiv1/content/lives"
+           "?channel=global-channel&client=pc&limit=%d" % limit)
+    data = http_get_json(url, headers={"Referer": "https://wallstreetcn.com/"})
+    items = []
+    for row in (data.get("data") or {}).get("items") or []:
+        content = clean(row.get("content") or "")
+        if len(content) < 8 or not is_relevant(content):
+            continue
+        title, summary = flash_title_summary(content)
+        lead = bool(_split_lead(content)[0])
+        published = fmt_ts(row.get("display_time") or row.get("created_at"))
+        st = row.get("score")
+        items.append(make_item(
+            kind="auto",
+            category=guess_category(content, "华尔街见闻"),
+            title=title,
+            url=row.get("uri") or "https://wallstreetcn.com/livenews",
+            source="华尔街见闻 · 7x24",
+            summary=summary,
+            published=published,
+            status="自动抓取 · 待核验",
+            metrics=extract_metrics(content, 4 if lead else 2),
+            dedupe_key="wscn-live-%s" % (row.get("id") or norm_title(title)),
+            extra={"hot": st} if isinstance(st, (int, float)) else None,
+        ))
+    return items
+
+
+# --------------------------------------------------------------------------
+# 2. 同花顺财经 7x24
+# --------------------------------------------------------------------------
+def fetch_ths_lives(size=40):
+    url = ("https://zhibo.sina.com.cn/api/zhibo/feed"
+           "?page=1&page_size=%d&zhibo_id=152&tag_id=0&dire=f&dpc=1" % size)
+    data = http_get_json(url, headers={"Referer": "https://zhibo.sina.com.cn/"})
+    rows = (((data.get("result") or {}).get("data") or {}).get("feed") or {}).get("list") or []
+    items = []
+    for row in rows:
+        text = (row.get("rich_text") or "").replace("<.PSI>", "")
+        lead, body = _split_lead(text)
+        if len(lead + body) < 8 or not is_relevant(lead + body):
+            continue
+        title, summary = flash_title_summary(text)
+        lead = bool(lead)
+        items.append(make_item(
+            kind="auto",
+            category=guess_category(text, "同花顺"),
+            title=title,
+            url="https://zhibo.sina.com.cn/detail/152/%s" % row.get("id"),
+            source="同花顺财经 · 7x24",
+            summary=summary,
+            published=(row.get("create_time") or "")[:16],
+            status="自动抓取 · 待核验",
+            metrics=extract_metrics(text, 4 if lead else 2),
+            dedupe_key="ths-live-%s" % (row.get("id") or norm_title(title)),
+        ))
+    return items
+
+
+# --------------------------------------------------------------------------
+# 3. 东方财富 资讯搜索
+# --------------------------------------------------------------------------
+def fetch_eastmoney_search(keyword, page_size=8):
+    param = {
+        "uid": "", "keyword": keyword,
+        "type": ["cmsArticleWebOld"], "client": "web", "clientType": "web",
+        "clientVersion": "curr",
+        "param": {"cmsArticleWebOld": {
+            "searchScope": "default", "sort": "time",
+            "pageIndex": 1, "pageSize": page_size}},
+    }
+    url = ("https://search-api-web.eastmoney.com/search/jsonp?cb=x&param="
+           + urllib.parse.quote(json.dumps(param, ensure_ascii=False)))
+    data = http_get_json(url, headers={"Referer": "https://so.eastmoney.com/"})
+    rows = ((data.get("result") or {}).get("cmsArticleWebOld")) or []
+    items = []
+    for row in rows:
+        title = clean(row.get("title") or "")
+        summary = clean(row.get("content") or "")
+        if not title:
+            continue
+        code = row.get("code") or ""
+        link = ("https://finance.eastmoney.com/a/%s.html" % code) if code else ""
+        if not link:
+            continue
+        items.append(make_item(
+            kind="auto",
+            category="公司财报" if any(w in title + summary for w in EARNINGS_WORDS)
+            else ("宏观数据" if any(w in title + summary for w in MACRO_WORDS) else "公司动态"),
+            title=title,
+            url=link,
+            source="东方财富 · 资讯（关键词：%s）" % keyword,
+            summary=summary,
+            published=(row.get("date") or "")[:16],
+            status="自动抓取 · 待核验",
+            metrics=extract_metrics(title + " " + summary),
+            dedupe_key=link,
+        ))
+    return items
+
+
+# --------------------------------------------------------------------------
+# 4. 华尔街见闻 文章搜索
+# --------------------------------------------------------------------------
+def fetch_wallstreetcn_search(keyword, limit=8):
+    url = ("https://api-one.wallstcn.com/apiv1/search/article?query=%s&limit=%d"
+           % (urllib.parse.quote(keyword), limit))
+    data = http_get_json(url, headers={"Referer": "https://wallstreetcn.com/"})
+    rows = (data.get("data") or {}).get("items") or []
+    items = []
+    for row in rows:
+        title = clean(row.get("title") or "")
+        summary = clean(row.get("content_short") or row.get("content") or "")
+        article_id = row.get("id")
+        if not title or not article_id:
+            continue
+        items.append(make_item(
+            kind="auto",
+            category="公司财报" if any(w in title + summary for w in EARNINGS_WORDS)
+            else ("宏观数据" if any(w in title + summary for w in MACRO_WORDS) else "公司动态"),
+            title=title,
+            url="https://wallstreetcn.com/articles/%s" % article_id,
+            source="华尔街见闻 · 文章（关键词：%s）" % keyword,
+            summary=summary,
+            published=fmt_ts(row.get("display_time")),
+            status="自动抓取 · 待核验",
+            metrics=extract_metrics(title + " " + summary),
+            dedupe_key="wscn-article-%s" % article_id,
+        ))
+    return items
+
+
+# --------------------------------------------------------------------------
+# 5. 国家统计局 数据发布
+# --------------------------------------------------------------------------
+def fetch_stats_releases(limit=10):
+    url = "https://www.stats.gov.cn/sj/zxfb/"
+    page = http_get_text(url, headers={"Referer": "https://www.stats.gov.cn/"})
+    blocks = re.findall(
+        r'<a class="fl pc_1600" href="([^"]+)"[^>]*title=\'([^\']+)\'.*?</a>\s*<span>\s*([\d\-]+)\s*</span>',
+        page, re.S)
+    items = []
+    for href, title, date in blocks[:limit]:
+        link = urllib.parse.urljoin(url, href)
+        items.append(make_item(
+            kind="auto",
+            category="宏观数据",
+            title=title,
+            url=link,
+            source="国家统计局 · 数据发布",
+            summary="国家统计局最新发布稿件：%s。点击「查看原文」读取全文与分项数据。" % title,
+            published=date,
+            status="官方发布 · 待整理要点",
+            verified=True,
+            dedupe_key=link,
+        ))
+    return items
+
+
+# --------------------------------------------------------------------------
+# 6. B 站 视频搜索
+# --------------------------------------------------------------------------
+def _duration_seconds(text):
+    parts = [p for p in str(text or "").split(":") if p.strip().isdigit()]
+    total = 0
+    for part in parts:
+        total = total * 60 + int(part)
+    return total
+
+
+# B 站接口对无 Cookie 的密集请求会返回 412，这里带 Cookie 并限速重试
+_BILI_OPENER = urllib.request.build_opener(
+    urllib.request.HTTPCookieProcessor(_cookiejar))
+_BILI_WARMED = False
+
+
+def _bili_warm_up():
+    global _BILI_WARMED
+    if _BILI_WARMED:
+        return
+    try:
+        req = urllib.request.Request("https://www.bilibili.com/", headers={
+            "User-Agent": UA,
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "Accept-Language": "zh-CN,zh;q=0.9",
+        })
+        with _BILI_OPENER.open(req, timeout=15) as resp:
+            resp.read(2048)
+        _BILI_WARMED = True
+    except Exception:
+        pass
+
+
+def _bili_get_json(path):
+    _bili_warm_up()
+    headers = {
+        "User-Agent": UA,
+        "Accept": "application/json, text/plain, */*",
+        "Accept-Language": "zh-CN,zh;q=0.9",
+        "Referer": "https://search.bilibili.com/",
+        "Origin": "https://search.bilibili.com",
+    }
+    last = None
+    for attempt in range(3):
+        try:
+            req = urllib.request.Request("https://api.bilibili.com" + path,
+                                         headers=headers)
+            with _BILI_OPENER.open(req, timeout=20) as resp:
+                return json.loads(resp.read().decode("utf-8", "ignore"))
+        except urllib.error.HTTPError as exc:
+            last = exc
+            time.sleep(2.5 * (attempt + 1))    # 412 限流，退避后再试
+        except Exception as exc:
+            last = exc
+            time.sleep(1.5)
+    raise last
+
+
+def fetch_bilibili_search(keyword, pages=1, max_age_days=7):
+    """按关键词抓候选视频，交给 fetch_bilibili_videos 统一筛"""
+    items, cutoff = [], time.time() - max_age_days * 86400
+    for page in range(1, pages + 1):
+        path = ("/x/web-interface/search/type?search_type=video&order=pubdate"
+                "&page=%d&keyword=%s" % (page, urllib.parse.quote(keyword)))
+        data = _bili_get_json(path)
+        rows = (data.get("data") or {}).get("result") or []
+        for row in rows:
+            bvid = row.get("bvid") or ""
+            if not bvid or not re.fullmatch(r"BV[0-9A-Za-z]+", bvid):
+                continue
+            if int(row.get("pubdate") or 0) < cutoff:
+                continue
+            title = clean(re.sub(r"</?em[^>]*>", "", row.get("title") or ""))
+            pic = row.get("pic") or ""
+            if pic.startswith("//"):
+                pic = "https:" + pic
+            desc = clean(row.get("description") or "")
+            items.append({
+                "bvid": bvid,
+                "title": title,
+                "author": row.get("author") or "未知作者",
+                "pubdate": row.get("pubdate"),
+                "plays": row.get("play") or 0,
+                "duration": row.get("duration"),
+                "duration_s": _duration_seconds(row.get("duration")),
+                "thumb": pic,
+                "desc": desc,
+                "keyword": keyword,
+            })
+    return items
+
+
+def fetch_bilibili_videos(keywords, total=12, max_per_author=2):
+    """汇总多个关键词的候选，按财经相关度与新鲜度挑出要展示的视频"""
+    candidates, errors = [], []
+    for idx, keyword in enumerate(keywords):
+        try:
+            if idx:
+                time.sleep(1.2)        # 关键词之间留间隔，避免触发限流
+            candidates.extend(fetch_bilibili_search(keyword))
+        except Exception as exc:
+            errors.append("B站·%s：%s" % (keyword, exc))
+
+    picked, author_count, seen = [], {}, set()
+    candidates.sort(key=lambda c: c.get("pubdate") or 0, reverse=True)
+    for row in candidates:
+        if row["bvid"] in seen:
+            continue
+        if not is_finance_video(row["title"], row["duration_s"], row["plays"]):
+            continue
+        if author_count.get(row["author"], 0) >= max_per_author:
+            continue
+        seen.add(row["bvid"])
+        author_count[row["author"]] = author_count.get(row["author"], 0) + 1
+        picked.append(make_item(
+            kind="auto",
+            category="视频财经",
+            title=row["title"],
+            url="https://www.bilibili.com/video/%s" % row["bvid"],
+            source="B站 · %s" % row["author"],
+            summary=row["desc"] or "B站视频《%s》，可直接在本页播放。" % row["title"],
+            published=fmt_ts(row["pubdate"]),
+            status="视频已收录 · 内容待整理",
+            verified=False,
+            dedupe_key="bili-%s" % row["bvid"],
+            extra={
+                "bvid": row["bvid"],
+                "thumb": row["thumb"],
+                "plays": row["plays"],
+                "duration": row["duration"],
+            },
+        ))
+        if len(picked) >= total:
+            break
+    return picked, errors
+
+
+# --------------------------------------------------------------------------
+# 编排
+# --------------------------------------------------------------------------
+def fetch_all(cfg):
+    """按配置抓一轮，返回 (items, errors, stats)"""
+    started = time.time()
+    items, errors, stats = [], [], {}
+
+    def run(label, fn, *args, **kwargs):
+        try:
+            got = fn(*args, **kwargs)
+            stats[label] = len(got)
+            items.extend(got)
+        except Exception as exc:
+            errors.append("%s：%s" % (label, exc))
+            stats[label] = 0
+
+    run("华尔街见闻7x24", fetch_wallstreetcn_lives, cfg.get("live_limit", 40))
+    run("同花顺7x24", fetch_ths_lives, cfg.get("live_limit", 40))
+    run("国家统计局", fetch_stats_releases)
+
+    for keyword in cfg.get("tracked_companies", []):
+        run("东方财富·" + keyword, fetch_eastmoney_search, keyword, 6)
+        run("华尔街见闻·" + keyword, fetch_wallstreetcn_search, keyword, 6)
+
+    for keyword in cfg.get("macro_keywords", []):
+        run("东方财富·" + keyword, fetch_eastmoney_search, keyword, 5)
+
+    try:
+        videos, video_errors = fetch_bilibili_videos(cfg.get("video_keywords", []))
+        stats["B站视频"] = len(videos)
+        items.extend(videos)
+        errors.extend(video_errors)
+    except Exception as exc:
+        errors.append("B站视频：%s" % exc)
+        stats["B站视频"] = 0
+
+    stats["耗时秒"] = round(time.time() - started, 1)
+    return items, errors, stats

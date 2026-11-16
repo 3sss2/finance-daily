@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>财经日报 · 每小时自动更新</title>
+<style>
+:root{--bg:#f5f5f0;--ink:#182d2a;--muted:#75807a;--green:#245d47;--line:#e1e6dc;--card:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Microsoft YaHei",sans-serif}
+header{background:#fff;border-bottom:1px solid #e0e5de;padding:16px 5%;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;position:sticky;top:0;z-index:20}
+.brand{font-size:21px;font-weight:750;white-space:nowrap}
+.brand span{font-size:11px;color:var(--muted);letter-spacing:2px;margin-left:14px;font-weight:400}
+.header-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+button{cursor:pointer;border:1px solid #d9dfd7;border-radius:8px;background:white;padding:9px 15px;color:var(--ink);font:inherit;font-size:14px}
+button:hover{border-color:#c3ccc0}
+button:disabled{opacity:.55;cursor:not-allowed}
+button.primary{background:var(--green);color:white;border-color:var(--green)}
+button.primary:hover{background:#1d4f3c}
+button.ghost.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+main{max-width:1200px;margin:auto;padding:34px 24px 60px}
+.eyebrow{font-size:11px;letter-spacing:3px;color:var(--green)}
+h1{font-size:42px;letter-spacing:-2px;margin:14px 0 8px;line-height:1.15}
+.hero{display:flex;justify-content:space-between;align-items:flex-start;gap:30px}
+.hero p{margin:0}
+p{line-height:1.8;color:var(--muted)}
+.stamp{padding:18px 22px;border-left:1px solid #d8dfd5;color:var(--muted);font-size:12px;line-height:1.9;min-width:250px}
+.stamp strong{color:var(--ink);display:block;font-size:15px;margin-bottom:2px}
+.live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#3f9d72;margin-right:7px;animation:pulse 2s infinite}
+.live-dot.busy{background:#c98a2e;animation-duration:.9s}
+.live-dot.err{background:#b4544a;animation:none}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:26px 0 4px}
+.stat{background:#fff;padding:18px 22px;border:1px solid var(--line);border-radius:12px;font-size:12px;color:var(--muted)}
+.stat b{font-size:27px;display:block;margin-bottom:2px;color:var(--ink);font-variant-numeric:tabular-nums}
+.toolbar{display:flex;gap:8px;align-items:center;margin:26px 0 14px;flex-wrap:wrap}
+.toolbar button{padding:8px 13px;font-size:13px}
+.toolbar button.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.search{margin-left:auto;padding:10px 14px;border:1px solid #dde2d8;border-radius:8px;background:#fff;min-width:230px;font:inherit;font-size:13px}
+.search:focus{outline:2px solid #cfe0d3;outline-offset:1px}
+.banner{margin:16px 0 0;padding:12px 16px;border-radius:10px;font-size:13px;line-height:1.7;display:none}
+.banner.show{display:block}
+.banner.warn{background:#fdf6e8;color:#7a5a1c;border:1px solid #f0e2c4}
+.banner.err{background:#fbeeec;color:#8a3a30;border:1px solid #f0d6d1}
+.banner.info{background:#eef4ef;color:var(--green);border:1px solid #d9e6dc}
+.notice{font-size:12px;color:var(--muted);line-height:1.9;margin:20px 0}
+.day{margin:28px 0 12px;font-size:12px;letter-spacing:1px;color:var(--muted);display:flex;align-items:center;gap:10px}
+.day::after{content:"";flex:1;height:1px;background:#e4e8df}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin-bottom:12px;transition:border-color .15s}
+.card:hover{border-color:#cfd8cd}
+.card.fresh{box-shadow:0 0 0 3px #e7f0e9}
+.meta{font-size:11px;color:var(--muted);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.tag{color:var(--green);background:#eaf2e9;padding:4px 9px;border-radius:4px;font-weight:600}
+.tag.cat-公司财报{background:#e9eef7;color:#3c5580}
+.tag.cat-公司动态{background:#f1edf6;color:#5d4a75}
+.tag.cat-视频财经{background:#fdeee9;color:#9a4b32}
+.tag.cat-市场快讯{background:#f1f2ee;color:#5d675f}
+.badge{font-size:10px;padding:3px 7px;border-radius:999px;border:1px solid #dfe4da;color:#6f7a73}
+.badge.verified{color:#2f6b4b;border-color:#cfe1d4;background:#f2f8f3}
+.card h2{font-size:20px;margin:12px 0 8px;line-height:1.45;font-weight:700}
+.card h2 a{color:var(--ink);text-decoration:none}
+.card h2 a:hover{color:var(--green)}
+.summary{font-size:14px;line-height:1.85;color:#5b6862;white-space:pre-wrap}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:16px 0 0}
+.metric{padding:13px 15px;background:#f7f8f3;border-radius:8px;font-size:11px;color:var(--muted)}
+.metric strong{display:block;font-size:22px;color:var(--ink);margin:6px 0 2px;font-variant-numeric:tabular-nums}
+.metric small{font-size:11px;font-weight:400}
+.metric .note{font-size:10px;line-height:1.5;color:#93a099}
+.metrics-note{font-size:10px;color:#9aa69f;margin:14px 0 -2px}
+.thumb{position:relative;margin-top:14px;border-radius:10px;overflow:hidden;background:#182d2a;aspect-ratio:16/9;max-width:560px}
+.thumb img{width:100%;height:100%;object-fit:cover;opacity:.82;display:block}
+.thumb .play{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:#fff;cursor:pointer;background:linear-gradient(180deg,rgba(24,45,42,.15),rgba(24,45,42,.55))}
+.thumb .play b{font-size:15px;font-weight:600}
+.thumb .play span{font-size:11px;opacity:.85}
+.player{margin-top:14px;max-width:560px}
+.player iframe{width:100%;aspect-ratio:16/9;border:0;background:#182d2a;border-radius:10px;display:block}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:12px;color:var(--muted);margin-top:14px;border-top:1px solid #eef0e8;padding-top:12px;flex-wrap:wrap}
+a{color:var(--green);text-decoration:none}
+a:hover{text-decoration:underline}
+.empty{text-align:center;padding:56px 20px;color:var(--muted);font-size:14px}
+dialog{border:none;border-radius:16px;width:min(550px,92vw);padding:26px}
+dialog::backdrop{background:#182d2a80}
+label{display:block;font-size:13px;margin:14px 0 6px}
+dialog input,dialog textarea,dialog select{width:100%;padding:11px 12px;border:1px solid #d9dfd7;border-radius:6px;font:inherit;font-size:14px;background:#fff}
+dialog textarea{height:110px;resize:vertical}
+.dialog-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:18px}
+.error{color:#a5462f;font-size:13px;min-height:18px;margin:10px 0 0}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(80px);background:var(--ink);color:#fff;padding:11px 18px;border-radius:999px;font-size:13px;opacity:0;transition:.28s;z-index:50;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:760px){
+  h1{font-size:30px}.hero{display:block}.stamp{display:none;border:none;padding:0}.brand span{display:none}
+  .stats{grid-template-columns:repeat(2,1fr);gap:8px}.stat{padding:14px}
+  .search{width:100%;margin:8px 0 0;order:9}.search:focus{outline:2px solid #cfe0d3}
+  main{padding:24px 14px 50px}.card{padding:18px}.card h2{font-size:18px}
+  header{padding:12px 14px}.header-actions button{padding:8px 11px;font-size:13px}
+  .metrics{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">◈ 财经日报 <span>DAILY FINANCIAL BRIEF · HOURLY</span></div>
+  <div class="header-actions">
+    <button class="ghost" id="toggle-brief" onclick="state.onlyBrief=!state.onlyBrief;this.classList.toggle('on',state.onlyBrief);render()">只看已整理</button>
+    <button id="add-btn" onclick="document.querySelector('dialog').showModal()">＋ 添加文章</button>
+    <button class="primary" id="refresh" onclick="triggerRefresh()">立即更新</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div>
+      <div class="eyebrow">LESS NOISE. MORE SIGNAL.</div>
+      <h1>把重要财经信息，放在一起。</h1>
+      <p>宏观数据 · 公司财报 · 来源可追溯的实时资讯 · 每小时自动更新</p>
+    </div>
+    <div class="stamp">
+      <strong><span class="live-dot" id="dot"></span><span id="stamp-title">正在连接本地服务</span></strong>
+      <span id="stamp-updated">上次更新 —</span><br>
+      <span id="stamp-next">下次更新 —</span><br>
+      <span id="stamp-sources">数据源：见页脚说明</span>
+    </div>
+  </section>
+
+  <div class="stats">
+    <div class="stat"><b id="st-total">—</b>当前收录</div>
+    <div class="stat"><b id="st-fresh">—</b>本轮新增</div>
+    <div class="stat"><b id="st-macro">—</b>宏观数据</div>
+    <div class="stat"><b id="st-earnings">—</b>公司财报</div>
+  </div>
+
+  <div id="banner" class="banner"></div>
+
+  <div class="toolbar">
+    <button data-filter="精选" class="active">精选</button>
+    <button data-filter="全部">全部资讯</button>
+    <button data-filter="宏观数据">宏观数据</button>
+    <button data-filter="公司财报">公司财报</button>
+    <button data-filter="公司动态">公司动态</button>
+    <button data-filter="视频财经">视频财经</button>
+    <button data-filter="市场快讯">市场快讯</button>
+    <input class="search" id="search" placeholder="搜索公司、指标或关键词" oninput="state.q=this.value.trim().toLowerCase();render()">
+    <a id="export-link" href="/api/export" download><button type="button">导出 JSON</button></a>
+  </div>
+
+  <div id="list"></div>
+
+  <div class="notice" id="notice">
+    数据源：华尔街见闻、同花顺财经、东方财富、国家统计局、B 站（每轮按公开接口抓取）。
+    数据说明：绿色「已整理」条目来自人工整理稿；其余为每小时自动抓取的公开资讯，标注「待核验」，仅代表原标题与摘要，未做事实核验。
+    指标数值由程序从正文自动抽取，口径（单季／累计、同比／环比）请以原文为准。媒体转述不等同于公司公告。页面不构成投资建议。
+  </div>
+</main>
+
+<dialog id="add-dialog">
+  <h2 style="margin:0;font-size:20px">收录一篇财经文章</h2>
+  <form id="add-form">
+    <label>文章标题</label>
+    <input name="title" required maxlength="300" placeholder="例如：10月社融数据点评">
+    <label>原文链接</label>
+    <input name="url" type="url" required placeholder="https://…">
+    <label>分类</label>
+    <select name="category">
+      <option>宏观数据</option>
+      <option>公司财报</option>
+      <option>公司动态</option>
+      <option>视频财经</option>
+      <option>市场快讯</option>
+    </select>
+    <label>摘要 / 核心数据（选填）</label>
+    <textarea name="summary" placeholder="粘贴摘要或关键数据"></textarea>
+    <p class="error" id="form-error"></p>
+    <div class="dialog-actions">
+      <button type="button" onclick="document.querySelector('dialog').close()">取消</button>
+      <button class="primary" type="submit">保存</button>
+    </div>
+  </form>
+</dialog>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const state = {data:null, filter:'精选', q:'', onlyBrief:false, version:null, timer:null, lastCount:0};
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt = iso => {
+  if(!iso) return '—';
+  const d = new Date(iso.replace(' ', 'T'));
+  if(isNaN(d)) return iso;
+  const p = n => String(n).padStart(2,'0');
+  return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`;
+};
+
+let MODE = 'server';
+
+async function detectMode(){
+  try{
+    const ctrl = new AbortController();
+    const timer = setTimeout(()=>ctrl.abort(), 3500);
+    const res = await fetch('/api/health', {cache:'no-store', signal:ctrl.signal});
+    clearTimeout(timer);
+    if(res.ok){
+      const health = await res.json();
+      if(health && health.ok){ MODE = 'server'; return; }
+    }
+  }catch(err){ /* 静态托管没有后端 */ }
+  MODE = 'static';
+}
+
+function applyMode(){
+  if(MODE !== 'static') return;
+  const refresh = document.getElementById('refresh');
+  const addBtn = document.getElementById('add-btn');
+  const exportLink = document.getElementById('export-link');
+  if(refresh) refresh.style.display = 'none';
+  if(addBtn) addBtn.style.display = 'none';
+  if(exportLink){ exportLink.href = './data.json'; exportLink.setAttribute('download', '财经日报.json'); }
+}
+
+async function api(path, opts){
+  const res = await fetch(path, {cache:'no-store', ...opts});
+  if(!res.ok) throw new Error('HTTP ' + res.status);
+  return res.json();
+}
+
+function toast(msg){
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(el._t);
+  el._t = setTimeout(()=>el.classList.remove('show'), 2600);
+}
+
+function banner(text, kind){
+  const el = document.getElementById('banner');
+  if(!text){ el.className='banner'; el.textContent=''; return; }
+  el.className = 'banner show ' + (kind || 'info');
+  el.textContent = text;
+}
+
+async function load(initial){
+  try{
+    const data = MODE === 'server' ? await api('/api/data')
+                                   : await api('./data.json?t=' + Date.now());
+    const meta = data.meta || {};
+    const changed = state.version !== null && meta.version !== state.version;
+    const before = state.data ? state.data.items.length : 0;
+    state.data = data;
+    state.version = meta.version;
+    render();
+    paintMeta(meta);
+    const delta = data.items.length - before;
+    if(initial) banner('', null);
+    else if(changed && delta > 0) toast(`已更新 · 新增 ${delta} 条内容`);
+    else if(changed) toast('数据已刷新');
+    else if(!initial) banner('', null);
+  }catch(err){
+    setDot('err');
+    banner(MODE === 'server'
+      ? '连不上本地服务（' + err.message + '）。请确认 finance-daily 的 server.py 正在运行，访问地址 http://127.0.0.1:8775 。'
+      : '数据加载失败（' + err.message + '），稍后会自动重试。', 'err');
+    if(!state.data) document.getElementById('list').innerHTML = '<div class="empty">正在加载内容…</div>';
+  }
+}
+
+function setDot(kind, title){
+  const dot = document.getElementById('dot');
+  dot.className = 'live-dot' + (kind === 'busy' ? ' busy' : kind === 'err' ? ' err' : '');
+  if(title) document.getElementById('stamp-title').textContent = title;
+}
+
+function paintMeta(meta){
+  const c = meta.counts || {};
+  document.getElementById('st-total').textContent = c.total ?? '—';
+  const run = meta.last_run || {};
+  document.getElementById('st-fresh').textContent = (run.reason === 'startup' ? (c.recent_hour ?? '—') : (run.added ?? '—'));
+  document.getElementById('st-macro').textContent = (c.by_category || {})['宏观数据'] ?? 0;
+  document.getElementById('st-earnings').textContent = (c.by_category || {})['公司财报'] ?? 0;
+  document.getElementById('stamp-updated').textContent = '上次更新 ' + fmt(meta.last_updated);
+  document.getElementById('stamp-next').textContent = MODE === 'static'
+    ? '每小时自动更新一次'
+    : '下次更新 ' + fmt(meta.next_update_at);
+  setDot(meta.updating ? 'busy' : 'ok', meta.updating ? '正在更新…' : (c.total ? '每小时自动更新' : '等待首轮采集'));
+  const errs = (meta.last_run && meta.last_run.errors) || [];
+  if(errs.length){
+    banner('本轮部分数据源未取到：' + errs.join('；') + '（其余内容已正常更新）', 'warn');
+  }else if(!meta.last_error){
+    banner('', null);
+  }
+  const btn = document.getElementById('refresh');
+  btn.disabled = !!meta.updating;
+  btn.textContent = meta.updating ? '更新中…' : '立即更新';
+  document.getElementById('search').value = document.getElementById('search').value;
+}
+
+async function triggerRefresh(){
+  const btn = document.getElementById('refresh');
+  btn.disabled = true; btn.textContent = '更新中…';
+  setDot('busy', '正在抓取最新内容…');
+  try{
+    const before = state.version;
+    await api('/api/refresh', {method:'POST'});
+    toast('已开始抓取，约 20 秒后完成');
+    for(let i=0;i<14;i++){
+      await new Promise(r=>setTimeout(r, 3000));
+      const health = await api('/api/health').catch(()=>null);
+      if(health && health.version !== before){ await load(false); return; }
+    }
+    await load(false);
+  }catch(err){
+    banner('触发更新失败：' + err.message, 'err');
+    btn.disabled = false; btn.textContent = '立即更新';
+  }
+}
+
+function dayLabel(i){
+  const candidates = [i.published, i.collected];
+  let dateStr = '';
+  for(const c of candidates){
+    if(!c) continue;
+    const m = String(c).match(/^(\d{4}-\d{2}-\d{2})(?:[ T](\d{2}:\d{2}))?/);
+    if(m){ dateStr = m[1] + ' ' + (m[2] || '00:00'); break; }
+  }
+  if(!dateStr) return '时间待核实';
+  const d = new Date(dateStr.replace(' ', 'T'));
+  if(isNaN(d)) return dateStr.slice(0,10);
+  const today = new Date();
+  const t0 = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  const d0 = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  const diff = Math.round((t0 - d0) / 86400000);
+  if(diff === 0) return '今天 · ' + dateStr.slice(0,10);
+  if(diff === 1) return '昨天 · ' + dateStr.slice(0,10);
+  return dateStr.slice(0,10);
+}
+
+function visibleItems(){
+  const d = state.data; if(!d) return [];
+  return d.items.filter(i=>{
+    if(state.filter === '精选'){ if(i.category === '市场快讯') return false; }
+    else if(state.filter !== '全部' && i.category !== state.filter) return false;
+    if(state.onlyBrief && i.kind === 'auto' && !i.verified) return false;
+    if(state.q){
+      const blob = ((i.title||'') + ' ' + (i.summary||'') + ' ' + (i.source||'')).toLowerCase();
+      if(!blob.includes(state.q)) return false;
+    }
+    return true;
+  });
+}
+
+function metricHtml(m){
+  return `<div class="metric">${esc(m.label)}<strong>${esc(m.value)} <small>${esc(m.unit)}</small></strong><div class="note">${esc(m.note)}</div></div>`;
+}
+
+function videoHtml(i){
+  if(!i.bvid || !/^BV[0-9A-Za-z]+$/.test(i.bvid)) return '';
+  const meta = [i.duration, i.plays ? Number(i.plays).toLocaleString() + ' 次播放' : ''].filter(Boolean).join(' · ');
+  if(!i.thumb){
+    return `<div class="player" id="player-${esc(i.bvid)}">
+      <button class="primary" onclick="playBili('${esc(i.bvid)}')">▶ 在网页中播放</button>
+      <a href="${esc(i.url)}" target="_blank" rel="noopener noreferrer" style="margin-left:10px;font-size:13px">到 B 站观看 ↗</a>
+      ${meta?`<span style="font-size:12px;color:#75807a;margin-left:10px">${esc(meta)}</span>`:''}
+    </div>`;
+  }
+  return `<div class="thumb" id="player-${esc(i.bvid)}">
+      <img src="${esc(i.thumb)}" alt="" loading="lazy" referrerpolicy="no-referrer">
+      <div class="play" onclick="playBili('${esc(i.bvid)}')"><b>▶ 在网页中播放</b><span>${esc(meta)}</span></div>
+    </div>`;
+}
+
+function cardHtml(i){
+  const verified = i.verified ? '<span class="badge verified">已整理</span>' : '<span class="badge">待核验</span>';
+  const status = (i.status && !/待核验/.test(i.status)) ? `<span>${esc(i.status)}</span>` : '';
+  const metrics = (i.metrics && i.metrics.length)
+    ? `${i.kind==='auto'?'<div class="metrics-note">以下数值由程序自动抽取，口径（单季／累计、同比／环比）以原文为准</div>':''}<div class="metrics">${i.metrics.map(metricHtml).join('')}</div>`
+    : '';
+  const summary = i.summary ? `<div class="summary">${esc(i.summary)}</div>` : '';
+  return `<article class="card" data-id="${esc(i.id)}">
+    <div class="meta">
+      <span class="tag cat-${esc(i.category)}">${esc(i.category)}</span>
+      ${verified}
+      <span>${esc(i.source||'')}</span>
+      <span>${esc(i.published || '时间待核实')}</span>
+      ${i.period?`<span>${esc(i.period)}</span>`:''}
+      ${status}
+    </div>
+    <h2><a href="${esc(/^https?:/.test(i.url||'')?i.url:'#')}" target="_blank" rel="noopener noreferrer">${esc(i.title)}</a></h2>
+    ${summary}
+    ${metrics}
+    ${videoHtml(i)}
+    <div class="foot">
+      <span>${i.source||''}${i.kind==='auto'?' · 自动抓取，未做事实核验':(i.verified?' · 依据注明来源整理':' · 人工收录 · 待核验')}</span>
+      <span><a href="${esc(/^https?:/.test(i.url||'')?i.url:'#')}" target="_blank" rel="noopener noreferrer">查看原文 ↗</a></span>
+    </div>
+  </article>`;
+}
+
+function render(){
+  const items = visibleItems();
+  const list = document.getElementById('list');
+  if(!items.length){
+    list.innerHTML = '<div class="empty">' + (state.data ? '没有匹配的内容，换个筛选或关键词试试' : '正在加载…') + '</div>';
+    return;
+  }
+  let html = '', lastDay = '';
+  for(const i of items){
+    const day = dayLabel(i);
+    if(day !== lastDay){
+      html += `<div class="day">${esc(day)}</div>`;
+      lastDay = day;
+    }
+    html += cardHtml(i);
+  }
+  list.innerHTML = html;
+}
+
+function playBili(id){
+  if(!/^BV[0-9A-Za-z]+$/.test(id)) return;
+  const box = document.getElementById('player-' + id);
+  if(!box) return;
+  box.outerHTML = `<div class="player" id="player-${id}"><iframe src="https://player.bilibili.com/player.html?bvid=${encodeURIComponent(id)}&page=1&autoplay=1" title="B站播放器" allow="fullscreen; picture-in-picture" allowfullscreen referrerpolicy="no-referrer"></iframe><p style="font-size:12px;margin:6px 0 0">播放器由 B 站提供，需要联网；若无画面可点「查看原文」到 B 站观看。</p></div>`;
+}
+
+function syncFilterButtons(){
+  document.querySelectorAll('[data-filter]').forEach(b=>b.classList.toggle('active', b.dataset.filter===state.filter));
+}
+document.querySelectorAll('[data-filter]').forEach(btn=>{
+  btn.onclick = ()=>{
+    state.filter = btn.dataset.filter;
+    document.querySelectorAll('[data-filter]').forEach(b=>b.classList.toggle('active', b===btn));
+    render();
+    window.scrollTo({top:0, behavior:'smooth'});
+  };
+});
+
+document.getElementById('add-form').onsubmit = async e=>{
+  e.preventDefault();
+  const data = Object.fromEntries(new FormData(e.target));
+  const errEl = document.getElementById('form-error');
+  errEl.textContent = '';
+  try{
+    await api('/api/items', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data)});
+    e.target.reset();
+    document.querySelector('dialog').close();
+    await load(false);
+    toast('已收录');
+  }catch(err){
+    errEl.textContent = '保存失败：' + err.message + '（如果提示已收录，说明这个链接已经在列表里）';
+  }
+};
+
+async function poll(){
+  try{
+    if(MODE === 'server'){
+      const health = await api('/api/health');
+      setDot(health.updating ? 'busy' : 'ok');
+      if(health.version !== state.version) await load(false);
+      return;
+    }
+    setDot('ok');
+    const fresh = await api('./data.json?t=' + Date.now());
+    if(fresh.meta && fresh.meta.version !== state.version){
+      state.data = fresh;
+      state.version = fresh.meta.version;
+      render();
+      paintMeta(fresh.meta);
+      toast('已更新到最新一期');
+    }
+  }catch(err){ /* 网络抖动忽略，下一轮再试 */ }
+}
+
+async function boot(){
+  await detectMode();
+  applyMode();
+  const preset = new URLSearchParams(location.search).get('f');
+  if(preset && [...document.querySelectorAll('[data-filter]')].some(b=>b.dataset.filter===preset)){
+    state.filter = preset;
+    syncFilterButtons();
+  }
+  await load(true);
+  setInterval(poll, MODE === 'server' ? 30000 : 180000);
+}
+
+boot();
+setInterval(()=>{                              // 每秒刷新「下次更新」倒计时（静态站不显示倒计时）
+  if(MODE === 'static') return;
+  const meta = state.data && state.data.meta;
+  if(!meta || !meta.next_update_at) return;
+  const next = new Date(meta.next_update_at.replace(' ', 'T'));
+  if(isNaN(next)) return;
+  const left = Math.max(0, Math.round((next - Date.now())/60000));
+  document.getElementById('stamp-next').textContent = meta.updating ? '正在更新…' : `下次更新 ${left} 分钟后（${fmt(meta.next_update_at)}）`;
+}, 1000);
+</script>
+</body>
+</html>
