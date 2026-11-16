@@ -314,6 +314,36 @@ def build_video_outline(title, desc, duration_s, tags=None):
     return outline
 
 
+def extract_article_image(page, base):
+    """从正文里挑一张像图表的配图（东方财富的 np-newspic）"""
+    import re as _re
+    m = _re.search(r'https?://[^"\'\s]*(?:np-newspic|dfcfw)[^"\'\s]*\.(?:jpg|jpeg|png)', page, _re.I)
+    if m:
+        return m.group(0)
+    return extract_og_image(page, base)
+
+
+def enrich_images(items, limit=20, only_prefix="东方财富"):
+    """给缺图的文章补一张首图；只处理最新的若干条，避免请求过多"""
+    picked = [i for i in items
+              if not i.get("image") and not i.get("bvid")
+              and (i.get("source") or "").startswith(only_prefix)
+              and (i.get("url") or "").startswith("http")]
+    picked.sort(key=lambda i: i.get("published") or "", reverse=True)
+    done = 0
+    for item in picked[:limit]:
+        try:
+            page = http_get_text(item["url"], headers={"Referer": "https://finance.eastmoney.com/"})
+            image = extract_article_image(page, item["url"])
+            if image:
+                item["image"] = image
+                done += 1
+        except Exception:
+            continue
+        time.sleep(0.3)
+    return done
+
+
 def ensure_video_outline(item):
     """给历史视频补大纲；已经是我们生成过的，按最新规则重算一次"""
     if not item.get("bvid"):
@@ -672,9 +702,23 @@ PBC_STATS_URL = "https://www.pbc.gov.cn/diaochatongjisi/116219/116225/index.html
 PBC_NEWS_URL = "https://www.pbc.gov.cn/goutongjiaoliu/113456/113469/index.html"
 
 
+def extract_og_image(page, base):
+    import re as _re
+    for pat in (r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)',
+                r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+property=["\']og:image'):
+        m = _re.search(pat, page, _re.I)
+        if m:
+            return urllib.parse.urljoin(base, htmllib.unescape(m.group(1)))
+    return ""
+
+
 def _pbc_article_text(url, limit=900):
     """抓央行正文，去掉导航和按钮文字"""
     page = http_get_text(url, headers={"Referer": "https://www.pbc.gov.cn/"})
+    return _pbc_text_from_html(page, limit)
+
+
+def _pbc_text_from_html(page, limit=900):
     body = re.sub(r"(?is)<(script|style)[^>]*>.*?</\1>", " ", page)
     text = htmllib.unescape(re.sub(r"<[^>]+>", "\n", body))
     for marker in ("关闭窗口", "打印本页"):
@@ -703,11 +747,14 @@ def _fetch_pbc_listing(list_url, keywords, category, source_label, with_body=Tru
             continue
         link = urllib.parse.urljoin(list_url, href)
         summary = "中国人民银行官方发布：%s。" % title
+        image = ""
         if with_body:
             try:
-                body = _pbc_article_text(link)
+                page_html = http_get_text(link, headers={"Referer": "https://www.pbc.gov.cn/"})
+                body = _pbc_text_from_html(page_html)
                 if len(body) > 40:
                     summary = body
+                image = extract_og_image(page_html, link)
             except Exception:
                 pass
         items.append(make_item(
@@ -722,6 +769,7 @@ def _fetch_pbc_listing(list_url, keywords, category, source_label, with_body=Tru
             verified=True,
             metrics=extract_metrics(summary, 4),
             dedupe_key=link,
+            extra={"image": image} if image else None,
         ))
     return items
 
@@ -808,6 +856,7 @@ def fetch_wechat_search(keyword, max_items=5, max_age_days=10):
         m_title = re.search(r'<h3>\s*<a[^>]*>(.*?)</a>', block, re.S)
         m_sum = re.search(r'<p class="txt-info"[^>]*>(.*?)</p>', block, re.S)
         m_acct = re.search(r'<span class="all-time-y2">(.*?)</span>', block)
+        m_img = re.search(r'<div class="img-box">.*?<img[^>]+src="([^"]+)"', block, re.S)
         m_ts = re.search(r"timeConvert\('(\d+)'\)", block)
         if not (m_title and m_acct and m_ts):
             continue
@@ -819,6 +868,13 @@ def fetch_wechat_search(keyword, max_items=5, max_age_days=10):
             continue
         account = clean(m_acct.group(1))
         summary = clean(m_sum.group(1)) if m_sum else ""
+        image = ""
+        if m_img:
+            proxy = htmllib.unescape(m_img.group(1))
+            if proxy.startswith("//"):
+                proxy = "https:" + proxy
+            params = urllib.parse.parse_qs(urllib.parse.urlparse(proxy).query)
+            image = (params.get("url") or [""])[0]     # 搜狗缩略图里带着原图地址
         items.append(make_item(
             kind="auto",
             category=guess_category(title + " " + summary, account),
@@ -831,6 +887,7 @@ def fetch_wechat_search(keyword, max_items=5, max_age_days=10):
             verified=False,
             metrics=extract_metrics(title + " " + summary),
             dedupe_key="wx-%s-%s" % (account, norm_title(title)),
+            extra={"image": image} if image else None,
         ))
         if len(items) >= max_items:
             break
@@ -1047,6 +1104,17 @@ def fetch_all(cfg, live_only=False):
 
     for keyword in cfg.get("macro_keywords", []):
         run("东方财富·" + keyword, fetch_eastmoney_search, keyword, 5)
+
+    # 固定关注的号（图表/数据型），每轮都查
+    for idx, query in enumerate(cfg.get("wechat_pinned", [])):
+        try:
+            if idx:
+                time.sleep(3)
+            got = fetch_wechat_search(query, 5, max_age_days=20)
+            stats["微信·" + query] = len(got)
+            items.extend(got)
+        except Exception as exc:
+            errors.append("微信·%s：%s" % (query, exc))
 
     accounts = cfg.get("wechat_accounts") or []
     if accounts:

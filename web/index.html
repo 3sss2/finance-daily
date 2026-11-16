@@ -68,6 +68,7 @@ p{line-height:1.8;color:var(--muted)}
 .metric small{font-size:11px;font-weight:400}
 .metric .note{font-size:10px;line-height:1.5;color:#93a099}
 .metrics-note{font-size:10px;color:#9aa69f;margin:14px 0 -2px}
+.card-img{display:block;width:100%;max-width:680px;max-height:280px;object-fit:cover;border-radius:10px;margin-top:12px;border:1px solid #e9ece3;background:#f7f8f3}
 .outline{margin:14px 0 0;padding:14px 16px;background:#f7f8f3;border-radius:10px;border:1px solid #e9ece3}
 .outline-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
 .outline-h b{font-size:13px;color:var(--ink)}
@@ -430,6 +431,7 @@ function cardHtml(i){
     </div>
     <h2><a href="${esc(/^https?:/.test(i.url||'')?i.url:'#')}" target="_blank" rel="noopener noreferrer">${esc(i.title)}</a></h2>
     ${summary}
+    ${i.image && !i.bvid ? `<img class="card-img" src="${esc(i.image)}" loading="lazy" referrerpolicy="no-referrer" alt="">` : ''}
     ${outlineHtml(i)}
     ${metrics}
     ${videoHtml(i)}

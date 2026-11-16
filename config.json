@@ -103,5 +103,8 @@
   ],
   "wechat_query_slots": 4,
   "video_total": 20,
-  "max_per_source": 120
+  "max_per_source": 120,
+  "wechat_pinned": [
+    "安佑数据速览"
+  ]
 }

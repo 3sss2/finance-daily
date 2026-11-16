@@ -78,6 +78,12 @@ def merge(previous, fetched, cfg):
     existing_urls = {i.get("url") for i in previous + seed if i.get("url")}
     existing_titles = {i.get("norm_title") for i in previous + seed if i.get("norm_title")}
 
+    # 老条目缺图时，用这一轮同 id 的新条目补上（不影响去重）
+    fresh_by_id = {i.get("id"): i for i in fetched if i.get("image")}
+    for item in previous:
+        if not item.get("image") and item.get("id") in fresh_by_id:
+            item["image"] = fresh_by_id[item["id"]]["image"]
+
     added, batch_ids, batch_titles = [], set(), set()
     for item in fetched:
         item_cutoff = verified_cutoff if item.get("verified") else cutoff
@@ -166,6 +172,13 @@ def main():
     items = kept
     for item in items:
         fetchers.ensure_video_outline(item)
+
+    if not live_only:
+        try:
+            with_images = fetchers.enrich_images(items, limit=int(cfg.get("image_enrich_limit", 20)))
+            print("补图 %d 张" % with_images, flush=True)
+        except Exception as exc:
+            print("补图失败：%s" % exc, flush=True)
 
     with open(os.path.join(WEB_DIR, "index.html"), "rb") as fh:
         html_sha = hashlib.sha256(fh.read()).hexdigest()
