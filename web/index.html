@@ -190,7 +190,7 @@ dialog textarea{height:110px;resize:vertical}
 
 <script>
 const state = {data:null, filter:'精选', q:'', onlyBrief:false, version:null, timer:null, lastCount:0};
-const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const esc = s => String(s === null || s === undefined ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt = iso => {
   if(!iso) return '—';
   const d = new Date(iso.replace(' ', 'T'));
@@ -226,9 +226,19 @@ function applyMode(){
 }
 
 async function api(path, opts){
-  const res = await fetch(path, {cache:'no-store', ...opts});
-  if(!res.ok) throw new Error('HTTP ' + res.status);
-  return res.json();
+  const timeout = new Promise((_, reject) =>
+    setTimeout(() => reject(new Error('请求超时')), 15000));
+  const req = fetch(path, {cache:'no-store', ...(opts || {})}).then(res => {
+    if(!res.ok) throw new Error('HTTP ' + res.status);
+    return res.json();
+  });
+  return Promise.race([req, timeout]);
+}
+
+function readFallback(){
+  const el = document.getElementById('fallback-data');
+  if(!el) return null;
+  try{ return JSON.parse(el.textContent); }catch(err){ return null; }
 }
 
 function toast(msg){
@@ -263,6 +273,16 @@ async function load(initial){
     else if(changed) toast('数据已刷新');
     else if(!initial) banner('', null);
   }catch(err){
+    const fb = readFallback();
+    if(fb && fb.items && fb.items.length){
+      state.data = fb;
+      state.version = (fb.meta || {}).version;
+      render();
+      paintMeta(fb.meta || {});
+      banner('实时数据一时没取到（' + err.message + '），先显示页面内置快照：'
+             + fmt((fb.meta || {}).last_updated) + '。稍后会自动重试。', 'warn');
+      return;
+    }
     setDot('err');
     banner(MODE === 'server'
       ? '连不上本地服务（' + err.message + '）。请确认 finance-daily 的 server.py 正在运行，访问地址 http://127.0.0.1:8775 。'
@@ -279,11 +299,12 @@ function setDot(kind, title){
 
 function paintMeta(meta){
   const c = meta.counts || {};
-  document.getElementById('st-total').textContent = c.total ?? '—';
+  const num = (v, d) => (v === null || v === undefined ? d : v);
+  document.getElementById('st-total').textContent = num(c.total, '—');
   const run = meta.last_run || {};
-  document.getElementById('st-fresh').textContent = (run.reason === 'startup' ? (c.recent_hour ?? '—') : (run.added ?? '—'));
-  document.getElementById('st-macro').textContent = (c.by_category || {})['宏观数据'] ?? 0;
-  document.getElementById('st-earnings').textContent = (c.by_category || {})['公司财报'] ?? 0;
+  document.getElementById('st-fresh').textContent = (run.reason === 'startup' ? num(c.recent_hour, '—') : num(run.added, '—'));
+  document.getElementById('st-macro').textContent = num((c.by_category || {})['宏观数据'], 0);
+  document.getElementById('st-earnings').textContent = num((c.by_category || {})['公司财报'], 0);
   document.getElementById('stamp-updated').textContent =
     (MODE === 'static' ? '内容更新 ' : '上次更新 ') + fmt(meta.last_updated);
   document.getElementById('stamp-next').textContent = MODE === 'static'

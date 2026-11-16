@@ -205,8 +205,19 @@ def main():
     with open(OUT_DATA, "w", encoding="utf-8") as fh:
         json.dump({"items": items, "meta": meta}, fh, ensure_ascii=False, indent=1)
 
-    shutil.copyfile(os.path.join(WEB_DIR, "index.html"),
-                    os.path.join(PUBLIC_DIR, "index.html"))
+    with open(os.path.join(WEB_DIR, "index.html"), encoding="utf-8") as fh:
+        html = fh.read()
+    # 页面里内嵌一份最近 40 条的快照：万一 data.json 取不到（CDN 抽风/网络差），
+    # 页面也不会是空白，先显示这份快照并提示正在重试。
+    snapshot = json.dumps({"items": items[:40], "meta": meta}, ensure_ascii=False)
+    snapshot = snapshot.replace("</", "<\\/")
+    tag = '<script id="fallback-data" type="application/json">%s</script>' % snapshot
+    if "</body>" in html:
+        html = html.replace("</body>", tag + "\n</body>", 1)
+    else:
+        html += tag
+    with open(os.path.join(PUBLIC_DIR, "index.html"), "w", encoding="utf-8") as fh:
+        fh.write(html)
     # 本地服务也复用这批数据，避免两套内容不一致（CI 上没有 data/ 目录）
     if merged:
         os.makedirs(DATA_DIR, exist_ok=True)
