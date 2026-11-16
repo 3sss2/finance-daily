@@ -164,6 +164,8 @@ def main():
         per_source[source] = per_source.get(source, 0) + 1
         kept.append(item)
     items = kept
+    for item in items:
+        fetchers.ensure_video_outline(item)
 
     with open(os.path.join(WEB_DIR, "index.html"), "rb") as fh:
         html_sha = hashlib.sha256(fh.read()).hexdigest()

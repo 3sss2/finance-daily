@@ -68,6 +68,13 @@ p{line-height:1.8;color:var(--muted)}
 .metric small{font-size:11px;font-weight:400}
 .metric .note{font-size:10px;line-height:1.5;color:#93a099}
 .metrics-note{font-size:10px;color:#9aa69f;margin:14px 0 -2px}
+.outline{margin:14px 0 0;padding:14px 16px;background:#f7f8f3;border-radius:10px;border:1px solid #e9ece3}
+.outline-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.outline-h b{font-size:13px;color:var(--ink)}
+.outline-h span{font-size:10px;color:#9aa69f}
+.outline ul{margin:8px 0 0;padding-left:18px}
+.outline li{font-size:13px;line-height:1.8;color:#4f5c56;margin:2px 0}
+.outline-meta{margin-top:6px;font-size:11px;color:#8b978f}
 .thumb{position:relative;margin-top:14px;border-radius:10px;overflow:hidden;background:#182d2a;aspect-ratio:16/9;max-width:560px}
 .thumb img{width:100%;height:100%;object-fit:cover;opacity:.82;display:block}
 .thumb .play{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:#fff;cursor:pointer;background:linear-gradient(180deg,rgba(24,45,42,.15),rgba(24,45,42,.55))}
@@ -350,6 +357,20 @@ function visibleItems(){
   });
 }
 
+function outlineHtml(i){
+  const list = i.outline || [];
+  if(!list.length) return '';
+  const points = list.filter(o => o.type === 'point');
+  const notes = list.filter(o => o.type === 'note').map(o => o.text);
+  const extras = list.filter(o => o.type === 'tags' || o.type === 'meta').map(o => o.text);
+  return `<div class="outline">
+      <div class="outline-h"><b>视频大纲</b><span>${esc(i.outline_source || '据标题与简介自动提炼')}</span></div>
+      ${points.length ? `<ul>${points.map(o=>`<li>${esc(o.text)}</li>`).join('')}</ul>` : ''}
+      ${notes.length ? `<div class="outline-meta">${esc(notes.join('；'))}</div>` : ''}
+      ${extras.length ? `<div class="outline-meta">${esc(extras.join(' · '))}</div>` : ''}
+    </div>`;
+}
+
 function metricHtml(m){
   return `<div class="metric">${esc(m.label)}<strong>${esc(m.value)} <small>${esc(m.unit)}</small></strong><div class="note">${esc(m.note)}</div></div>`;
 }
@@ -388,6 +409,7 @@ function cardHtml(i){
     </div>
     <h2><a href="${esc(/^https?:/.test(i.url||'')?i.url:'#')}" target="_blank" rel="noopener noreferrer">${esc(i.title)}</a></h2>
     ${summary}
+    ${outlineHtml(i)}
     ${metrics}
     ${videoHtml(i)}
     <div class="foot">

@@ -253,6 +253,85 @@ def is_relevant(text):
     return any(word in text for word in RELEVANT_WORDS)
 
 
+OUTLINE_NOISE = re.compile(r"#\\S*|https?://\\S+|点击关注|关注我|一键三连|点赞|投币|收藏|转发|"
+                           r"记得|欢迎订阅|更多精彩|视频加载中|【[^】]{0,12}】")
+OUTLINE_SPLIT = re.compile(r"(?<=[。！？!?；;])\\s*")
+FINANCE_TERMS = ("营收", "净利", "利润", "毛利", "股价", "市值", "估值", "财报", "季报",
+                 "同比", "环比", "增长", "下滑", "下跌", "上涨", "板块", "指数", "大盘",
+                 "成交", "资金", "北向", "主力", "机构", "基金", "债", "汇率", "利率",
+                 "通胀", "CPI", "PPI", "PMI", "GDP", "社融", "美联储", "降息", "加息",
+                 "政策", "产能", "销量", "订单", "库存", "价格")
+
+
+def build_video_outline(title, desc, duration_s, tags=None):
+    """用标题 + 简介做抽取式大纲（不读语音，没有字幕就靠这两样）"""
+    desc = desc or ""
+    if desc.startswith("B站视频《"):      # 我们自己生成的占位摘要，不是简介
+        desc = ""
+    text = OUTLINE_NOISE.sub(" ", clean(desc))
+    lines = []
+    for sent in OUTLINE_SPLIT.split(text):
+        sent = sent.strip(" ，,、\t")
+        if 8 <= len(sent) <= 90:
+            lines.append(sent)
+
+    def score(sent):
+        hits = sum(1 for w in FINANCE_TERMS if w in sent)
+        digits = sum(ch.isdigit() for ch in sent)
+        return hits * 3 + min(digits, 12)
+
+    picked, seen = [], set()
+    for sent in sorted(lines, key=score, reverse=True):
+        key = sent[:18]
+        if key in seen:
+            continue
+        seen.add(key)
+        picked.append(sent)
+        if len(picked) >= 3:
+            break
+
+    if not picked:
+        # 没有简介时，用标题的分句当要点
+        title_clean = clean(title or "")
+        parts = [p.strip() for p in re.split(r"[，,；;｜|：:？?！!]", title_clean)
+                 if len(p.strip()) >= 4]
+        if len(parts) >= 2:
+            picked = parts[:3]
+        else:
+            return [{"type": "point", "text": "主题：" + title_clean},
+                    {"type": "note", "text": "该视频没有文字简介，大纲据标题推断"}]
+
+    outline = [{"type": "point", "text": p} for p in picked]
+    tag_list = tags or []
+    if tag_list:
+        outline.append({"type": "tags", "text": "标签：" + "、".join(tag_list[:6])})
+    else:
+        mentions = sorted({w for w in FINANCE_TERMS if w in (title or "") + (desc or "")})[:6]
+        if mentions:
+            outline.append({"type": "tags", "text": "涉及：" + "、".join(mentions)})
+    if duration_s:
+        outline.append({"type": "meta", "text": "时长约 %d 分钟" % round(duration_s / 60)})
+    return outline
+
+
+def ensure_video_outline(item):
+    """给历史视频补大纲；已经是我们生成过的，按最新规则重算一次"""
+    if not item.get("bvid"):
+        return item
+    ours = "标题与简介自动提炼，未读取视频语音"
+    if item.get("outline") and item.get("outline_source") != ours:
+        return item
+    seconds = 0
+    dur = item.get("duration") or ""
+    if isinstance(dur, str) and ":" in dur:
+        parts = [x for x in dur.split(":") if x.isdigit()]
+        for part in parts:
+            seconds = seconds * 60 + int(part)
+    item["outline"] = build_video_outline(item.get("title", ""), item.get("summary", ""), seconds)
+    item["outline_source"] = "标题与简介自动提炼，未读取视频语音"
+    return item
+
+
 def is_finance_video(title, duration, plays):
     """B 站粗筛：标题像财经、时长不短、播放量有基本盘"""
     if not any(word in title for word in VIDEO_TITLE_WORDS):
@@ -553,6 +632,13 @@ def fetch_bilibili_videos(keywords, total=12, max_per_author=2):
             continue
         seen.add(row["bvid"])
         author_count[row["author"]] = author_count.get(row["author"], 0) + 1
+        tags = []
+        try:
+            time.sleep(0.4)
+            tag_data = _bili_get_json("/x/tag/archive/tags?bvid=" + row["bvid"])
+            tags = [t.get("tag_name") for t in (tag_data.get("data") or []) if t.get("tag_name")][:6]
+        except Exception:
+            tags = []
         picked.append(make_item(
             kind="auto",
             category="视频财经",
@@ -569,6 +655,9 @@ def fetch_bilibili_videos(keywords, total=12, max_per_author=2):
                 "thumb": row["thumb"],
                 "plays": row["plays"],
                 "duration": row["duration"],
+                "outline": build_video_outline(row["title"], row["desc"], row["duration_s"], tags),
+                "tags": tags,
+                "outline_source": "标题与简介自动提炼，未读取视频语音",
             },
         ))
         if len(picked) >= total:

@@ -158,6 +158,8 @@ def visible_items():
             continue
         per_source[source] = per_source.get(source, 0) + 1
         kept.append(item)
+    for item in kept:
+        fetchers.ensure_video_outline(item)
     return kept
 
 
@@ -179,6 +181,8 @@ def prune_auto(items):
     if len(kept) > limit:
         kept.sort(key=lambda i: i.get("published") or "", reverse=True)
         kept = kept[:limit]
+    for item in kept:
+        fetchers.ensure_video_outline(item)
     return kept
 
 

@@ -1,6 +1,1162 @@
 {
  "items": [
   {
+   "id": "auto:c733e202ca956a0f",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "东方电热：公司开发的半导体加热设备目前仍处于进行客户开发",
+   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxiqy5642838.d.html",
+   "source": "同花顺财经 · 7x24",
+   "published": "2026-11-16 15:05",
+   "period": "",
+   "collected": "2026-11-16T15:05:56+08:00",
+   "summary": "11月16日，东方电热（300217.SZ）在互动平台表示，公司开发的半导体加热设备主要用于半导体薄膜沉积工序的加热，目前仍处于进行客户开发。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "东方电热公司开发的半导体加热设备目前仍处于进行客户开发"
+  },
+  {
+   "id": "auto:c103b3a27c9399ad",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "据上海航运交易所数据，截至2026年11月16日，上海出口集装箱结算运价指数（欧洲航线）报2289.56点，与上期相比涨…",
+   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxiqz1169583.d.html",
+   "source": "同花顺财经 · 7x24",
+   "published": "2026-11-16 15:05",
+   "period": "",
+   "collected": "2026-11-16T15:05:56+08:00",
+   "summary": "4.1%。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "据上海航运交易所数据截至2026年11月16日上海出口集装箱结算运价指数欧洲航线报228956点与上期相比涨…"
+  },
+  {
+   "id": "auto:94d86aa831185dfe",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "农发行发行182天期债券，规模20亿元，发行利率1.2639%，预期1.3000%，投标倍数3.72倍，边际倍数1.42…",
+   "url": "https://wallstreetcn.com/livenews/3200480",
+   "source": "华尔街见闻 · 7x24",
+   "published": "2026-11-16 15:04",
+   "period": "",
+   "collected": "2026-11-16T15:03:53+08:00",
+   "summary": "倍；\n\n农发行发行3年期债券，规模40亿元，发行利率1.3506%，预期1.3500%，投标倍数4.86倍，边际倍数76.00倍；\n\n农发行发行10年期债券，规模50亿元，发行利率1.7282%，预期1.7100%，投标倍数4.27倍，边际倍数1.28倍。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "农发行发行182天期债券规模20亿元发行利率12639%预期13000%投标倍数372倍边际倍数142…",
+   "hot": 1
+  },
+  {
+   "id": "auto:285554d2650bda14",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "黄仁勋卸任英伟达CEO次日 日本市场RTX50系显卡大幅降价",
+   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxirc2394018.d.html",
+   "source": "同花顺财经 · 7x24",
+   "published": "2026-11-16 15:04",
+   "period": "",
+   "collected": "2026-11-16T15:05:56+08:00",
+   "summary": "尽管管理层变动与显卡价格波动看似没有直接关系，但就在黄仁勋离职后的第二天，英伟达旗舰显卡GeForce RTX 5090和RTX 5080在日本市场突然大幅降价，引发关注。多家日本媒体报道称，RTX 5090的降价幅度最高达到22%，RTX 5080也下跌近17%。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "黄仁勋卸任英伟达ceo次日日本市场rtx50系显卡大幅降价"
+  },
+  {
+   "id": "auto:f6063c4e4366a834",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "江苏省造全球最大无人货机试飞成功",
+   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxiqz1167681.d.html",
+   "source": "同花顺财经 · 7x24",
+   "published": "2026-11-16 15:03",
+   "period": "",
+   "collected": "2026-11-16T15:05:56+08:00",
+   "summary": "11月14日，由江苏省科技企业白鲸航线（常州）科技有限公司研发制造的全球最大无人货运飞机W5000在内蒙古鄂托克前旗通用机场成功完成技术验证试飞。这架大型支线物流无人机整机22万个零部件全部实现国产化，飞控航电、动力系统、复合材料机体等关键系统均已实现国产自主可控，是我省低空经济发展的一项标志性成果。作为大型支线物流无人机，W5000最大的优势是“装得多、飞得远、成本低”。飞机有效载荷达5吨，货舱有效容积超65立方米，最远航程2600公里。据了解，W5000目前意向订单已达835架，预计2027年底正式投入商业运营。目前，机型迭代、适航取证等各项工作正在稳步推进。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "江苏省造全球最大无人货机试飞成功"
+  },
+  {
+   "id": "auto:a03660753ddd8d69",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "云从科技入选武汉市算力券算力供给方",
+   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxiqz1167606.d.html",
+   "source": "同花顺财经 · 7x24",
+   "published": "2026-11-16 15:03",
+   "period": "",
+   "collected": "2026-11-16T15:05:56+08:00",
+   "summary": "从云从科技获悉，根据武汉市数据局给出的武汉市算力券算力供给方遴选结果，云从科技入选，成为武汉市算力供给方之一。云从科技负责位于武汉的国家网安基地智算中心的算力提供，该中心规划算力500P，目前已建成250P，重点支撑人工智能公共算力平台、内容审核大模型及网络安全大模型等应用。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "云从科技入选武汉市算力券算力供给方"
+  },
+  {
+   "id": "auto:ba189e6fce8ddedf",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "A股调整近4300股下跌",
+   "url": "https://s.weibo.com/微博?q=%23A%E8%82%A1%E8%B0%83%E6%95%B4%E8%BF%914300%E8%82%A1%E4%B8%8B%E8%B7%8C%23",
+   "source": "微博 · 热搜",
+   "published": "2026-11-16 15:02",
+   "period": "",
+   "collected": "2026-11-16T15:02:57+08:00",
+   "summary": "微博 热搜话题，讨论量约 14.1 万。点开看大家在聊什么。",
+   "metrics": [],
+   "verified": false,
+   "status": "热搜话题 · 非深度内容",
+   "norm_title": "a股调整近4300股下跌"
+  },
+  {
+   "id": "auto:9cdbd52059346627",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "A股三大指数集体收跌，算力硬件板块下挫",
+   "url": "https://www.36kr.com/newsflashes/4072087940354953",
+   "source": "36氪 · 快讯",
+   "published": "2026-11-16 15:02",
+   "period": "",
+   "collected": "2026-11-16T15:06:05+08:00",
+   "summary": "36氪获悉，A股三大指数集体收跌，沪指跌0.87%，深成指跌2.53%，创业板指跌4.37%。算力硬件、航天军工、汽车零部件板块下挫，中际旭创跌超12%，天孚通信、新易盛跌超11%，超捷股份跌超10%，中天火箭跌超9%；电信、煤炭、银行股走强，中国电信涨超4%，中煤能源涨超3%，农业银行涨超2%。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "a股三大指数集体收跌算力硬件板块下挫"
+  },
+  {
+   "id": "auto:5298dfecf815a793",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "沪铜2611最后交易日涨停 月差罕见高企",
+   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxiqz1165818.d.html",
+   "source": "同花顺财经 · 7x24",
+   "published": "2026-11-16 15:02",
+   "period": "",
+   "collected": "2026-11-16T15:02:56+08:00",
+   "summary": "日内为沪期铜2611合约最后交易日，现货市场已经开启对沪期铜2612合约报价，早盘报价升水3000元/吨以上。上午交易时段月差波动在BACK3800-4400元/吨，下午交易时间已经在BACK14000元/吨以上，罕见高BACK月差现象。下午交易时段，沪期铜2611合约急速拉涨，涨停！（SMM）",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "沪铜2611最后交易日涨停月差罕见高企"
+  },
+  {
+   "id": "auto:366c57ea412dc0e0",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "收评：国内期货主力合约跌多涨少 沪银大跌超6%",
+   "url": "https://finance.sina.com.cn/money/future/fmnews/2026-11-16/doc-iniyxirc2390554.shtml",
+   "source": "网易财经 · 市场资讯",
+   "published": "2026-11-16 15:02",
+   "period": "",
+   "collected": "2026-11-16T15:02:57+08:00",
+   "summary": "2026年11月16日收盘，国内期货主力合约跌多涨少。上涨方面，低硫燃油、纯苯、合成橡胶、苯乙烯、原油涨超2%，乙二醇、燃油、烧碱涨超1%；下跌方面，沪银跌超6%...",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "收评国内期货主力合约跌多涨少沪银大跌超6%"
+  },
+  {
+   "id": "auto:1164c353fb1dca9e",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "欧洲斯托克50期货下跌0.03%，德国DAX期货上涨0.06%，英国富时期货…",
+   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxiqz1165825.d.html",
+   "source": "同花顺财经 · 7x24",
+   "published": "2026-11-16 15:02",
+   "period": "",
+   "collected": "2026-11-16T15:02:56+08:00",
+   "summary": "上涨0.05%。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "欧洲斯托克50期货下跌003%德国dax期货上涨006%英国富时期货…"
+  },
+  {
+   "id": "auto:ee6aa0e723b87e1b",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "A股收盘：创业板指低开低走跌4.37%，算力硬件、芯片股集体下挫",
+   "url": "https://wallstreetcn.com/livenews/3200478",
+   "source": "华尔街见闻 · 7x24",
+   "published": "2026-11-16 15:01",
+   "period": "",
+   "collected": "2026-11-16T15:01:39+08:00",
+   "summary": "市场全天低开低走，沪指险守3600点，创业板指跌超4%，科创50指数跌超5%。银行板块逆势走强，工商银行、建设银行、成都银行、南京银行等多只银行股再创新高。家电等消费股拉升，北鼎股份、九阳股份、小熊电器等涨停，美的集团股价创新高。下跌方面，CPO等算力硬件股下挫，中际旭创、新易盛、天孚通信均跌超10%；算力芯片股走低，沐曦股份、燧原科技跌超10%。个股跌多涨少，沪深京三市超4300股飘绿，今日成交1.49万亿。截止收盘沪指跌0.87%，深成指跌2.53%，创业板指跌4.37%。",
+   "metrics": [
+    {
+     "label": "指数跌超",
+     "value": "5",
+     "unit": "%",
+     "note": "自动抽取 · 原文「指数跌超5%」"
+    }
+   ],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "a股收盘创业板指低开低走跌437%算力硬件芯片股集体下挫",
+   "hot": 2
+  },
+  {
+   "id": "auto:ea76875bb8437e97",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "AI“教父”杰弗里・辛顿：或许人类从未发展AI会更好",
+   "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-16/doc-iniyxiqw8863620.shtml",
+   "source": "网易财经 · 环球市场播报",
+   "published": "2026-11-16 15:01",
+   "period": "",
+   "collected": "2026-11-16T15:02:57+08:00",
+   "summary": "被誉为“人工智能教父”之一的杰弗里・辛顿表示，最终有可能证明，如果人类从未研发这项技术，情况或许会更好。他警告，AI可能在今年或明年引发一起重大事故，例如金融系统...",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "ai教父杰弗里・辛顿或许人类从未发展ai会更好"
+  },
+  {
+   "id": "auto:c4a6330d66310cbb",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "商品期货收盘，LU燃油、纯苯、BR橡胶、原油、苯乙烯涨超2%。",
+   "url": "https://wallstreetcn.com/livenews/3200477",
+   "source": "华尔街见闻 · 7x24",
+   "published": "2026-11-16 15:01",
+   "period": "",
+   "collected": "2026-11-16T15:01:39+08:00",
+   "summary": "沪银跌超6%，红枣跌超4%，豆一、碳酸锂、铁矿石、铂跌超3%。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "商品期货收盘lu燃油纯苯br橡胶原油苯乙烯涨超2%",
+   "hot": 1
+  },
+  {
+   "id": "auto:9eb3353db28019e9",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "ETF收评：港股通消费ETF涨2.61%，科创200ETF领跌12.23%",
+   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxiqz1164728.d.html",
+   "source": "同花顺财经 · 7x24",
+   "published": "2026-11-16 15:01",
+   "period": "",
+   "collected": "2026-11-16T15:02:56+08:00",
+   "summary": "ETF收盘涨跌不一，国企红利ETF（159515）领涨9.99%，溢价率为8.19%，港股通消费ETF（159268）涨2.61%，银行ETF（159887）涨2.46%，科创200ETF（589200）领跌12.23%，成长ETF（159259）跌8.53%，科创增强ETF（588690）跌8.23%。",
+   "metrics": [
+    {
+     "label": "港股通消费ETF涨",
+     "value": "2.61",
+     "unit": "%",
+     "note": "自动抽取 · 原文「港股通消费ETF涨2.61%」"
+    }
+   ],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "etf收评港股通消费etf涨261%科创200etf领跌1223%"
+  },
+  {
+   "id": "auto:44bef66a8a35f437",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "上证指数收报3602.57点，跌0.87%。",
+   "url": "https://wallstreetcn.com/livenews/3200474",
+   "source": "华尔街见闻 · 7x24",
+   "published": "2026-11-16 15:01",
+   "period": "",
+   "collected": "2026-11-16T15:05:56+08:00",
+   "summary": "深证成指收报10690.78点，跌2.53%。\n\n创业板指收报2320.02点，跌4.37%。\n\n沪深300收报3979.80点，跌0.91%。\n\n科创50收报1213.68点，跌5.16%。\n\n中证500收报6297.18点，跌2.60%。\n\n中证1000收报6164.62点，跌3.03%。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "上证指数收报360257点跌087%",
+   "hot": 2
+  },
+  {
+   "id": "auto:ef94731d3a4de758",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "英特尔遭投资者起诉 被指未及时披露业务状况",
+   "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-16/doc-iniyxiqw8862536.shtml",
+   "source": "网易财经 · 环球市场播报",
+   "published": "2026-11-16 15:00",
+   "period": "",
+   "collected": "2026-11-16T15:00:41+08:00",
+   "summary": "股东已起诉美国芯片巨头英特尔，指控公司隐瞒个人电脑（PC）市场下滑的严重程度，并称这直接导致英特尔股价单日暴跌近29%。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "英特尔遭投资者起诉被指未及时披露业务状况"
+  },
+  {
+   "id": "auto:ef513fb6a0aa2be6",
+   "kind": "auto",
+   "category": "公司动态",
+   "title": "阿里、腾讯新模型齐登场：Qwen4-Max单任务成本降58%，Hy4 flash降至竞品1/8",
+   "url": "https://wallstreetcn.com/articles/3786003",
+   "source": "华尔街见闻 · 文章（关键词：腾讯）",
+   "published": "2026-11-16 15:00",
+   "period": "",
+   "collected": "2026-11-16T15:03:03+08:00",
+   "summary": "11月16日，阿里和腾讯在同一天各自推出新模型。阿里发布Qwen4系列首款旗舰Qwen4-Max，腾讯混元推出轻量化模型Hy4 flash。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "阿里腾讯新模型齐登场qwen4max单任务成本降58%hy4flash降至竞品18"
+  },
+  {
+   "id": "auto:b9159cbc9ef8913a",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "股指期货午盘收盘",
+   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxiqy5638311.d.html",
+   "source": "同花顺财经 · 7x24",
+   "published": "2026-11-16 15:00",
+   "period": "",
+   "collected": "2026-11-16T15:00:38+08:00",
+   "summary": "中证1000指数期货连续跌3.02%， 沪深300指数期货连续跌0.72%， 中证500指数期货连续跌2.69%， 上证50指数期货连续涨0.09%。",
+   "metrics": [
+    {
+     "label": "指数期货连续跌",
+     "value": "3.02",
+     "unit": "%",
+     "note": "自动抽取 · 原文「指数期货连续跌3.02%」"
+    },
+    {
+     "label": "指数期货连续跌",
+     "value": "0.72",
+     "unit": "%",
+     "note": "自动抽取 · 原文「指数期货连续跌0.72%」"
+    },
+    {
+     "label": "指数期货连续跌",
+     "value": "2.69",
+     "unit": "%",
+     "note": "自动抽取 · 原文「指数期货连续跌2.69%」"
+    },
+    {
+     "label": "指数期货连续涨",
+     "value": "0.09",
+     "unit": "%",
+     "note": "自动抽取 · 原文「指数期货连续涨0.09%」"
+    }
+   ],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "股指期货午盘收盘"
+  },
+  {
+   "id": "auto:9deea9e58415c381",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "商品期货收盘",
+   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxiqy5638305.d.html",
+   "source": "同花顺财经 · 7x24",
+   "published": "2026-11-16 15:00",
+   "period": "",
+   "collected": "2026-11-16T15:00:38+08:00",
+   "summary": "白银连续跌6.42%，红枣连续跌4.34%，豆一连续跌3.75%，碳酸锂连续跌3.65%，铁矿石连续跌3.28%。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "商品期货收盘"
+  },
+  {
+   "id": "auto:92a9ae0365bb3974",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "黄仁勋要夺回英伟达",
+   "url": "https://s.weibo.com/微博?q=%23%E9%BB%84%E4%BB%81%E5%8B%8B%E8%A6%81%E5%A4%BA%E5%9B%9E%E8%8B%B1%E4%BC%9F%E8%BE%BE%23",
+   "source": "微博 · 热搜",
+   "published": "2026-11-16 15:00",
+   "period": "",
+   "collected": "2026-11-16T15:00:41+08:00",
+   "summary": "微博 热搜话题，讨论量约 29.5 万。点开看大家在聊什么。",
+   "metrics": [],
+   "verified": false,
+   "status": "热搜话题 · 非深度内容",
+   "norm_title": "黄仁勋要夺回英伟达"
+  },
+  {
+   "id": "auto:81c2e85cee44c7b3",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "现货黄金涨破3900美元后回落",
+   "url": "https://www.douyin.com/search/%E7%8E%B0%E8%B4%A7%E9%BB%84%E9%87%91%E6%B6%A8%E7%A0%B43900%E7%BE%8E%E5%85%83%E5%90%8E%E5%9B%9E%E8%90%BD",
+   "source": "抖音 · 热榜",
+   "published": "2026-11-16 15:00",
+   "period": "",
+   "collected": "2026-11-16T15:00:41+08:00",
+   "summary": "抖音热榜第 24 位，热度 778.0 万，相关视频 5 条。点击查看话题下大家在讨论什么。",
+   "metrics": [],
+   "verified": false,
+   "status": "热榜话题 · 非深度内容",
+   "norm_title": "现货黄金涨破3900美元后回落"
+  },
+  {
+   "id": "auto:68d300647f18a736",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "短融ETF海富通今日天量成交",
+   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxiqz1162940.d.html",
+   "source": "同花顺财经 · 7x24",
+   "published": "2026-11-16 15:00",
+   "period": "",
+   "collected": "2026-11-16T15:00:38+08:00",
+   "summary": "短融ETF海富通（511360）今日再度天量成交，全天成交额超1200亿元历史排名第二，此前2026年9月22日1372亿成交额创历史天量，资料显示，短融ETF主要是机构流动性管理工具，核心玩家是银行理财/资管、公募/私募、保险、券商自营、企业现金及部分高频交易资金。短期持有时，有望获得比账户闲置资金略高的票息收益；卖出后，资金可较快投入股票或其他场内产品。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "短融etf海富通今日天量成交"
+  },
+  {
+   "id": "auto:22fd0311643d87a7",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "菲律宾股市收盘下跌2%，报5481.88点。",
+   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxiqz1163531.d.html",
+   "source": "同花顺财经 · 7x24",
+   "published": "2026-11-16 15:00",
+   "period": "",
+   "collected": "2026-11-16T15:01:39+08:00",
+   "summary": "",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "菲律宾股市收盘下跌2%报548188点"
+  },
+  {
+   "id": "auto:003618cf73c8b673",
+   "kind": "auto",
+   "category": "宏观数据",
+   "title": "A股三大指数收跌 成交额不足1.5万亿 银行与保险板块逆市走强",
+   "url": "https://finance.eastmoney.com/a/202611163931755498.html",
+   "source": "东方财富 · 资讯（关键词：社会消费品零售总额）",
+   "published": "2026-11-16 15:00",
+   "period": "",
+   "collected": "2026-11-16T15:00:50+08:00",
+   "summary": "统计局：10月规模以上工业增加值同比增长4.8% 社会消费品零售总额同比增长0.4% 10月份，全国规模以上工业增加值同比增长4.8%，环比增长0.21%。分三大门类看，采矿业增加值同比增长0.7%，制造业增长5.4%，电力、热力、燃气及水生产和供应业增长4.4%。",
+   "metrics": [
+    {
+     "label": "社会消费品零售总额同比",
+     "value": "0.4",
+     "unit": "%",
+     "note": "自动抽取 · 原文「社会消费品零售总额同比增长0.4%」"
+    }
+   ],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "a股三大指数收跌成交额不足15万亿银行与保险板块逆市走强"
+  },
+  {
+   "id": "auto:b2ec25d93e28725f",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "创维数字旗下惠州技术公司增资至14.2亿 增幅约18%",
+   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxiqy5638091.d.html",
+   "source": "同花顺财经 · 7x24",
+   "published": "2026-11-16 14:59",
+   "period": "",
+   "collected": "2026-11-16T15:00:38+08:00",
+   "summary": "天眼查App显示，近日，惠州创维数字技术有限公司发生工商变更，注册资本由12亿元人民币增至14.2亿元人民币，增幅约18%。该公司成立于2021年4月，法定代表人为张知，经营范围包括智能系统技术研发、电子通信与自动控制技术研发、信息系统集成服务等，由深圳创维数字技术有限公司全资持股。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "创维数字旗下惠州技术公司增资至142亿增幅约18%"
+  },
+  {
+   "id": "auto:1b55973410385faa",
+   "kind": "auto",
+   "category": "公司动态",
+   "title": "【调研快报】粤电力A接待中信证券等27家机构调研",
+   "url": "https://finance.eastmoney.com/a/202611163931755155.html",
+   "source": "东方财富 · 资讯（关键词：固定资产投资）",
+   "published": "2026-11-16 14:59",
+   "period": "",
+   "collected": "2026-11-16T15:00:50+08:00",
+   "summary": "点击查看PDF原文 免责声明：本文基于AI生产，仅供参考，不构成任何投资建议，据此操作风险自担。东方财富发布此内容旨在传播更多信息，与本平台立场无关。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "调研快报粤电力a接待中信证券等27家机构调研"
+  },
+  {
+   "id": "auto:ad2f4f6e1c49df05",
+   "kind": "auto",
+   "category": "公司动态",
+   "title": "多只银行股创历史新高，银行ETF鹏华涨超2%",
+   "url": "https://finance.eastmoney.com/a/202611163931756098.html",
+   "source": "东方财富 · 资讯（关键词：招商银行）",
+   "published": "2026-11-16 14:58",
+   "period": "",
+   "collected": "2026-11-16T15:04:01+08:00",
+   "summary": "数据显示，截至2026年10月30日，中证银行指数(399986)前十大权重股分别为招商银行、兴业银行、工商银行、交通银行、农业银行、江苏银行、浦发银行、宁波银行、平安银行、建设银行，前十大权重股合计占比65.3%。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "多只银行股创历史新高银行etf鹏华涨超2%"
+  },
+  {
+   "id": "auto:a9b84396d43f3396",
+   "kind": "auto",
+   "category": "公司动态",
+   "title": "杭叉集团董秘江韵：未来三到五年无人叉车渗透率有望从2%提升至10%",
+   "url": "https://finance.eastmoney.com/a/202611163931755610.html",
+   "source": "东方财富 · 资讯（关键词：固定资产投资）",
+   "published": "2026-11-16 14:57",
+   "period": "",
+   "collected": "2026-11-16T15:04:03+08:00",
+   "summary": "在与国际投资者的交流中，江韵发现，杭叉集团的身份认知正在从传统制造业企业向科技公司转变。江韵提到，国际投资者的关注焦点也从财务数据延伸至技术落地节奏、大客户验证情况以及新产品对收入和利润的贡献度等。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "杭叉集团董秘江韵未来三到五年无人叉车渗透率有望从2%提升至10%"
+  },
+  {
+   "id": "auto:2b4b07341b9270ff",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "君逸数码成立数联科技公司 含AI硬件相关业务",
+   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxiqw8861046.d.html",
+   "source": "同花顺财经 · 7x24",
+   "published": "2026-11-16 14:57",
+   "period": "",
+   "collected": "2026-11-16T15:00:38+08:00",
+   "summary": "企查查APP显示，近日，君逸数联（深圳）科技有限公司成立，经营范围包含人工智能硬件销售；云计算设备销售；物联网设备销售；网络设备销售；电子产品销售等。企查查股权穿透显示，该公司由君逸数码全资持股。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "君逸数码成立数联科技公司含ai硬件相关业务"
+  },
+  {
+   "id": "auto:11ff02a2a3448640",
+   "kind": "auto",
+   "category": "金融数据",
+   "title": "美国通胀居高不下，强化了市场对加息将延续至明年的预期，黄金大跌至2025年10月以来最低水平。",
+   "url": "https://wallstreetcn.com/livenews/3200471",
+   "source": "华尔街见闻 · 7x24",
+   "published": "2026-11-16 14:56",
+   "period": "",
+   "collected": "2026-11-16T15:00:38+08:00",
+   "summary": "与此同时，科技股下挫促使投资者卖出黄金，以弥补亏损。金价一度下跌1.3%，至每盎司3830美元附近；白银跌逾3%，创去年11月以来新低。消费者价格连续第三个月高于预期后，交易员加大了对美联储明年进一步收紧货币政策的押注。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "美国通胀居高不下强化了市场对加息将延续至明年的预期黄金大跌至2025年10月以来最低水平",
+   "hot": 1
+  },
+  {
+   "id": "auto:d7cd7346495aa0dc",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "沪深300ETF华泰柏瑞（510300）、科创50ETF易方达（588080）、沪深300ETF华夏（510330）等多…",
+   "url": "https://wallstreetcn.com/livenews/3200470",
+   "source": "华尔街见闻 · 7x24",
+   "published": "2026-11-16 14:55",
+   "period": "",
+   "collected": "2026-11-16T15:00:38+08:00",
+   "summary": "只宽基ETF尾盘成交明显放量。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "沪深300etf华泰柏瑞510300科创50etf易方达588080沪深300etf华夏510330等多…",
+   "hot": 2
+  },
+  {
+   "id": "auto:8d41d379bfe0b41c",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "总榜揭晓！博时ETF王者挑战赛圆满收官",
+   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxiqz1159481.d.html",
+   "source": "同花顺财经 · 7x24",
+   "published": "2026-11-16 14:54",
+   "period": "",
+   "collected": "2026-11-16T15:00:38+08:00",
+   "summary": "随着ETF市场持续发展，指数化投资日益成为大众资产配置的重要工具，由新浪财经发起、博时基金联合举办的“博时ETF王者挑战赛”模拟盘赛事于2026年8月10日启动，2026年11月13日圆满收官。回望来时路，举办这场模拟赛事的初心，从来不是比拼一时的收益高低，而是想给所有关注指数投资的朋友，提供一个零成本练手的阵地，在实操演练里理解长期配置的价值，逐步建立起理性、健康的投资思维。三个月的赛程里，超107万投资者结伴同行，累计完成556.2万次模拟交易；赛事相关话题在微博收获了超2.1亿总阅读、11万条讨论。赛事会落幕，但关于ETF投资方法、资产配置与风险控制的探索还在继续。感谢每一位认真投入的参与者，愿你在这场模拟盘里收获的认知与底气，能陪伴你在真实的投资路上走得更稳、更从容。赛事总榜揭晓，恭喜以下选手位列总榜前100名。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "总榜揭晓博时etf王者挑战赛圆满收官"
+  },
+  {
+   "id": "auto:2bf52c510ef01108",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "多只宽基ETF尾盘放量成交",
+   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxiqw8859580.d.html",
+   "source": "同花顺财经 · 7x24",
+   "published": "2026-11-16 14:54",
+   "period": "",
+   "collected": "2026-11-16T15:00:38+08:00",
+   "summary": "多只宽基ETF尾盘放量成交，沪深300ETF华夏（510330）成交额28.6亿元，较上一交易日同时刻放量3倍，沪深300ETF华泰柏瑞（510300）成交额62亿元，较上一交易日同时刻放量1.8倍。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "多只宽基etf尾盘放量成交"
+  },
+  {
+   "id": "auto:f7e77f83ee143815",
+   "kind": "auto",
+   "category": "宏观数据",
+   "title": "黄金跌至2025年10月以来最低 因美国加息预期升温",
+   "url": "https://finance.eastmoney.com/a/202611163931753975.html",
+   "source": "东方财富 · 资讯（关键词：固定资产投资）",
+   "published": "2026-11-16 14:53",
+   "period": "",
+   "collected": "2026-11-16T15:00:50+08:00",
+   "summary": "与此同时，科技股下挫促使投资者卖出黄金，以弥补亏损。金价一度下跌1.3%，至每盎司3830美元附近；白银跌逾3%，创去年11月以来新低。消费者价格连续第三个月高于预期后，交易员加大了对美联储明年进一步收紧货币政策的押注。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "黄金跌至2025年10月以来最低因美国加息预期升温"
+  },
+  {
+   "id": "auto:4bdd3e80f90c8d64",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "印度官员：印度不怕人工智能的威胁",
+   "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-16/doc-iniyxiqw8858864.shtml",
+   "source": "网易财经 · 环球市场播报",
+   "published": "2026-11-16 14:53",
+   "period": "",
+   "collected": "2026-11-16T15:00:41+08:00",
+   "summary": "印度一名高级科技官员表示，与美国人相比，印度人认为人工智能（AI）带来的威胁较小，因为印度从事可能被这项技术取代的“认知型和办公室类工作”的劳动者比例较低。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "印度官员印度不怕人工智能的威胁"
+  },
+  {
+   "id": "auto:b3828263a6d1d353",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "江苏新智未来产业天使投资基金登记成立，出资额5亿",
+   "url": "https://www.36kr.com/newsflashes/4072078283051908",
+   "source": "36氪 · 快讯",
+   "published": "2026-11-16 14:52",
+   "period": "",
+   "collected": "2026-11-16T15:00:42+08:00",
+   "summary": "36氪获悉，天眼查App显示，近日，江苏新智未来产业天使投资基金（有限合伙）成立，执行事务合伙人为江苏高投创业投资管理有限公司，出资额5亿元人民币，经营范围包括以私募基金从事股权投资、投资管理、资产管理等活动等。合伙人信息显示，该基金由江苏高科技投资集团有限公司、江苏省战略性新兴产业母基金有限公司、苏州国发创业投资控股有限公司、江苏云杉资本管理有限公司、江苏高投创业投资管理有限公司共同出资。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "江苏新智未来产业天使投资基金登记成立出资额5亿"
+  },
+  {
+   "id": "auto:aa00e9b151500077",
+   "kind": "auto",
+   "category": "宏观数据",
+   "title": "日本央行审议委员高田创：应在每次加息后评估银行的放贷立场及企业融资状况",
+   "url": "https://finance.eastmoney.com/a/202611163931753738.html",
+   "source": "东方财富 · 标题搜索（债券 融资）",
+   "published": "2026-11-16 14:52",
+   "period": "",
+   "collected": "2026-11-16T15:00:45+08:00",
+   "summary": "日本央行审议委员高田创表示，日本央行仍在提高政策利率的过程中，因为它寻求政策正常化，以应对全球货币和财政政策的转变；日本央行应在每次加息后评估银行的放贷立场及企业融资状况。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "日本央行审议委员高田创应在每次加息后评估银行的放贷立场及企业融资状况"
+  },
+  {
+   "id": "auto:84743b8f7bd703fd",
+   "kind": "auto",
+   "category": "宏观数据",
+   "title": "猪肉价格跌至近十年新低，行业产能加速出清猪价拐点或将至丨盘中雷达",
+   "url": "https://finance.eastmoney.com/a/202611163931753686.html",
+   "source": "东方财富 · 资讯（关键词：国家统计局）",
+   "published": "2026-11-16 14:52",
+   "period": "",
+   "collected": "2026-11-16T15:00:50+08:00",
+   "summary": "据国家统计局数据，三季度末全国能繁母猪存栏3602万头，同比减少433万头、下降10.7%，相当于正常保有量3750万头的96.0%，已实质跌破调控目标线。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "猪肉价格跌至近十年新低行业产能加速出清猪价拐点或将至丨盘中雷达"
+  },
+  {
+   "id": "auto:46bebb2dd7ec34d0",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "Rapidus社长小池淳义重申企业计划：2027年末~2028年初启动2nm量产",
+   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxiqz1158238.d.html",
+   "source": "同花顺财经 · 7x24",
+   "published": "2026-11-16 14:52",
+   "period": "",
+   "collected": "2026-11-16T15:00:38+08:00",
+   "summary": "日本先进半导体制造企业Rapidus社长小池淳义同日在东京表示，该企业计划在2027年末~2028年初启动2nm尖端逻辑制程的量产。 Rapidus此前确定了2027财年下半期（2027日历年10月~2028日历年3月）量产的目标。但近来有风声传出Rapidus遭遇阻碍，如期量产可能存在困难。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "rapidus社长小池淳义重申企业计划2027年末~2028年初启动2nm量产"
+  },
+  {
+   "id": "auto:13f12741dbe9b1e2",
+   "kind": "auto",
+   "category": "宏观数据",
+   "title": "加息预期升温，金价延续回调，赛道最低费率的黄金股ETF华夏（159562）震荡走低",
+   "url": "https://finance.eastmoney.com/a/202611163931754459.html",
+   "source": "东方财富 · 资讯（关键词：CPI）",
+   "published": "2026-11-16 14:52",
+   "period": "",
+   "collected": "2026-11-16T15:00:49+08:00",
+   "summary": "数据显示，10月美国CPI环比涨0.4%、核心CPI涨0.3%，均高于预期；非农就业大增16.5万人，失业率降至4.1%。受此影响，COMEX黄金价格周跌4.60%，贵金属板块指数下跌7.12%。",
+   "metrics": [
+    {
+     "label": "月美国CPI环比涨",
+     "value": "0.4",
+     "unit": "%",
+     "note": "自动抽取 · 原文「月美国CPI环比涨0.4%」"
+    },
+    {
+     "label": "核心CPI涨",
+     "value": "0.3",
+     "unit": "%",
+     "note": "自动抽取 · 原文「核心CPI涨0.3%」"
+    },
+    {
+     "label": "COMEX黄金价格周跌",
+     "value": "4.60",
+     "unit": "%",
+     "note": "自动抽取 · 原文「COMEX黄金价格周跌4.60%」"
+    },
+    {
+     "label": "贵金属板块指数",
+     "value": "7.12",
+     "unit": "%",
+     "note": "自动抽取 · 原文「贵金属板块指数下跌7.12%」"
+    }
+   ],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "加息预期升温金价延续回调赛道最低费率的黄金股etf华夏159562震荡走低"
+  },
+  {
+   "id": "auto:005938ebc280d406",
+   "kind": "auto",
+   "category": "公司财报",
+   "title": "贵州茅台召开三季度业绩说明会，内部改革从“供给端”向“市场端”倾斜",
+   "url": "https://finance.eastmoney.com/a/202611163931754764.html",
+   "source": "东方财富 · 资讯（关键词：贵州茅台）",
+   "published": "2026-11-16 14:52",
+   "period": "",
+   "collected": "2026-11-16T15:00:46+08:00",
+   "summary": "成分股方面，燕京啤酒上涨3.92%，山西汾酒上涨0.91%，贵州茅台上涨0.79%。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "贵州茅台召开三季度业绩说明会内部改革从供给端向市场端倾斜"
+  },
+  {
+   "id": "auto:f2175536e1e0719d",
+   "kind": "auto",
+   "category": "公司财报",
+   "title": "英特尔公司及CEO遭股东起诉",
+   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxiqz1158014.d.html",
+   "source": "同花顺财经 · 7x24",
+   "published": "2026-11-16 14:51",
+   "period": "",
+   "collected": "2026-11-16T15:00:38+08:00",
+   "summary": "英特尔遭股东提起证券欺诈集体诉讼，英特尔 CEO 陈立武、CFO David Zinsner 一并被列为被告。原告指控英特尔刻意隐瞒 PC 市场持续走弱、库存积压对营收的负面影响，信息披露滞后，误导投资者，相关利空最终引发其股价单日暴跌约 29%。诉讼为 2026 年 7 月 23 日至 10 月 29 日期间买入英特尔股票的投资者追索赔偿。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "英特尔公司及ceo遭股东起诉"
+  },
+  {
+   "id": "auto:511b9ac674604e89",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "机构最新警告：金价或跌至3600美元",
+   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxiqy5633750.d.html",
+   "source": "同花顺财经 · 7x24",
+   "published": "2026-11-16 14:51",
+   "period": "",
+   "collected": "2026-11-16T15:00:38+08:00",
+   "summary": "美国投资顾问公司Mott Capital创始人迈克尔·克雷默指出，虽然很难从技术面判断具体的支撑位，但3900美元至4000美元之间存在一个可识别的支撑区域。如果跌破该区域，金价可能进一步下滑，甚至跌至3600美元左右。“除非黄金与美元之间的关系发生改变，否则持续指向美联储鹰派立场的经济数据（这将导致利率和美元双双走高）可能意味着金价将继续下跌，而3900美元至4000美元区间的技术支撑位可能难以守住。”克雷默说。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "机构最新警告金价或跌至3600美元"
+  },
+  {
+   "id": "auto:2145e083ee64f2ec",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "AI“教父”辛顿最新表态：相比奥特曼、扎克伯格、马斯克，我更信任黄仁勋",
+   "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-16/doc-iniyxiqz1157671.shtml",
+   "source": "网易财经 · 环球市场播报",
+   "published": "2026-11-16 14:51",
+   "period": "",
+   "collected": "2026-11-16T15:00:41+08:00",
+   "summary": "被誉为“AI教父”的杰弗里・辛顿在最新采访中，对英伟达前CEO黄仁勋给出了与众不同的评价。辛顿表示，“我对黄仁勋有一点了解。”，“我的印象里，他是个正派的人。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "ai教父辛顿最新表态相比奥特曼扎克伯格马斯克我更信任黄仁勋"
+  },
+  {
+   "id": "auto:041d3f080426035f",
+   "kind": "auto",
+   "category": "宏观数据",
+   "title": "10月经济观察：工业生产韧性犹在，新旧动能处于结构性“换挡期”",
+   "url": "https://finance.eastmoney.com/a/202611163931754672.html",
+   "source": "东方财富 · 资讯（关键词：PMI）",
+   "published": "2026-11-16 14:51",
+   "period": "",
+   "collected": "2026-11-16T15:00:49+08:00",
+   "summary": "从先行指标来看，国家统计局日前发布的10月份制造业采购经理指数（PMI）为49.3%，比上月下降0.8个百分点，再次落入收缩区间。其中，制造业生产指数为49.8%，较上月下降1.9个百分点，反映生产端景气确有下滑。",
+   "metrics": [
+    {
+     "label": "制造业生产指数",
+     "value": "49.8",
+     "unit": "%",
+     "note": "自动抽取 · 原文「制造业生产指数为49.8%」"
+    }
+   ],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "10月经济观察工业生产韧性犹在新旧动能处于结构性换挡期"
+  },
+  {
+   "id": "auto:37a90bd19edfe1e2",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "波音与洛克希德·马丁合资公司火箭发射失败，亚马逊40颗卫星损毁",
+   "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-16/doc-iniyxiqw8856923.shtml",
+   "source": "网易财经 · 环球市场播报",
+   "published": "2026-11-16 14:50",
+   "period": "",
+   "collected": "2026-11-16T15:00:41+08:00",
+   "summary": "当地时间11月15日，由波音和洛克希德·马丁合资成立的联合发射联盟（ULA）旗下“火神”运载火箭在美国佛罗里达州发射失败，搭载的40颗亚马逊Leo卫星互联网项目卫星全部损毁。...",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "波音与洛克希德马丁合资公司火箭发射失败亚马逊40颗卫星损毁"
+  },
+  {
+   "id": "auto:18758465aeac0b0b",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "人民日报：要客观看待消费品以旧换新政策效果，算大账、看结构、看长远",
+   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxiqy5633320.d.html",
+   "source": "同花顺财经 · 7x24",
+   "published": "2026-11-16 14:50",
+   "period": "",
+   "collected": "2026-11-16T15:00:38+08:00",
+   "summary": "人民日报指出，今年以来促消费政策多点发力，新型消费持续涌现，消费市场总体平稳运行，但消费领域也出现政策“退坡”影响显现、复苏节奏不均衡等新情况。2024年以来消费品以旧换新政策受消费者欢迎，随着今年政策“退坡”叠加边际效应减弱，近期对消费景气回落的担忧有所增加。文章认为，历史上促消费政策退出往往要经历消化期、需新政策接续，不能简单据此判断政策效果，全面评价以旧换新政策影响要算大账、看结构、看长远。（人民日报）",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "人民日报要客观看待消费品以旧换新政策效果算大账看结构看长远"
+  },
+  {
+   "id": "auto:c3eb6fa81798325b",
+   "kind": "auto",
+   "category": "金融数据",
+   "title": "看图：黄金跌至2025年10月以来最低 因美国加息预期升温",
+   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxirc2382187.d.html",
+   "source": "同花顺财经 · 7x24",
+   "published": "2026-11-16 14:49",
+   "period": "",
+   "collected": "2026-11-16T15:00:38+08:00",
+   "summary": "美国通胀居高不下，强化了市场对加息将延续至明年的预期，黄金大跌至2025年10月以来最低水平。与此同时，科技股下挫促使投资者卖出黄金，以弥补亏损。金价一度下跌1.3%，至每盎司3830美元附近；白银跌逾3%，创去年11月以来新低。消费者价格连续第三个月高于预期后，交易员加大了对美联储明年进一步收紧货币政策的押注。上周，美国2年期国债收益率上升33个基点，10年期基准国债收益率重回5%以上。收益率上升通常不利于不生息的贵金属。市场对AI行情的担忧引发科技股抛售，拖累全球股市，也进一步加重了贵金属的下行压力。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "看图黄金跌至2025年10月以来最低因美国加息预期升温"
+  },
+  {
+   "id": "auto:af74edae9a23e389",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "人民日报文章指出，今年以来，促消费政策多点发力，新型消费持续涌现，我国消费市场总体平稳运行。",
+   "url": "https://wallstreetcn.com/livenews/3200467",
+   "source": "华尔街见闻 · 7x24",
+   "published": "2026-11-16 14:49",
+   "period": "",
+   "collected": "2026-11-16T15:00:38+08:00",
+   "summary": "与此同时，消费领域也出现了一些新问题和新情况，表现为政策“退坡”的影响有所显现，消费复苏的节奏并不均衡等。对于当前消费市场的新变化要科学研判，客观看待。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "人民日报文章指出今年以来促消费政策多点发力新型消费持续涌现我国消费市场总体平稳运行",
+   "hot": 2
+  },
+  {
+   "id": "auto:9916072990b0e6db",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "中信里昂下调英伟达评级，目标价由425美元大幅降至255美元",
+   "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-16/doc-iniyxiqy5632574.shtml",
+   "source": "网易财经 · 环球市场播报",
+   "published": "2026-11-16 14:49",
+   "period": "",
+   "collected": "2026-11-16T15:00:41+08:00",
+   "summary": "11月16日，中信里昂将英伟达评级由“高确信度跑赢大盘”下调至“跑赢大盘”，目标价由425美元下调至255美元，降幅达40%，主要原因是黄仁勋辞任首席执行官后...",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "中信里昂下调英伟达评级目标价由425美元大幅降至255美元"
+  },
+  {
+   "id": "auto:a9e46a7748aae09f",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "科创债前三季度规模破8000亿元！券商债券承销最新榜单出炉",
+   "url": "https://finance.eastmoney.com/a/202611163931751052.html",
+   "source": "东方财富 · 标题搜索（债券 融资）",
+   "published": "2026-11-16 14:48",
+   "period": "",
+   "collected": "2026-11-16T15:00:45+08:00",
+   "summary": "近日，中证协发布了2026年前三季度证券公司债券（含企业债券）承销业务专项统计。 数据显示，券商参与科创债承销的热度最高，前三季度承销（或管理）金额超8000亿元。与此同时，今年6月券商“五篇大文章”考核标准调整后，新规重塑行业竞争格局，多家券商资管子公司在服务民营企业、普惠、",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "科创债前三季度规模破8000亿元券商债券承销最新榜单出炉"
+  },
+  {
+   "id": "auto:09c6cc1083f79b88",
+   "kind": "auto",
+   "category": "宏观数据",
+   "title": "一线城市二手房价连涨8个月！沈阳成二线首个房价同比止跌城市",
+   "url": "https://finance.eastmoney.com/a/202611163931752429.html",
+   "source": "东方财富 · 资讯（关键词：国家统计局）",
+   "published": "2026-11-16 14:48",
+   "period": "",
+   "collected": "2026-11-16T15:00:50+08:00",
+   "summary": "11月16日，国家统计局发布10月份70个大中城市商品住宅销售价格数据。 数据显示，10月份，70个大中城市中，房价环比上涨城市个数减少，一线城市二手房价环比继续上涨，一二三线城市房价同比降幅继续收窄。 值得注意的是，一线城市二手房价已连续8个月环比上涨。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "一线城市二手房价连涨8个月沈阳成二线首个房价同比止跌城市"
+  },
+  {
+   "id": "auto:c6f3d17e745d021b",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "美国拟将英伟达、微软等逾24家企业列为AI“国家领军企业”",
+   "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-16/doc-iniyxiqz1155436.shtml",
+   "source": "网易财经 · 环球市场播报",
+   "published": "2026-11-16 14:47",
+   "period": "",
+   "collected": "2026-11-16T15:00:41+08:00",
+   "summary": "11月16日，特朗普政府计划将英伟达、亚马逊、微软、OpenAI和Anthropic等逾24家企业指定为人工智能领域的“国家领军企业”，通过政策支持加快美国人工智能企业拓展海外市场。...",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "美国拟将英伟达微软等逾24家企业列为ai国家领军企业"
+  },
+  {
+   "id": "auto:b3fd86e110dc36b6",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "汇丰廖宜建：亚太区域内的贸易、投资与创新合作对于释放增长潜力尤为重要",
+   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxiqw8855119.d.html",
+   "source": "同花顺财经 · 7x24",
+   "published": "2026-11-16 14:47",
+   "period": "",
+   "collected": "2026-11-16T15:00:38+08:00",
+   "summary": "汇丰集团日前宣布，正式成为2026年亚太经合组织（APEC）会议官方赞助商。汇丰集团亚洲及中东地区联席行政总裁廖宜建表示，汇丰参与亚太经济交流与协作，助力开放与发展。在全球贸易格局和供应链加速调整的背景下，区域内的贸易、投资与创新合作，对于释放增长潜力尤为重要。汇丰扎根亚太160余年，将继续发挥跨境服务优势，促进互联互通，将合作机遇转化为提升区域经济活力的实际动能。（国际金融报）",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "汇丰廖宜建亚太区域内的贸易投资与创新合作对于释放增长潜力尤为重要"
+  },
+  {
+   "id": "auto:bb4a553d27618e65",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "APK-INFORM咨询公司将乌克兰2026/27年度葵花籽油出口预测从此前的410万吨下调18.3%至335万吨。",
+   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxiqw8854598.d.html",
+   "source": "同花顺财经 · 7x24",
+   "published": "2026-11-16 14:46",
+   "period": "",
+   "collected": "2026-11-16T15:00:38+08:00",
+   "summary": "",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "apkinform咨询公司将乌克兰202627年度葵花籽油出口预测从此前的410万吨下调183%至335万吨"
+  },
+  {
+   "id": "auto:afc4acb0c03cd352",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "APK-INFORM咨询公司将乌克兰2026/27年度葵花籽油产量预测下调17%，从之前的450万吨降至375万吨。",
+   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxiqw8854555.d.html",
+   "source": "同花顺财经 · 7x24",
+   "published": "2026-11-16 14:46",
+   "period": "",
+   "collected": "2026-11-16T15:00:38+08:00",
+   "summary": "",
+   "metrics": [
+    {
+     "label": "年度葵花籽油产量预测下调",
+     "value": "17",
+     "unit": "%",
+     "note": "自动抽取 · 原文「年度葵花籽油产量预测下调17%」"
+    }
+   ],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "apkinform咨询公司将乌克兰202627年度葵花籽油产量预测下调17%从之前的450万吨降至375万吨"
+  },
+  {
+   "id": "auto:e3c193b799c99f33",
+   "kind": "auto",
+   "category": "公司动态",
+   "title": "腾讯发布Hy4 flash：输入0.5元/百万Token，计划开源",
+   "url": "https://finance.eastmoney.com/a/202611163931752827.html",
+   "source": "东方财富 · 资讯（关键词：腾讯）",
+   "published": "2026-11-16 14:45",
+   "period": "",
+   "collected": "2026-11-16T15:00:47+08:00",
+   "summary": "据了解，Hy4 flash已在腾讯云TokenHub、WorkBuddy、元宝、企业微信、QQ、ima、Marvis等产品上线，即将接入OpenRouter。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "腾讯发布hy4flash输入05元百万token计划开源"
+  },
+  {
+   "id": "auto:6dc1d14590c1c0ef",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "英伟达机器人学习工程师辞职：老黄走了我也走",
+   "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-16/doc-iniyxiqy5628897.shtml",
+   "source": "网易财经 · 环球市场播报",
+   "published": "2026-11-16 14:43",
+   "period": "",
+   "collected": "2026-11-16T15:00:41+08:00",
+   "summary": "一名英伟达工程师表示，由于前首席执行官黄仁勋离职，他已决定离开公司。 根据领英资料，戴士钦（Darrell Dai）是英伟达上海机器人业务部门的一名高级研究工程师...",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "英伟达机器人学习工程师辞职老黄走了我也走"
+  },
+  {
+   "id": "auto:4ef6f28dfd90b8d4",
+   "kind": "auto",
+   "category": "宏观数据",
+   "title": "日本央行鹰派委员高田创呼吁加快加息步伐",
+   "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-16/doc-iniyxiqy5629011.shtml",
+   "source": "网易财经 · 环球市场播报",
+   "published": "2026-11-16 14:43",
+   "period": "",
+   "collected": "2026-11-16T15:00:41+08:00",
+   "summary": "11月16日，日本央行审议委员高田创表示，日本央行应在关注国内金融环境及国际局势的同时，加快加息步伐，尽快将政策利率提高至适当水平。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "日本央行鹰派委员高田创呼吁加快加息步伐"
+  },
+  {
+   "id": "auto:3cfc65dc8d9d6ede",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "华安证券：中创新航维持“买入”评级 保持重点推荐",
+   "url": "https://finance.sina.com.cn/stock/hkstock/hkgg/2026-11-16/doc-iniyxirc2378491.shtml",
+   "source": "网易财经 · 新浪港股",
+   "published": "2026-11-16 14:42",
+   "period": "",
+   "collected": "2026-11-16T15:00:41+08:00",
+   "summary": "华安证券发布研报称，中创新航（03931）在高倍率储能及数据中心电源领域持续投入。10月29日全球生态大会推出面向AIDC的120Ah高功率电芯及768kW储能产品方案...",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "华安证券中创新航维持买入评级保持重点推荐"
+  },
+  {
+   "id": "auto:297725dd70c04a92",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "英国11月房屋挂牌价跌幅超季节性平均水平，高房贷利率抑制购房需求",
+   "url": "https://finance.sina.com.cn/stock/usstock/c/2026-11-16/doc-iniyxirc2378128.shtml",
+   "source": "网易财经 · 环球市场播报",
+   "published": "2026-11-16 14:42",
+   "period": "",
+   "collected": "2026-11-16T15:00:41+08:00",
+   "summary": "11月16日，英国房地产网站Rightmove公布的数据显示，截至11月7日的四周内，英国房屋平均挂牌价格环比下跌1.8%，超过过去十年同期1.1%的平均跌幅，同比下跌0.2%。",
+   "metrics": [
+    {
+     "label": "英国房屋平均挂牌价格环比",
+     "value": "1.8",
+     "unit": "%",
+     "note": "自动抽取 · 原文「英国房屋平均挂牌价格环比下跌1.8%」"
+    }
+   ],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "英国11月房屋挂牌价跌幅超季节性平均水平高房贷利率抑制购房需求"
+  },
+  {
+   "id": "auto:ed06daeea7f11c83",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "A股工业富联触及跌停，现报36.09元。",
+   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxiqz1151933.d.html",
+   "source": "同花顺财经 · 7x24",
+   "published": "2026-11-16 14:41",
+   "period": "",
+   "collected": "2026-11-16T15:00:38+08:00",
+   "summary": "",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "a股工业富联触及跌停现报3609元"
+  },
+  {
+   "id": "auto:aea578b49c38ef4d",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "印尼盾兑美元跌至历史新低。",
+   "url": "https://wallstreetcn.com/livenews/3200466",
+   "source": "华尔街见闻 · 7x24",
+   "published": "2026-11-16 14:41",
+   "period": "",
+   "collected": "2026-11-16T15:00:38+08:00",
+   "summary": "",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "印尼盾兑美元跌至历史新低",
+   "hot": 1
+  },
+  {
+   "id": "auto:88b12bc52863ccd2",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "国信证券：五一视界首次覆盖 给予“优于大市”评价",
+   "url": "https://finance.sina.com.cn/stock/hkstock/hkgg/2026-11-16/doc-iniyxirc2377887.shtml",
+   "source": "网易财经 · 新浪港股",
+   "published": "2026-11-16 14:41",
+   "period": "",
+   "collected": "2026-11-16T15:00:41+08:00",
+   "summary": "国信证券发布研报称，持续看好五一视界（06651）在数字孪生与模拟仿真领域的技术积累，以及51Sim面向智能驾驶和具身智能的业务增长。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "国信证券五一视界首次覆盖给予优于大市评价"
+  },
+  {
+   "id": "auto:2da742d4707a6acc",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "中贝通信新设科技子公司 含多项AI业务",
+   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxiqy5627169.d.html",
+   "source": "同花顺财经 · 7x24",
+   "published": "2026-11-16 14:41",
+   "period": "",
+   "collected": "2026-11-16T15:00:38+08:00",
+   "summary": "企查查APP显示，近日，宁夏拾贝启源科技有限公司成立，经营范围包含人工智能行业应用系统集成服务；人工智能硬件销售；人工智能公共服务平台技术咨询服务；信息系统集成服务等。企查查股权穿透显示，该公司由中贝通信全资持股。",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "中贝通信新设科技子公司含多项ai业务"
+  },
+  {
    "id": "auto:fed69d6a65590745",
    "kind": "auto",
    "category": "市场快讯",
@@ -151,6 +1307,29 @@
    "verified": false,
    "status": "自动抓取 · 待核验",
    "norm_title": "沪电股份触及跌停"
+  },
+  {
+   "id": "auto:4e695261199c71f8",
+   "kind": "auto",
+   "category": "宏观数据",
+   "title": "房地产市场出现积极变化",
+   "url": "https://finance.eastmoney.com/a/202611163931749292.html",
+   "source": "东方财富 · 资讯（关键词：国家统计局）",
+   "published": "2026-11-16 14:38",
+   "period": "",
+   "collected": "2026-11-16T15:00:50+08:00",
+   "summary": "国家统计局16日发布的数据显示，今年前10个月，房地产开发投资下降21.6%。全国新建商品房销售面积61358万平方米，同比下降13.7%；新建商品房销售额58550亿元，下降14.3%。",
+   "metrics": [
+    {
+     "label": "房地产开发投资",
+     "value": "21.6",
+     "unit": "%",
+     "note": "自动抽取 · 原文「房地产开发投资下降21.6%」"
+    }
+   ],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "房地产市场出现积极变化"
   },
   {
    "id": "auto:eab6412d037ddb2c",
@@ -937,6 +2116,22 @@
    "verified": false,
    "status": "自动抓取 · 待核验",
    "norm_title": "科创50日内跌幅达600%成分股中摩尔线程跌1299%中科飞测跌1252%沐曦股份跌1232%芯原股份…"
+  },
+  {
+   "id": "auto:2131a856efbf1608",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "商务部就中国—东盟自贸区3.0版升级议定书生效实施答记者问",
+   "url": "https://finance.sina.com.cn/china/2026-11-16/doc-iniyxiqw8863438.shtml",
+   "source": "网易财经 · 商务部网站",
+   "published": "2026-11-16 14:25",
+   "period": "",
+   "collected": "2026-11-16T15:01:40+08:00",
+   "summary": "商务部国际司负责人就中国—东盟自贸区3.0版升级议定书生效实施答记者问 问：请介绍中国—东盟自贸区3.0版升级议定书生效实施的有关情况？",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "商务部就中国东盟自贸区30版升级议定书生效实施答记者问"
   },
   {
    "id": "auto:b7ff36cf6fde28ac",
@@ -2071,7 +3266,22 @@
    "bvid": "BV14ksw6UEPm",
    "thumb": "https://i2.hdslb.com/bfs/archive/3ef116866f05d6ec2f477d06244b6592c24394cd.jpg",
    "plays": 425,
-   "duration": "5:31"
+   "duration": "5:31",
+   "outline": [
+    {
+     "type": "point",
+     "text": "新能源车现在也卖不动了"
+    },
+    {
+     "type": "point",
+     "text": "一大堆的新能源新能源资源车。"
+    },
+    {
+     "type": "meta",
+     "text": "时长约 6 分钟"
+    }
+   ],
+   "outline_source": "标题与简介自动提炼，未读取视频语音"
   },
   {
    "id": "auto:f384f11ebc563ba7",
@@ -2140,7 +3350,18 @@
    "bvid": "BV14ksw6UEhx",
    "thumb": "https://i2.hdslb.com/bfs/archive/95118c0fcf25e338090bbee3fe3f6ad8fb503324.jpg",
    "plays": 315,
-   "duration": "2:5"
+   "duration": "2:5",
+   "outline": [
+    {
+     "type": "point",
+     "text": "视频：APEC工商领导人峰会代表登国产新能源船 体验科技巡航"
+    },
+    {
+     "type": "meta",
+     "text": "时长约 2 分钟"
+    }
+   ],
+   "outline_source": "标题与简介自动提炼，未读取视频语音"
   },
   {
    "id": "auto:48c2c2d075c12636",
@@ -2616,6 +3837,22 @@
    "norm_title": "现金流etf800鹏华516460标的指数涨近1%市场风格切换资金逆市布局现金流资产"
   },
   {
+   "id": "auto:bf0073278b644ea5",
+   "kind": "auto",
+   "category": "市场快讯",
+   "title": "瑞银预测金价将在2027年第四季度触及每盎司5000美元",
+   "url": "https://www.36kr.com/newsflashes/4072013261853825",
+   "source": "36氪 · 快讯",
+   "published": "2026-11-16 13:46",
+   "period": "",
+   "collected": "2026-11-16T15:01:41+08:00",
+   "summary": "瑞银集团预计金价将在2027年第四季度触及每盎司5000美元，主要受贬值交易支撑；并维持对澳大利亚上市黄金矿业公司的买入评级。分析师表示，瑞银仍然“看好长期贬值交易”，但已“推迟”其黄金价格预测的轨迹。瑞银已将本季度金价预测下调10%至每盎司4500美元。（新浪财经）",
+   "metrics": [],
+   "verified": false,
+   "status": "自动抓取 · 待核验",
+   "norm_title": "瑞银预测金价将在2027年第四季度触及每盎司5000美元"
+  },
+  {
    "id": "auto:9faabee2583844e2",
    "kind": "auto",
    "category": "市场快讯",
@@ -2665,7 +3902,22 @@
    "bvid": "BV1Szsw6DEx9",
    "thumb": "https://i0.hdslb.com/bfs/archive/e711475870c0f6a5a106fe57aaccb374788b9e14.jpg",
    "plays": 341,
-   "duration": "4:11"
+   "duration": "4:11",
+   "outline": [
+    {
+     "type": "point",
+     "text": "银行和双创都在走向极端"
+    },
+    {
+     "type": "point",
+     "text": "耐心等待。"
+    },
+    {
+     "type": "meta",
+     "text": "时长约 4 分钟"
+    }
+   ],
+   "outline_source": "标题与简介自动提炼，未读取视频语音"
   },
   {
    "id": "auto:7b40bf3356afbc91",
@@ -3095,7 +4347,26 @@
    "bvid": "BV1qssw6cELZ",
    "thumb": "https://i1.hdslb.com/bfs/archive/2eff08b6a3ccad0c198fb4cc289bdf1c72ea65f3.jpg",
    "plays": 648,
-   "duration": "11:3"
+   "duration": "11:3",
+   "outline": [
+    {
+     "type": "point",
+     "text": "比亚迪方程豹钛9来啦"
+    },
+    {
+     "type": "point",
+     "text": "比亚迪真正的豪华硬派SUV"
+    },
+    {
+     "type": "point",
+     "text": "尾部还有天地门"
+    },
+    {
+     "type": "meta",
+     "text": "时长约 11 分钟"
+    }
+   ],
+   "outline_source": "标题与简介自动提炼，未读取视频语音"
   },
   {
    "id": "auto:c47a1ab73898284e",
@@ -3555,7 +4826,22 @@
    "bvid": "BV1G8sw6ZES1",
    "thumb": "https://i1.hdslb.com/bfs/archive/19bd18e5caa0dcf75574073cc7877efc7e0a8aa8.jpg",
    "plays": 385,
-   "duration": "2:29"
+   "duration": "2:29",
+   "outline": [
+    {
+     "type": "point",
+     "text": "中国智造，全球标杆！央视新闻探访比亚迪深汕工厂与香港市场，腾势D9稳居MPV销量冠军，成为全球用户的科技豪华之选！"
+    },
+    {
+     "type": "tags",
+     "text": "涉及：销量"
+    },
+    {
+     "type": "meta",
+     "text": "时长约 2 分钟"
+    }
+   ],
+   "outline_source": "标题与简介自动提炼，未读取视频语音"
   },
   {
    "id": "auto:21d12b861946af8c",
@@ -3732,22 +5018,6 @@
    "norm_title": "sk海力士未来五年拟投14万亿韩元扶持本土半导体供应商半导体etf博时159582最新资金净流入近1800万元"
   },
   {
-   "id": "auto:dee900212c4f09aa",
-   "kind": "auto",
-   "category": "市场快讯",
-   "title": "白鸽在线连续四个交易日下跌：股价从150港元跌至31港元，市值一度跌破百亿港元",
-   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxcia5715405.d.html",
-   "source": "同花顺财经 · 7x24",
-   "published": "2026-11-16 13:24",
-   "period": "",
-   "collected": "2026-11-16T13:37:11+08:00",
-   "summary": "港股上市保险科技公司白鸽在线股价持续下跌，市值一度跌破100亿港元。11月16日上午，白鸽在线（厦门）数字科技股份有限公司（白鸽在线，02672.HK）股价继续走低，盘中跌幅超过5%，最低触及30.80港元/股，创上市以来新低。截至发稿，该公司股价报31.30港元/股，跌5.04%，市值约100.35亿港元。至此，白鸽在线股价已连续四个交易日下跌。11月11日，该公司股价盘中一度触及150港元/股的历史高点，随后在尾盘大幅跳水，当日收跌72.08%。11月12日、13日，白鸽在线股价分别下跌10.61%、9.85%，11月13日收报32.96港元/股。",
-   "metrics": [],
-   "verified": false,
-   "status": "自动抓取 · 待核验",
-   "norm_title": "白鸽在线连续四个交易日下跌股价从150港元跌至31港元市值一度跌破百亿港元"
-  },
-  {
    "id": "auto:a06c95cf76737a6e",
    "kind": "auto",
    "category": "宏观数据",
@@ -3856,45 +5126,6 @@
    "norm_title": "腾讯混元正式发布hy4flash"
   },
   {
-   "id": "auto:87e164b4a2de7252",
-   "kind": "auto",
-   "category": "宏观数据",
-   "title": "泰国财政部长：将努力推动今年经济增速超过2.5%。",
-   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxcif2464621.d.html",
-   "source": "同花顺财经 · 7x24",
-   "published": "2026-11-16 13:23",
-   "period": "",
-   "collected": "2026-11-16T13:37:11+08:00",
-   "summary": "",
-   "metrics": [
-    {
-     "label": "努力推动今年经济增速超过",
-     "value": "2.5",
-     "unit": "%",
-     "note": "自动抽取 · 原文「努力推动今年经济增速超过2.5%」"
-    }
-   ],
-   "verified": false,
-   "status": "自动抓取 · 待核验",
-   "norm_title": "泰国财政部长将努力推动今年经济增速超过25%"
-  },
-  {
-   "id": "auto:705927efd57eb251",
-   "kind": "auto",
-   "category": "市场快讯",
-   "title": "公司有无参与物理AI研发？荣旗科技回应",
-   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxcic1239123.d.html",
-   "source": "同花顺财经 · 7x24",
-   "published": "2026-11-16 13:23",
-   "period": "",
-   "collected": "2026-11-16T13:37:11+08:00",
-   "summary": "有投资者向荣旗科技（301360.SZ）提问，请问贵司有无参与物理AI研发？公司自动化组装、视觉检测设备是否属于广义工业机器人范畴，是否布局人形机器人相关研发？11月16日，公司回答表示，公司当前未涉及物理AI和人形机器人的研发。",
-   "metrics": [],
-   "verified": false,
-   "status": "自动抓取 · 待核验",
-   "norm_title": "公司有无参与物理ai研发荣旗科技回应"
-  },
-  {
    "id": "auto:0d3ee10e413b5e43",
    "kind": "auto",
    "category": "公司动态",
@@ -3909,22 +5140,6 @@
    "verified": false,
    "status": "自动抓取 · 待核验",
    "norm_title": "腾讯混元正式推出hy4flash"
-  },
-  {
-   "id": "auto:3f2c82e5c2034a01",
-   "kind": "auto",
-   "category": "市场快讯",
-   "title": "A股光刻机、光刻胶概念异动拉升，凯美特气直线涨停。",
-   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxcia5714505.d.html",
-   "source": "同花顺财经 · 7x24",
-   "published": "2026-11-16 13:22",
-   "period": "",
-   "collected": "2026-11-16T13:37:11+08:00",
-   "summary": "",
-   "metrics": [],
-   "verified": false,
-   "status": "自动抓取 · 待核验",
-   "norm_title": "a股光刻机光刻胶概念异动拉升凯美特气直线涨停"
   },
   {
    "id": "auto:00652e94ca7beb26",
@@ -3960,35 +5175,6 @@
    "norm_title": "美联储金融稳定报告预警ai相关风险用于数据中心建设的远期租赁与兜底担保规模已达约3万亿美元"
   },
   {
-   "id": "auto:51acca17a52bcd16",
-   "kind": "auto",
-   "category": "市场快讯",
-   "title": "土耳其10月份汽车产量同比下降8%",
-   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxcif2463322.d.html",
-   "source": "同花顺财经 · 7x24",
-   "published": "2026-11-16 13:21",
-   "period": "",
-   "collected": "2026-11-16T13:37:11+08:00",
-   "summary": "根据土耳其汽车制造商协会（简称 OSD）的数据， 土耳其10 月份汽车产量按单位计算下降了 8%，至 121,360 辆。",
-   "metrics": [
-    {
-     "label": "月份汽车产量同比",
-     "value": "8",
-     "unit": "%",
-     "note": "自动抽取 · 原文「月份汽车产量同比下降8%」"
-    },
-    {
-     "label": "月份汽车产量按单位计算",
-     "value": "8",
-     "unit": "%",
-     "note": "自动抽取 · 原文「月份汽车产量按单位计算下降了 8%」"
-    }
-   ],
-   "verified": false,
-   "status": "自动抓取 · 待核验",
-   "norm_title": "土耳其10月份汽车产量同比下降8%"
-  },
-  {
    "id": "auto:4e36a46c3911f895",
    "kind": "auto",
    "category": "公司财报",
@@ -4003,22 +5189,6 @@
    "verified": false,
    "status": "自动抓取 · 待核验",
    "norm_title": "高盛上调h股评级+美通胀将大幅下降恒生科技恒生互联网触底反弹"
-  },
-  {
-   "id": "auto:f798461a0b57dffa",
-   "kind": "auto",
-   "category": "市场快讯",
-   "title": "机构：2026年Q3东南亚智能手机出货量同比下降36%，苹果逆势增长",
-   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxcic1236856.d.html",
-   "source": "同花顺财经 · 7x24",
-   "published": "2026-11-16 13:20",
-   "period": "",
-   "collected": "2026-11-16T13:37:11+08:00",
-   "summary": "根据Omdia最新研究，2026年第三季度，东南亚智能手机市场同比下降36%，出货量降至1,650万部。这一市场收缩延续了2026年上半年以来的下行趋势，存储芯片供应短缺及零部件成本上涨持续制约智能手机厂商的出货表现。尽管出货量大幅下滑，市场出货价值同比仅下降1%，而平均售价（ASP）则同比上涨53%。这一差异反映出，在供应压力持续加大的背景下，智能手机厂商正通过提高产品售价来应对成本上涨及供应限制。尽管三星出货量同比下降20%至370万部，仍保持东南亚市场领先地位。小米出货量同比下降24%，但零售平均售价（ASP）上涨55%，在一定程度上抵消了出货量下滑对市场销售额的影响。苹果是前五大厂商中唯一实现出货量增长的厂商，出货量同比增长4%， 主要得益于其在马来西亚和越南市场的强劲表现。",
-   "metrics": [],
-   "verified": false,
-   "status": "自动抓取 · 待核验",
-   "norm_title": "机构2026年q3东南亚智能手机出货量同比下降36%苹果逆势增长"
   },
   {
    "id": "auto:b7b955d5ed8d7880",
@@ -4070,7 +5240,30 @@
    "bvid": "BV1R4sw6fEeU",
    "thumb": "https://i1.hdslb.com/bfs/archive/8f1b1cb09ff8ed051203a54ce28aeb94a53b3673.jpg",
    "plays": 881,
-   "duration": "13:6"
+   "duration": "13:6",
+   "outline": [
+    {
+     "type": "point",
+     "text": "AI泡沫被黄仁勋杰宝捅破"
+    },
+    {
+     "type": "point",
+     "text": "NVDA单周最大跌幅达20%市值蒸发近1万亿美元 临近财报是黄金坑吗"
+    },
+    {
+     "type": "point",
+     "text": "Anthropic IPO市场何去何从【11.9-13美股复盘】"
+    },
+    {
+     "type": "tags",
+     "text": "涉及：市值、财报"
+    },
+    {
+     "type": "meta",
+     "text": "时长约 13 分钟"
+    }
+   ],
+   "outline_source": "标题与简介自动提炼，未读取视频语音"
   },
   {
    "id": "auto:1266832f4c5952bf",
@@ -4094,45 +5287,6 @@
    "verified": false,
    "status": "自动抓取 · 待核验",
    "norm_title": "资金持续加仓创业板etf天弘159977标的指数跌超3%获净申购超1亿份"
-  },
-  {
-   "id": "auto:a3474c9c2ad2a655",
-   "kind": "auto",
-   "category": "市场快讯",
-   "title": "粤芯半导体：公司的硅光产品目前涵盖400G、800G 及1.6T 高速可插拔硅光光模块应用",
-   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxcif2460507.d.html",
-   "source": "同花顺财经 · 7x24",
-   "published": "2026-11-16 13:16",
-   "period": "",
-   "collected": "2026-11-16T13:37:11+08:00",
-   "summary": "有投资者向粤芯半导-U（301660.SZ）提问，公司是否涉1.6T光通信模块？11月16日，公司回答表示，公司的硅光产品目前涵盖400G、800G 及1.6T 高速可插拔硅光光模块应用。",
-   "metrics": [],
-   "verified": false,
-   "status": "自动抓取 · 待核验",
-   "norm_title": "粤芯半导体公司的硅光产品目前涵盖400g800g及16t高速可插拔硅光光模块应用"
-  },
-  {
-   "id": "auto:9ce35174ea86670d",
-   "kind": "auto",
-   "category": "市场快讯",
-   "title": "澳大利亚S&P/ASX 200指数收盘下跌0.4%，报9044.70点。",
-   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxcia5710235.d.html",
-   "source": "同花顺财经 · 7x24",
-   "published": "2026-11-16 13:13",
-   "period": "",
-   "collected": "2026-11-16T13:37:11+08:00",
-   "summary": "",
-   "metrics": [
-    {
-     "label": "指数收盘",
-     "value": "0.4",
-     "unit": "%",
-     "note": "自动抽取 · 原文「指数收盘下跌0.4%」"
-    }
-   ],
-   "verified": false,
-   "status": "自动抓取 · 待核验",
-   "norm_title": "澳大利亚s&pasx200指数收盘下跌04%报904470点"
   },
   {
    "id": "auto:e8c73e8feeb0ef32",
@@ -4184,38 +5338,6 @@
    "hot": 2
   },
   {
-   "id": "auto:8ab84b7daf6f8914",
-   "kind": "auto",
-   "category": "市场快讯",
-   "title": "Hy4 flash 发布：日常工作的极致性价比模型",
-   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxcic1232732.d.html",
-   "source": "同花顺财经 · 7x24",
-   "published": "2026-11-16 13:10",
-   "period": "",
-   "collected": "2026-11-16T13:37:11+08:00",
-   "summary": "腾讯混元正式推出 Hy4 flash，这是迄今为止最高性价比的 Hy 模型，总参数量为 224B（其中 64B Engram 参数），激活参数 12B，支持多模态和 1M 上下文长度，API 价格相比 Hy4 大幅降低。（腾讯混元公众号）",
-   "metrics": [],
-   "verified": false,
-   "status": "自动抓取 · 待核验",
-   "norm_title": "hy4flash发布日常工作的极致性价比模型"
-  },
-  {
-   "id": "auto:cfabc8b6e6bb1a00",
-   "kind": "auto",
-   "category": "市场快讯",
-   "title": "欧盟拟提议以预算为担保向乌克兰提供450亿欧元贷款",
-   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxcia5708567.d.html",
-   "source": "同花顺财经 · 7x24",
-   "published": "2026-11-16 13:09",
-   "period": "",
-   "collected": "2026-11-16T13:37:11+08:00",
-   "summary": "据英国《金融时报》报道，欧盟委员会提议以欧盟共同预算的“剩余空间”为担保，在资本市场上举债筹集 450 亿欧元，向乌克兰提供贷款支持。 乌克兰明年预计面临约 700 亿欧元 的资金缺口。欧盟计划填补其中约三分之二的缺口（即这 450 亿欧元），并呼吁其他西方盟友分担剩余部分。",
-   "metrics": [],
-   "verified": false,
-   "status": "自动抓取 · 待核验",
-   "norm_title": "欧盟拟提议以预算为担保向乌克兰提供450亿欧元贷款"
-  },
-  {
    "id": "auto:8535d6b2ee284f6b",
    "kind": "auto",
    "category": "市场快讯",
@@ -4231,22 +5353,6 @@
    "status": "自动抓取 · 待核验",
    "norm_title": "瑞银集团预计金价将在2027年第四季度触及每盎司5000美元主要受贬值交易支撑并维持对澳大利亚上市黄金矿业公司的买入…",
    "hot": 1
-  },
-  {
-   "id": "auto:69e47c9474654240",
-   "kind": "auto",
-   "category": "市场快讯",
-   "title": "瑞银预测金价将在2027年第四季度触及每盎司5000美元",
-   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxchy8932705.d.html",
-   "source": "同花顺财经 · 7x24",
-   "published": "2026-11-16 13:09",
-   "period": "",
-   "collected": "2026-11-16T13:37:11+08:00",
-   "summary": "瑞银集团预计金价将在2027年第四季度触及每盎司5000美元，主要受贬值交易支撑；并维持对澳大利亚上市黄金矿业公司的买入评级。据分析师Levi Spry的一份报告，该行预计整个行业的潜在回报率在18%至88%之间。分析师表示，瑞银仍然“看好长期贬值交易”，但已“推迟”其黄金价格预测的轨迹。瑞银已将本季度金价预测下调10%至每盎司4500美元。贬值交易是指投资者从政府债券和货币转向黄金等避险资产，原因是担心通货膨胀和不断上升的公共债务会侵蚀传统财富储存手段的价值。",
-   "metrics": [],
-   "verified": false,
-   "status": "自动抓取 · 待核验",
-   "norm_title": "瑞银预测金价将在2027年第四季度触及每盎司5000美元"
   },
   {
    "id": "auto:5410e52feb0688d5",
@@ -4294,54 +5400,6 @@
    "norm_title": "兴证国际石药集团首予买入评级创新产品有望贡献增长"
   },
   {
-   "id": "auto:a435b785b78d7b6f",
-   "kind": "auto",
-   "category": "公司财报",
-   "title": "国联民生陶川：A股政策底与市场底逐步夯实 性价比持续提升",
-   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxchy8932345.d.html",
-   "source": "同花顺财经 · 7x24",
-   "published": "2026-11-16 13:08",
-   "period": "",
-   "collected": "2026-11-16T13:37:11+08:00",
-   "summary": "国联民生证券首席经济学家陶川在接受券中社记者采访时表示，A股政策底与市场底逐步夯实，随着稳增长政策落地、盈利由点及面修复，性价比持续提升。他还表示，红利资产在利率中枢下行环境下仍具配置价值，持续兑现业绩的科技成长有望迎来盈利与估值双支撑。",
-   "metrics": [],
-   "verified": false,
-   "status": "自动抓取 · 待核验",
-   "norm_title": "国联民生陶川a股政策底与市场底逐步夯实性价比持续提升"
-  },
-  {
-   "id": "auto:7ad718ca17545235",
-   "kind": "auto",
-   "category": "市场快讯",
-   "title": "法兴银行：AI火热行情正被三大风险环伺",
-   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxcif2457781.d.html",
-   "source": "同花顺财经 · 7x24",
-   "published": "2026-11-16 13:08",
-   "period": "",
-   "collected": "2026-11-16T13:37:11+08:00",
-   "summary": "资深分析师阿尔伯特·爱德华兹（Albert Edwards）最新警告称，被人工智能（AI）的盈利潜力所吸引的投资者，可能忽视了股市流动性日益收紧的威胁。法国兴业银行（Societe Generale）驻伦敦分析师爱德华兹一向以极度悲观的市场观点著称，甚至自称“超级大空头”。近30年前，他曾准确预警1997年亚洲金融危机。而如今，他将矛头对准了当下炙手可热的人工智能（AI）热潮。他在最新报告中指出，风险资产的金融支持力度减弱、盈利预期上调势头放缓以及通胀压力再度上升，都可能动摇股市上涨的势头。他的分析挑战了“强劲的企业盈利预期足以支撑科技股继续攀升”的观点。",
-   "metrics": [],
-   "verified": false,
-   "status": "自动抓取 · 待核验",
-   "norm_title": "法兴银行ai火热行情正被三大风险环伺"
-  },
-  {
-   "id": "auto:adf8c1d8da76fce5",
-   "kind": "auto",
-   "category": "公司财报",
-   "title": "国联民生陶川：明年盈利修复有望“由点及面” 科技与传统行业机会趋于均衡",
-   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxchy8931861.d.html",
-   "source": "同花顺财经 · 7x24",
-   "published": "2026-11-16 13:07",
-   "period": "",
-   "collected": "2026-11-16T13:37:11+08:00",
-   "summary": "国联民生证券首席经济学家陶川在接受券中社记者采访时表示，三季报A股上市公司盈利结构性分化，高增长沿两条线索展开：一是AI产业链从“资本开支叙事”迈向“报表利润兑现”，存储芯片、光模块、PCB业绩高增；二是化工等周期品在供需改善与价差修复下盈利回升。陶川表示，四季度关注两条主线：科技成长方面，资本开支扩张有望继续支撑半导体、算力硬件的订单与盈利；高股息红利方面，风险偏好偏弱环境下配置价值凸显。此外，稳增长落地或带来传统行业低预期下的业绩修复机会。陶川进一步表示，明年盈利修复有望“由点及面”，科技与传统行业机会趋于均衡：经贸安排延续有利于家电、通用机械稳定接单，能源供给修复为航空、物流降本增利。若海外利率压力缓和，盈利改善叠加估值修复，将打开市场上行空间。",
-   "metrics": [],
-   "verified": false,
-   "status": "自动抓取 · 待核验",
-   "norm_title": "国联民生陶川明年盈利修复有望由点及面科技与传统行业机会趋于均衡"
-  },
-  {
    "id": "auto:05610b51fe4042d6",
    "kind": "auto",
    "category": "市场快讯",
@@ -4372,22 +5430,6 @@
    "verified": false,
    "status": "自动抓取 · 待核验",
    "norm_title": "国金证券tcl电子维持买入评级看好盈利中枢继续提升"
-  },
-  {
-   "id": "auto:4b2b9f41da89b58a",
-   "kind": "auto",
-   "category": "宏观数据",
-   "title": "泰国财政部长表示，投资推动了第三季度GDP增长。",
-   "url": "https://finance.sina.cn/7x24/2026-11-16/detail-iniyxcia5707598.d.html",
-   "source": "同花顺财经 · 7x24",
-   "published": "2026-11-16 13:06",
-   "period": "",
-   "collected": "2026-11-16T13:37:11+08:00",
-   "summary": "",
-   "metrics": [],
-   "verified": false,
-   "status": "自动抓取 · 待核验",
-   "norm_title": "泰国财政部长表示投资推动了第三季度gdp增长"
   },
   {
    "id": "auto:f86526db8d2ce712",
@@ -4732,7 +5774,18 @@
    "bvid": "BV1RTsA6aEkh",
    "thumb": "https://i1.hdslb.com/bfs/archive/42c48fa89ee9b6c2b246df4ea22392972837b12d.jpg",
    "plays": 1367,
-   "duration": "21:5"
+   "duration": "21:5",
+   "outline": [
+    {
+     "type": "point",
+     "text": "主题：这场LIVE我的心情就像看近期的美股行情一样【LL15周年Fes】"
+    },
+    {
+     "type": "note",
+     "text": "该视频没有文字简介，大纲据标题推断"
+    }
+   ],
+   "outline_source": "标题与简介自动提炼，未读取视频语音"
   },
   {
    "id": "auto:0cdca7de8a978aab",
@@ -4995,7 +6048,30 @@
    "bvid": "BV12ysw67EFR",
    "thumb": "https://i2.hdslb.com/bfs/archive/d571734352d89e7f3eab930b8f6a4ccc9e23bf6b.jpg",
    "plays": 2002,
-   "duration": "10:36"
+   "duration": "10:36",
+   "outline": [
+    {
+     "type": "point",
+     "text": "11月16日 午评 缩量探底回升"
+    },
+    {
+     "type": "point",
+     "text": "银行新高"
+    },
+    {
+     "type": "point",
+     "text": "指数能否翻红"
+    },
+    {
+     "type": "tags",
+     "text": "涉及：指数"
+    },
+    {
+     "type": "meta",
+     "text": "时长约 11 分钟"
+    }
+   ],
+   "outline_source": "标题与简介自动提炼，未读取视频语音"
   },
   {
    "id": "auto:bcbc69fd2e5de474",
@@ -5031,7 +6107,26 @@
    "bvid": "BV1HRsw66Exx",
    "thumb": "https://i0.hdslb.com/bfs/archive/00596253c4ce911a0071f5b003b29d7fd4a4f11f.jpg",
    "plays": 2568,
-   "duration": "20:7"
+   "duration": "20:7",
+   "outline": [
+    {
+     "type": "point",
+     "text": "黄仁勋危机"
+    },
+    {
+     "type": "point",
+     "text": "海洋汉人半导体帮与AGI前夜的权力暗战"
+    },
+    {
+     "type": "tags",
+     "text": "涉及：毛利"
+    },
+    {
+     "type": "meta",
+     "text": "时长约 20 分钟"
+    }
+   ],
+   "outline_source": "标题与简介自动提炼，未读取视频语音"
   },
   {
    "id": "auto:b05407a7e42a89e9",
@@ -5161,7 +6256,30 @@
    "bvid": "BV1rRsw66EhA",
    "thumb": "https://i0.hdslb.com/bfs/archive/7669aeda1af8cc20204865d30bc751c3e3054e93.jpg",
    "plays": 445,
-   "duration": "71:10"
+   "duration": "71:10",
+   "outline": [
+    {
+     "type": "point",
+     "text": "中金开门会"
+    },
+    {
+     "type": "point",
+     "text": "刘刚 Kevin"
+    },
+    {
+     "type": "point",
+     "text": "加息压力与市场前景 261116B站首发（推荐程度"
+    },
+    {
+     "type": "tags",
+     "text": "涉及：加息"
+    },
+    {
+     "type": "meta",
+     "text": "时长约 71 分钟"
+    }
+   ],
+   "outline_source": "标题与简介自动提炼，未读取视频语音"
   },
   {
    "id": "auto:c0aac918ae03570a",
@@ -5181,7 +6299,18 @@
    "bvid": "BV1pDsw6VEEm",
    "thumb": "https://i1.hdslb.com/bfs/archive/dba3d567f41fa3708bf6d531b3591e2a2b3c0977.jpg",
    "plays": 314,
-   "duration": "6:11"
+   "duration": "6:11",
+   "outline": [
+    {
+     "type": "point",
+     "text": "主题：11月16日ETF基金午评策略"
+    },
+    {
+     "type": "note",
+     "text": "该视频没有文字简介，大纲据标题推断"
+    }
+   ],
+   "outline_source": "标题与简介自动提炼，未读取视频语音"
   },
   {
    "id": "auto:55b3586649b31c8f",
@@ -5218,7 +6347,30 @@
    "bvid": "BV1nRsw66EvX",
    "thumb": "https://i2.hdslb.com/bfs/archive/e91698af5d29b0871a6dfc7956eb6132a9abc431.jpg",
    "plays": 658,
-   "duration": "3:58"
+   "duration": "3:58",
+   "outline": [
+    {
+     "type": "point",
+     "text": "20261116股市午评"
+    },
+    {
+     "type": "point",
+     "text": "18号以后随时可能暴跌的大鸡肋行情 你要玩吗"
+    },
+    {
+     "type": "point",
+     "text": "A股为了gta6上市稳指数但砸个股"
+    },
+    {
+     "type": "tags",
+     "text": "涉及：指数"
+    },
+    {
+     "type": "meta",
+     "text": "时长约 4 分钟"
+    }
+   ],
+   "outline_source": "标题与简介自动提炼，未读取视频语音"
   },
   {
    "id": "auto:ee9c46eeeee45b35",
@@ -5271,7 +6423,30 @@
    "bvid": "BV1CDsw6VEPs",
    "thumb": "https://i2.hdslb.com/bfs/archive/78ef2864f3c117c9eaea0dbb0cf24781e56e0587.jpg",
    "plays": 1295,
-   "duration": "12:34"
+   "duration": "12:34",
+   "outline": [
+    {
+     "type": "point",
+     "text": "A股11.16午评点评"
+    },
+    {
+     "type": "point",
+     "text": "三大指数低开下杀震荡反弹仍收绿"
+    },
+    {
+     "type": "point",
+     "text": "银行多股大涨创新纪录"
+    },
+    {
+     "type": "tags",
+     "text": "涉及：指数"
+    },
+    {
+     "type": "meta",
+     "text": "时长约 13 分钟"
+    }
+   ],
+   "outline_source": "标题与简介自动提炼，未读取视频语音"
   },
   {
    "id": "auto:9dcd90225e4255f5",
@@ -5443,7 +6618,18 @@
    "bvid": "BV1rusF6YEei",
    "thumb": "https://i1.hdslb.com/bfs/archive/10f069c4a72788df5e058f791a1cc92eddb5c5df.jpg",
    "plays": 343,
-   "duration": "37:53"
+   "duration": "37:53",
+   "outline": [
+    {
+     "type": "point",
+     "text": "2026.11.16 黄金白银原油技术分析"
+    },
+    {
+     "type": "meta",
+     "text": "时长约 38 分钟"
+    }
+   ],
+   "outline_source": "标题与简介自动提炼，未读取视频语音"
   },
   {
    "id": "auto:cc1860a8f9774186",
@@ -5558,38 +6744,6 @@
    "hot": 1
   },
   {
-   "id": "auto:c784f67dc6f0299a",
-   "kind": "auto",
-   "category": "公司动态",
-   "title": "A股午评：创业板指下跌2.34%，家电板块涨幅居前，33股涨停",
-   "url": "https://finance.eastmoney.com/a/202611163931684620.html",
-   "source": "东方财富 · 资讯（关键词：宁德时代）",
-   "published": "2026-11-16 11:51",
-   "period": "",
-   "collected": "2026-11-16T13:37:15+08:00",
-   "summary": "个股成交额方面，中际旭创以133.49亿元居首，新易盛、寒武纪、东山精密与宁德时代成交额靠前，分别为91.38亿元、78.86亿元、71.21亿元与52.63亿元。",
-   "metrics": [],
-   "verified": false,
-   "status": "自动抓取 · 待核验",
-   "norm_title": "a股午评创业板指下跌234%家电板块涨幅居前33股涨停"
-  },
-  {
-   "id": "auto:60fc8cb4941f4e5f",
-   "kind": "auto",
-   "category": "公司动态",
-   "title": "丰元股份：除比亚迪外还与鹏辉能源、楚能新能源等企业保持合作",
-   "url": "https://finance.eastmoney.com/a/202611163931665333.html",
-   "source": "东方财富 · 资讯（关键词：比亚迪）",
-   "published": "2026-11-16 11:50",
-   "period": "",
-   "collected": "2026-11-16T13:37:15+08:00",
-   "summary": "21财经11月16日电，丰元股份在互动平台表示，除比亚迪外，公司还与鹏辉能源、楚能新能源等企业保持合作。公司会在加强与已有客户合作的同时，积极推进市场拓展及其他高价值客户的开发，持续优化客户结构。",
-   "metrics": [],
-   "verified": false,
-   "status": "自动抓取 · 待核验",
-   "norm_title": "丰元股份除比亚迪外还与鹏辉能源楚能新能源等企业保持合作"
-  },
-  {
    "id": "auto:2780dc52e97feca4",
    "kind": "auto",
    "category": "宏观数据",
@@ -5605,250 +6759,6 @@
    "status": "自动抓取 · 待核验",
    "norm_title": "国家统计局新闻发言人总经济师国民经济综合统计司司长付凌晖在国新办新闻发布会上表示房地产市场预期有所改善",
    "hot": 1
-  },
-  {
-   "id": "auto:0f81de617b89042d",
-   "kind": "auto",
-   "category": "公司财报",
-   "title": "午评：创业板指半日跌2.34% 工商银行等多只银行股续创历史新高",
-   "url": "https://finance.eastmoney.com/a/202611163931684963.html",
-   "source": "东方财富 · 资讯（关键词：中芯国际）",
-   "published": "2026-11-16 11:50",
-   "period": "",
-   "collected": "2026-11-16T13:37:17+08:00",
-   "summary": "中芯国际Q3营收、归母净利润分别同比增长28.1%、87.6%，台积电10月营收同比增长59.7%，晶圆制造景气延续．模型迭代与AI商业化持续支撑算力需求，国产芯片性能、软件适配及集群能力提升有望推动订单转化。",
-   "metrics": [
-    {
-     "label": "归母净利润分别同比",
-     "value": "28.1",
-     "unit": "%",
-     "note": "自动抽取 · 原文「归母净利润分别同比增长28.1%」"
-    },
-    {
-     "label": "月营收同比",
-     "value": "59.7",
-     "unit": "%",
-     "note": "自动抽取 · 原文「月营收同比增长59.7%」"
-    }
-   ],
-   "verified": false,
-   "status": "自动抓取 · 待核验",
-   "norm_title": "午评创业板指半日跌234%工商银行等多只银行股续创历史新高"
-  },
-  {
-   "id": "auto:79eaddc87f72deb9",
-   "kind": "auto",
-   "category": "公司动态",
-   "title": "资管周报：多家银行上线积存金“挂单”功能；年内新发产品数量同比缩水超两成，中小银行自营理财格局加速“洗牌”",
-   "url": "https://finance.eastmoney.com/a/202611163931660185.html",
-   "source": "东方财富 · 资讯（关键词：招商银行）",
-   "published": "2026-11-16 11:49",
-   "period": "",
-   "collected": "2026-11-16T11:55:58+08:00",
-   "summary": "招商银行披露，前三季度代理基金收入54.85亿元，同比增长31.63%；据此测算，三季度单季收入约15.50亿元，同比下降10.4%、环比下降18.5%，为近年来首次出现同环比双降。",
-   "metrics": [
-    {
-     "label": "前三季度代理基金收入",
-     "value": "54.85",
-     "unit": "亿元",
-     "note": "自动抽取 · 原文「前三季度代理基金收入54.85亿元」"
-    },
-    {
-     "label": "三季度单季收入约",
-     "value": "15.50",
-     "unit": "亿元",
-     "note": "自动抽取 · 原文「三季度单季收入约15.50亿元」"
-    }
-   ],
-   "verified": false,
-   "status": "自动抓取 · 待核验",
-   "norm_title": "资管周报多家银行上线积存金挂单功能年内新发产品数量同比缩水超两成中小银行自营理财格局加速洗牌"
-  },
-  {
-   "id": "auto:849f6910ff988320",
-   "kind": "auto",
-   "category": "公司动态",
-   "title": "龙蟠科技上调宁德时代年内采购上限至90亿元 去年交易额约为30.51亿元",
-   "url": "https://finance.eastmoney.com/a/202611163931660814.html",
-   "source": "东方财富 · 资讯（关键词：宁德时代）",
-   "published": "2026-11-16 11:48",
-   "period": "",
-   "collected": "2026-11-16T13:37:15+08:00",
-   "summary": "公司称，因龙蟠产品需求增加、碳酸锂价格波动，预期现有上限“或不足以应付”宁德时代方面预期增加的采购订单，故将年度上限修订为90亿元。 龙蟠科技与宁德时代的这笔关联交易在2026年出现量级跃迁。",
-   "metrics": [],
-   "verified": false,
-   "status": "自动抓取 · 待核验",
-   "norm_title": "龙蟠科技上调宁德时代年内采购上限至90亿元去年交易额约为3051亿元"
-  },
-  {
-   "id": "auto:5e369d3e3fb6b74a",
-   "kind": "auto",
-   "category": "公司动态",
-   "title": "【财经分析】房车改装市场热度攀升 发展房车产业仍需多方协同发力",
-   "url": "https://finance.eastmoney.com/a/202611163931659467.html",
-   "source": "东方财富 · 资讯（关键词：固定资产投资）",
-   "published": "2026-11-16 11:44",
-   "period": "",
-   "collected": "2026-11-16T11:56:00+08:00",
-   "summary": "今年9月，南昌市将“推动汽车改装、房车露营、汽车赛事等发展”写入《南昌市关于推进服务业扩能提质的行动计划》；市商务局对房车露营等消费新场景项目，按有效投资的40%、最高不超过2000万元给予支持。第97届世界汽车房车露营大会明年4月将在南昌举办，首次落户中部。",
-   "metrics": [
-    {
-     "label": "按有效投资的",
-     "value": "40",
-     "unit": "%",
-     "note": "自动抽取 · 原文「按有效投资的40%」"
-    }
-   ],
-   "verified": false,
-   "status": "自动抓取 · 待核验",
-   "norm_title": "财经分析房车改装市场热度攀升发展房车产业仍需多方协同发力"
-  },
-  {
-   "id": "auto:bdd3fcf61a377217",
-   "kind": "auto",
-   "category": "公司动态",
-   "title": "阿里Qwen4正式发布，单任务平均费用较上代大降6成",
-   "url": "https://finance.eastmoney.com/a/202611163931660579.html",
-   "source": "东方财富 · 资讯（关键词：阿里巴巴）",
-   "published": "2026-11-16 11:43",
-   "period": "",
-   "collected": "2026-11-16T13:37:17+08:00",
-   "summary": "21财经11月16日电，阿里巴巴发布全新一代基座大模型Qwen4-Max，总参数2.4T，具备原生视觉能力，支持百万上下文。Qwen4-Max现已上线千问AI平台对外提供API服务，缓存命中每百万Tokens低至0.5元，完成单任务的平均费用较上代模型大降6成。",
-   "metrics": [],
-   "verified": false,
-   "status": "自动抓取 · 待核验",
-   "norm_title": "阿里qwen4正式发布单任务平均费用较上代大降6成"
-  },
-  {
-   "id": "auto:b6983a0ef974c379",
-   "kind": "auto",
-   "category": "公司动态",
-   "title": "恒生科技指数估值分位回落至近10年7%水平，指数新名单即将公布",
-   "url": "https://finance.eastmoney.com/a/202611163931685130.html",
-   "source": "东方财富 · 资讯（关键词：比亚迪）",
-   "published": "2026-11-16 11:42",
-   "period": "",
-   "collected": "2026-11-16T13:37:15+08:00",
-   "summary": "恒生科技ETF华夏（513180）跟踪恒生科技指数，聚焦中国AI核心资产，软硬科技兼备，持仓阿里、腾讯、小米、美团、中芯国际、比亚迪等科技龙头。该ETF支持T+0交易，为投资者布局中国科技核心资产提供了便捷工具。 数据来源：Wind，截至2026年11月16日。",
-   "metrics": [],
-   "verified": false,
-   "status": "自动抓取 · 待核验",
-   "norm_title": "恒生科技指数估值分位回落至近10年7%水平指数新名单即将公布"
-  },
-  {
-   "id": "auto:fd33dbe96158b2f1",
-   "kind": "auto",
-   "category": "公司动态",
-   "title": "景林资产：一批企业重新展现出较高投资吸引力",
-   "url": "https://finance.eastmoney.com/a/202611163931658029.html",
-   "source": "东方财富 · 资讯（关键词：固定资产投资）",
-   "published": "2026-11-16 11:41",
-   "period": "",
-   "collected": "2026-11-16T11:48:00+08:00",
-   "summary": "景林资产认为，从长期投资的角度看，市场估值的显著回落，已经使一批经营稳健、竞争优势突出、长期成长前景良好的企业重新展现出较高的投资吸引力。对于真正着眼于未来3至5年投资回报的长期投资者而言，当前市场所提供的估值水平，可能正是值得认真把握的配置窗口。",
-   "metrics": [],
-   "verified": false,
-   "status": "自动抓取 · 待核验",
-   "norm_title": "景林资产一批企业重新展现出较高投资吸引力"
-  },
-  {
-   "id": "auto:3161761b99e5f24d",
-   "kind": "auto",
-   "category": "宏观数据",
-   "title": "OpenAI解散机器人团队；SpaceX实现“筷子夹飞船”",
-   "url": "https://finance.eastmoney.com/a/202611163931659321.html",
-   "source": "东方财富 · 资讯（关键词：国家统计局）",
-   "published": "2026-11-16 11:41",
-   "period": "",
-   "collected": "2026-11-16T11:56:00+08:00",
-   "summary": "国家统计局：10月份我国工业机器人产量同比增长26% 国家统计局新闻发言人付凌晖在16日举行的国新办新闻发布会上说，今年10月份，我国装备制造业和高技术制造业支撑明显，工业机器人产量同比增长26.0%，3D打印设备、锂离子电池产量同比分别增长85.9%、30.0%。",
-   "metrics": [
-    {
-     "label": "月份我国工业机器人产量同比",
-     "value": "26",
-     "unit": "%",
-     "note": "自动抽取 · 原文「月份我国工业机器人产量同比增长26%」"
-    },
-    {
-     "label": "工业机器人产量同比",
-     "value": "26.0",
-     "unit": "%",
-     "note": "自动抽取 · 原文「工业机器人产量同比增长26.0%」"
-    },
-    {
-     "label": "锂离子电池产量同比分别",
-     "value": "85.9",
-     "unit": "%",
-     "note": "自动抽取 · 原文「锂离子电池产量同比分别增长85.9%」"
-    }
-   ],
-   "verified": false,
-   "status": "自动抓取 · 待核验",
-   "norm_title": "openai解散机器人团队spacex实现筷子夹飞船"
-  },
-  {
-   "id": "auto:0a33fe2c0afe1e7f",
-   "kind": "auto",
-   "category": "公司动态",
-   "title": "复牌！000831，涨停、炸板、涨停、炸板…",
-   "url": "https://finance.eastmoney.com/a/202611163931659555.html",
-   "source": "东方财富 · 资讯（关键词：固定资产投资）",
-   "published": "2026-11-16 11:40",
-   "period": "",
-   "collected": "2026-11-16T11:56:00+08:00",
-   "summary": "此前，中国稀土集团的同业竞争承诺备受投资者关注。公告中，中国稀土称，通过此次交易，中国稀土集团将进一步向公司注入优质稀土资产，有助于解决同业竞争问题。",
-   "metrics": [],
-   "verified": false,
-   "status": "自动抓取 · 待核验",
-   "norm_title": "复牌000831涨停炸板涨停炸板…"
-  },
-  {
-   "id": "auto:8be0565350036ec2",
-   "kind": "auto",
-   "category": "宏观数据",
-   "title": "10月份上海、徐州二手房价格环比涨幅居前",
-   "url": "https://finance.eastmoney.com/a/202611163931658149.html",
-   "source": "东方财富 · 资讯（关键词：国家统计局）",
-   "published": "2026-11-16 11:39",
-   "period": "",
-   "collected": "2026-11-16T11:48:00+08:00",
-   "summary": "11月16日，国家统计局的数据显示，10月份，70个大中城市中，二手房价环比上涨城市7个，比上月减少2个。其中，上海、徐州均上涨0.5%，并列第一；合肥、广州均上涨0.2%，并列第二；沈阳、深圳、重庆涨幅均为0.1%，并列第三。",
-   "metrics": [],
-   "verified": false,
-   "status": "自动抓取 · 待核验",
-   "norm_title": "10月份上海徐州二手房价格环比涨幅居前"
-  },
-  {
-   "id": "auto:d29e4d9110569c58",
-   "kind": "auto",
-   "category": "公司财报",
-   "title": "翻倍大牛股！002242，“一字”封板",
-   "url": "https://finance.eastmoney.com/a/202611163931656355.html",
-   "source": "东方财富 · 资讯（关键词：固定资产投资）",
-   "published": "2026-11-16 11:38",
-   "period": "",
-   "collected": "2026-11-16T11:48:00+08:00",
-   "summary": "消息面上，九阳股份此前发布股票交易异常波动公告称，公司持有深思考7.92%股权，其深耕类脑人工智能与多模态语义理解技术，公司通过全资子公司参股享刻智能，财务性投资机器人相关领域，相关业务尚处于早期阶段，对公司当期营收及利润无重大影响。",
-   "metrics": [],
-   "verified": false,
-   "status": "自动抓取 · 待核验",
-   "norm_title": "翻倍大牛股002242一字封板"
-  },
-  {
-   "id": "auto:4f0f596344183452",
-   "kind": "auto",
-   "category": "公司动态",
-   "title": "衍生品统一监管正式落地！5亿净资本准入，封堵违规减持、利益输送通道",
-   "url": "https://finance.eastmoney.com/a/202611163931659165.html",
-   "source": "东方财富 · 资讯（关键词：固定资产投资）",
-   "published": "2026-11-16 11:38",
-   "period": "",
-   "collected": "2026-11-16T11:48:00+08:00",
-   "summary": "所谓跨境TRS，是指投资者本金无需出境，由券商或其境外子公司先行持有标的资产，再通过收益互换将海外权益的收益与风险转移给境内客户的业务模式，此前主要服务于私募等专业机构的跨境配置需求。",
-   "metrics": [],
-   "verified": false,
-   "status": "自动抓取 · 待核验",
-   "norm_title": "衍生品统一监管正式落地5亿净资本准入封堵违规减持利益输送通道"
   },
   {
    "id": "auto:11efa71eb4df5886",
@@ -6122,7 +7032,26 @@
    "verified": false,
    "status": "页面摘要整理 · 未读取完整字幕",
    "metrics": [],
-   "bvid": "BV1r7xy6fEdQ"
+   "bvid": "BV1r7xy6fEdQ",
+   "outline": [
+    {
+     "type": "point",
+     "text": "比亚迪深度详解"
+    },
+    {
+     "type": "point",
+     "text": "营收持平、净利-4.2%"
+    },
+    {
+     "type": "point",
+     "text": "价格战下半场海外能接棒吗"
+    },
+    {
+     "type": "tags",
+     "text": "涉及：价格、估值、净利、利润、库存、营收"
+    }
+   ],
+   "outline_source": "标题与简介自动提炼，未读取视频语音"
   },
   {
    "id": "auto:af48513cec190be2",
@@ -6484,7 +7413,18 @@
    "bvid": "BV1xrsF6rEAv",
    "thumb": "https://i1.hdslb.com/bfs/archive/bc85c203f0819a483e5528707de77a7c6fc59c1a.jpg",
    "plays": 6215,
-   "duration": "8:11"
+   "duration": "8:11",
+   "outline": [
+    {
+     "type": "point",
+     "text": "主题：为什么说“拉动经济”才是当下最硬的话语权？"
+    },
+    {
+     "type": "note",
+     "text": "该视频没有文字简介，大纲据标题推断"
+    }
+   ],
+   "outline_source": "标题与简介自动提炼，未读取视频语音"
   },
   {
    "id": "auto:b4cd6078a50a8834",
@@ -6602,7 +7542,30 @@
    "bvid": "BV1kSsp6eEdE",
    "thumb": "https://i2.hdslb.com/bfs/archive/644e483013ecbc15d10735e19f3b237b284d8d17.jpg",
    "plays": 373,
-   "duration": "10:30"
+   "duration": "10:30",
+   "outline": [
+    {
+     "type": "point",
+     "text": "【新闻对账】英伟达 CEO 黄仁勋离任"
+    },
+    {
+     "type": "point",
+     "text": "蒸发的 4"
+    },
+    {
+     "type": "point",
+     "text": "900 亿美元市值去了哪里"
+    },
+    {
+     "type": "tags",
+     "text": "涉及：估值、净利、利润、利率、市值、毛利"
+    },
+    {
+     "type": "meta",
+     "text": "时长约 10 分钟"
+    }
+   ],
+   "outline_source": "标题与简介自动提炼，未读取视频语音"
   },
   {
    "id": "auto:ff4859d1913c7000",
@@ -6645,7 +7608,26 @@
    "bvid": "BV1teWZ6BEvt",
    "thumb": "https://i1.hdslb.com/bfs/archive/7c6c3a26baadfd3cef8d2b803917623b8a1cb8b0.jpg",
    "plays": 11352,
-   "duration": "22:17"
+   "duration": "22:17",
+   "outline": [
+    {
+     "type": "point",
+     "text": "11.16"
+    },
+    {
+     "type": "point",
+     "text": "黄仁勋计划重返英伟达CEO、中美俄将举行三方会谈、十月社融不及预期、人民币使用量将翻倍、A股港股美股金价收评"
+    },
+    {
+     "type": "tags",
+     "text": "涉及：社融"
+    },
+    {
+     "type": "meta",
+     "text": "时长约 22 分钟"
+    }
+   ],
+   "outline_source": "标题与简介自动提炼，未读取视频语音"
   },
   {
    "id": "auto:d1c0cdee6cf11779",
@@ -6665,7 +7647,30 @@
    "bvid": "BV1ZvWf6dEGt",
    "thumb": "https://i0.hdslb.com/bfs/archive/c4d2b58adffe19d2ba5f755e1ee0e357bb4586be.jpg",
    "plays": 4670,
-   "duration": "34:31"
+   "duration": "34:31",
+   "outline": [
+    {
+     "type": "point",
+     "text": "【牢节】11.15"
+    },
+    {
+     "type": "point",
+     "text": "美联储嘴硬银行业稳定"
+    },
+    {
+     "type": "point",
+     "text": "牢节依旧坚定看多黄金看到5000"
+    },
+    {
+     "type": "tags",
+     "text": "涉及：下跌、美联储、通胀"
+    },
+    {
+     "type": "meta",
+     "text": "时长约 35 分钟"
+    }
+   ],
+   "outline_source": "标题与简介自动提炼，未读取视频语音"
   },
   {
    "id": "auto:0ffc75c67fb338fd",
@@ -6685,7 +7690,18 @@
    "bvid": "BV1c8Wf6cEJz",
    "thumb": "https://i0.hdslb.com/bfs/archive/3ce0c0bb54c0be4419cf280eafdfa686f1d9b1f0.jpg",
    "plays": 4513,
-   "duration": "135:24"
+   "duration": "135:24",
+   "outline": [
+    {
+     "type": "point",
+     "text": "主题：【11.8-11.15】新闻汇编 未剪辑版 金融资本夺舍英伟达 美联储补流动性不QE"
+    },
+    {
+     "type": "note",
+     "text": "该视频没有文字简介，大纲据标题推断"
+    }
+   ],
+   "outline_source": "标题与简介自动提炼，未读取视频语音"
   },
   {
    "id": "auto:cd2edd9067fcae94",
@@ -6705,7 +7721,18 @@
    "bvid": "BV11zWZ6NEbv",
    "thumb": "https://i0.hdslb.com/bfs/archive/a05f4f47b93da9f00604e9686c687182cd652bd4.jpg",
    "plays": 388,
-   "duration": "0:47"
+   "duration": "0:47",
+   "outline": [
+    {
+     "type": "point",
+     "text": "主题：美债表外资产 黄金 大饼 半导体下周风险"
+    },
+    {
+     "type": "note",
+     "text": "该视频没有文字简介，大纲据标题推断"
+    }
+   ],
+   "outline_source": "标题与简介自动提炼，未读取视频语音"
   },
   {
    "id": "auto:70a272e1762b0490",
@@ -6888,7 +7915,18 @@
    "bvid": "BV1g3sH6kEjJ",
    "thumb": "https://i2.hdslb.com/bfs/archive/351913e6381cceebb26c42dbe1387f82c3ee9d7e.jpg",
    "plays": 778,
-   "duration": "34:5"
+   "duration": "34:5",
+   "outline": [
+    {
+     "type": "point",
+     "text": "主题：纳指23小时交易对A股港股的影响及当前市场判断 2026.11.15"
+    },
+    {
+     "type": "note",
+     "text": "该视频没有文字简介，大纲据标题推断"
+    }
+   ],
+   "outline_source": "标题与简介自动提炼，未读取视频语音"
   },
   {
    "id": "auto:f941ad2889abf82f",
@@ -6908,7 +7946,18 @@
    "bvid": "BV1jqsH69EF2",
    "thumb": "https://i0.hdslb.com/bfs/archive/e9f63b5c89e71476c09d7f21f081c953c6fb1b5f.jpg",
    "plays": 314,
-   "duration": "18:36"
+   "duration": "18:36",
+   "outline": [
+    {
+     "type": "point",
+     "text": "11月15日A股港股趋势分析"
+    },
+    {
+     "type": "meta",
+     "text": "时长约 19 分钟"
+    }
+   ],
+   "outline_source": "标题与简介自动提炼，未读取视频语音"
   },
   {
    "id": "auto:70b33a039942970e",
@@ -6928,7 +7977,18 @@
    "bvid": "BV1EesH6dEgK",
    "thumb": "https://i2.hdslb.com/bfs/archive/7a6615abf1edc0f4cb0fa8597cbe4d0c778a6b27.jpg",
    "plays": 522,
-   "duration": "2:33"
+   "duration": "2:33",
+   "outline": [
+    {
+     "type": "point",
+     "text": "以上内容仅为我的个人定投记录和生活分享，不是任何投资建议，数据截止11月14日北京时间16点。"
+    },
+    {
+     "type": "meta",
+     "text": "时长约 3 分钟"
+    }
+   ],
+   "outline_source": "标题与简介自动提炼，未读取视频语音"
   },
   {
    "id": "auto:6d7e1d564559df52",
@@ -6948,7 +8008,26 @@
    "bvid": "BV1vCsH6SE7D",
    "thumb": "https://i2.hdslb.com/bfs/archive/e36745bed6bb87e11a5236a788c50cea88d1219e.jpg",
    "plays": 857,
-   "duration": "14:51"
+   "duration": "14:51",
+   "outline": [
+    {
+     "type": "point",
+     "text": "老美中期选举"
+    },
+    {
+     "type": "point",
+     "text": "人工智能圈地震"
+    },
+    {
+     "type": "point",
+     "text": "全球AI懵了。AI科技 ETF怎么办"
+    },
+    {
+     "type": "meta",
+     "text": "时长约 15 分钟"
+    }
+   ],
+   "outline_source": "标题与简介自动提炼，未读取视频语音"
   },
   {
    "id": "auto:bb292c81fc3df37a",
@@ -6968,7 +8047,18 @@
    "bvid": "BV1wPsn6tExc",
    "thumb": "https://i0.hdslb.com/bfs/archive/08d78af4e6f1d7581ebe0ad2d79d2daf0cf2746c.png",
    "plays": 415,
-   "duration": "48:55"
+   "duration": "48:55",
+   "outline": [
+    {
+     "type": "point",
+     "text": "主题：债券市场如今正在瓦解…… - The Infographics Show - 中配"
+    },
+    {
+     "type": "note",
+     "text": "该视频没有文字简介，大纲据标题推断"
+    }
+   ],
+   "outline_source": "标题与简介自动提炼，未读取视频语音"
   },
   {
    "id": "auto:793f26380f0e11c6",
@@ -6988,7 +8078,26 @@
    "bvid": "BV1nysE6pESr",
    "thumb": "https://i2.hdslb.com/bfs/archive/a63c7f3809c9b65c41e31537cd3edda09e2d74ea.jpg",
    "plays": 400,
-   "duration": "16:35"
+   "duration": "16:35",
+   "outline": [
+    {
+     "type": "point",
+     "text": "（配音) 日本专家剖析丰田改革"
+    },
+    {
+     "type": "point",
+     "text": "丰田汽车财报解读及中长期战略问题的本质在哪"
+    },
+    {
+     "type": "tags",
+     "text": "涉及：上涨、下跌、股价、财报"
+    },
+    {
+     "type": "meta",
+     "text": "时长约 17 分钟"
+    }
+   ],
+   "outline_source": "标题与简介自动提炼，未读取视频语音"
   },
   {
    "id": "auto:1def8c6ed7c5051a",
@@ -7053,7 +8162,18 @@
    "bvid": "BV1TiWq62EEX",
    "thumb": "https://i2.hdslb.com/bfs/archive/da192c72c053a8d58916f3ed9b8c21af4a6087f3.jpg",
    "plays": 39978,
-   "duration": "18:14"
+   "duration": "18:14",
+   "outline": [
+    {
+     "type": "point",
+     "text": "录制于2026.11.11下午"
+    },
+    {
+     "type": "meta",
+     "text": "时长约 18 分钟"
+    }
+   ],
+   "outline_source": "标题与简介自动提炼，未读取视频语音"
   },
   {
    "id": "auto:9c28f6b28d69a96b",
@@ -7476,7 +8596,22 @@
    "verified": false,
    "status": "搜索转录整理 · 时间轴未核实",
    "metrics": [],
-   "bvid": "BV19sWj6YEzq"
+   "bvid": "BV19sWj6YEzq",
+   "outline": [
+    {
+     "type": "point",
+     "text": "PPI涨5.7%CPI只涨0.7%"
+    },
+    {
+     "type": "point",
+     "text": "涨价去哪了"
+    },
+    {
+     "type": "tags",
+     "text": "涉及：CPI、PPI、利润、库存"
+    }
+   ],
+   "outline_source": "标题与简介自动提炼，未读取视频语音"
   },
   {
    "id": "auto:72132ad1d2694c19",
@@ -7883,7 +9018,18 @@
    "verified": false,
    "status": "视频已收录 · 全文待整理",
    "metrics": [],
-   "bvid": "BV1nCxe6wE6B"
+   "bvid": "BV1nCxe6wE6B",
+   "outline": [
+    {
+     "type": "point",
+     "text": "已确认页面标题、作者、发布日期和财经标签。当前工具未返回完整字幕，因此仅收录为相关视频，不编造作者观点或结论。\n点击播放或“到B站观看”可查看原片；正文分析待取得可用字幕后补充。"
+    },
+    {
+     "type": "tags",
+     "text": "涉及：季报、财报"
+    }
+   ],
+   "outline_source": "标题与简介自动提炼，未读取视频语音"
   },
   {
    "id": "4ada2636-5aa5-4ca8-99d4-af8411093675",
@@ -8087,25 +9233,25 @@
   }
  ],
  "meta": {
-  "version": 1794811298,
-  "last_updated": "2026-11-16T14:41:38+08:00",
-  "checked_at": "2026-11-16T14:41:38+08:00",
-  "html_sha": "c947e96c5e10e52a22063edfe55ec7ea955fc66410c1ddf0cbe9f5e66636af85",
-  "next_update_at": "2026-11-16T14:46:38+08:00",
+  "version": 1794812818,
+  "last_updated": "2026-11-16T15:06:58+08:00",
+  "checked_at": "2026-11-16T15:06:58+08:00",
+  "html_sha": "17310000d87d69390ab0ed745e3ce3fcf791ef0d7270cfb9613c6215136a3630",
+  "next_update_at": "2026-11-16T15:11:58+08:00",
   "interval_seconds": 300,
   "mode": "full",
   "last_run": {
-   "at": "2026-11-16T14:41:38+08:00",
-   "fetched": 358,
-   "added": 76,
+   "at": "2026-11-16T15:06:58+08:00",
+   "fetched": 361,
+   "added": 40,
    "errors": [],
    "error_count": 0,
    "sources": {
-    "华尔街见闻7x24": 30,
-    "同花顺7x24": 29,
+    "华尔街见闻7x24": 33,
+    "同花顺7x24": 27,
     "国家统计局": 10,
-    "抖音热榜": 0,
-    "微博热搜": 2,
+    "抖音热榜": 1,
+    "微博热搜": 4,
     "网易财经": 20,
     "36氪快讯": 15,
     "央行·统计数据": 9,
@@ -8150,26 +9296,26 @@
     "东方财富·社会消费品零售总额": 5,
     "东方财富·固定资产投资": 5,
     "东方财富·进出口": 5,
-    "微信公众号": 2,
-    "B站视频": 20,
-    "耗时秒": 49.8
+    "微信公众号": 0,
+    "B站视频": 19,
+    "耗时秒": 61.8
    }
   },
   "status_note": "",
   "counts": {
-   "total": 421,
+   "total": 461,
    "by_category": {
-    "市场快讯": 187,
-    "公司财报": 37,
-    "宏观数据": 81,
-    "公司动态": 69,
-    "金融数据": 17,
+    "市场快讯": 227,
+    "公司动态": 64,
+    "宏观数据": 86,
+    "金融数据": 19,
+    "公司财报": 35,
     "视频财经": 30
    },
-   "auto": 407,
+   "auto": 447,
    "brief": 14
   },
-  "generated_at": "2026-11-16T14:41:38+08:00",
+  "generated_at": "2026-11-16T15:06:58+08:00",
   "build": "local"
  }
 }
