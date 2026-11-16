@@ -51,6 +51,7 @@ p{line-height:1.8;color:var(--muted)}
 .card.fresh{box-shadow:0 0 0 3px #e7f0e9}
 .meta{font-size:11px;color:var(--muted);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .tag{color:var(--green);background:#eaf2e9;padding:4px 9px;border-radius:4px;font-weight:600}
+.tag.cat-金融数据{background:#e8f1f6;color:#2f5d74}
 .tag.cat-公司财报{background:#e9eef7;color:#3c5580}
 .tag.cat-公司动态{background:#f1edf6;color:#5d4a75}
 .tag.cat-视频财经{background:#fdeee9;color:#9a4b32}
@@ -135,6 +136,7 @@ dialog textarea{height:110px;resize:vertical}
     <button data-filter="精选" class="active">精选</button>
     <button data-filter="全部">全部资讯</button>
     <button data-filter="宏观数据">宏观数据</button>
+    <button data-filter="金融数据">金融数据</button>
     <button data-filter="公司财报">公司财报</button>
     <button data-filter="公司动态">公司动态</button>
     <button data-filter="视频财经">视频财经</button>
@@ -146,7 +148,7 @@ dialog textarea{height:110px;resize:vertical}
   <div id="list"></div>
 
   <div class="notice" id="notice">
-    数据源：华尔街见闻、同花顺财经、东方财富、国家统计局、B 站（每轮按公开接口抓取）。
+    数据源：中国人民银行、国家统计局、华尔街见闻、同花顺财经、东方财富、微信公众号（经搜狗微信检索）、B 站，每轮按公开接口抓取。
     数据说明：绿色「已整理」条目来自人工整理稿；其余为每小时自动抓取的公开资讯，标注「待核验」，仅代表原标题与摘要，未做事实核验。
     指标数值由程序从正文自动抽取，口径（单季／累计、同比／环比）请以原文为准。媒体转述不等同于公司公告。页面不构成投资建议。
   </div>

@@ -67,7 +67,10 @@ def merge(previous, fetched, cfg):
     """沿用上次的数据做底，合并新抓的内容，去重后按保留期裁剪"""
     seed = load_json(SEED_FILE, {"items": []}).get("items", [])
     retention = int(cfg.get("retention_days", 10))
-    cutoff = (datetime.now(CN) - timedelta(days=retention)).strftime("%Y-%m-%d")
+    verified_retention = int(cfg.get("verified_retention_days", 90))
+    now = datetime.now(CN)
+    cutoff = (now - timedelta(days=retention)).strftime("%Y-%m-%d")
+    verified_cutoff = (now - timedelta(days=verified_retention)).strftime("%Y-%m-%d")
 
     existing_ids = {i.get("id") for i in previous + seed}
     existing_urls = {i.get("url") for i in previous + seed if i.get("url")}
@@ -75,7 +78,8 @@ def merge(previous, fetched, cfg):
 
     added, batch_ids, batch_titles = [], set(), set()
     for item in fetched:
-        if sort_stamp(item)[:10] < cutoff:
+        item_cutoff = verified_cutoff if item.get("verified") else cutoff
+        if sort_stamp(item)[:10] < item_cutoff:
             continue
         key = item.get("id")
         title = item.get("norm_title")
@@ -90,7 +94,8 @@ def merge(previous, fetched, cfg):
         if title:
             batch_titles.add(title)
 
-    merged = [i for i in previous if sort_stamp(i)[:10] >= cutoff]
+    merged = [i for i in previous
+              if sort_stamp(i)[:10] >= (verified_cutoff if i.get("verified") else cutoff)]
     merged.extend(added)
     merged.sort(key=sort_stamp, reverse=True)
 

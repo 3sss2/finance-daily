@@ -34,6 +34,9 @@ MACRO_WORDS = ("CPI", "PPI", "PMI", "GDP", "M1", "M2", "社融", "LPR", "央行"
                "物价", "就业", "失业率", "财政政策", "货币政策")
 EARNINGS_WORDS = ("财报", "季报", "年报", "半年报", "业绩", "营收", "营业收入",
                   "净利润", "归母", "扣非", "预增", "预亏", "毛利率", "分红")
+FINANCE_WORDS = ("社融", "社会融资", "M1", "M2", "新增信贷", "人民币贷款", "金融统计数据",
+                 "存款", "信贷", "货币政策", "LPR", "逆回购", "MLF", "债券融资",
+                 "票据融资", "非银贷款")
 
 # 7x24 快讯里混着社会新闻，用财经词做一道粗筛
 RELEVANT_WORDS = ("股", "债", "汇", "央行", "财政", "经济", "涨", "跌", "盘", "指数",
@@ -142,6 +145,8 @@ def guess_category(text, source=""):
     blob = (text or "") + " " + (source or "")
     if any(word in blob for word in EARNINGS_WORDS):
         return "公司财报"
+    if any(word in blob for word in FINANCE_WORDS):
+        return "金融数据"
     if any(word in blob for word in MACRO_WORDS):
         return "宏观数据"
     return "市场快讯"
@@ -155,8 +160,9 @@ def extract_metrics(text, limit=4):
         r"\s*(?:了)?\s*(-?\d+(?:\.\d+)?)\s*(%|个百分点|万亿元|亿元|万亿)"
     )
     keep = ("营收", "收入", "净利", "利润", "毛利", "CPI", "PPI", "PMI", "GDP",
-            "M1", "M2", "社融", "出口", "进口", "投资", "零售", "消费", "贷款",
-            "融资", "产量", "销量", "价格", "指数", "增速", "市占")
+            "M1", "M2", "社融", "社会融资", "融资", "贷款", "存款", "信贷", "票据",
+            "出口", "进口", "投资", "零售", "消费", "产量", "销量", "价格",
+            "指数", "增速", "市占")
     metrics, seen = [], set()
     for m in pattern.finditer(text):
         label = m.group(1).strip()
@@ -548,6 +554,178 @@ def fetch_bilibili_videos(keywords, total=12, max_per_author=2):
 
 
 # --------------------------------------------------------------------------
+# 7. 中国人民银行官方数据（社融、金融统计数据、货币政策）
+# --------------------------------------------------------------------------
+PBC_STATS_URL = "https://www.pbc.gov.cn/diaochatongjisi/116219/116225/index.html"
+PBC_NEWS_URL = "https://www.pbc.gov.cn/goutongjiaoliu/113456/113469/index.html"
+
+
+def _pbc_article_text(url, limit=900):
+    """抓央行正文，去掉导航和按钮文字"""
+    page = http_get_text(url, headers={"Referer": "https://www.pbc.gov.cn/"})
+    body = re.sub(r"(?is)<(script|style)[^>]*>.*?</\1>", " ", page)
+    text = htmllib.unescape(re.sub(r"<[^>]+>", "\n", body))
+    for marker in ("关闭窗口", "打印本页"):
+        idx = text.find(marker)
+        if idx > 0:
+            text = text[idx + len(marker):]
+            break
+    text = "\n".join(line.strip() for line in text.split("\n") if line.strip())
+    for tail in ("法律声明", "©", "网站地图", "打印本页"):
+        idx = text.find(tail, 30)
+        if idx > 0:
+            text = text[:idx]
+    return text[:limit]
+
+
+def _fetch_pbc_listing(list_url, keywords, category, source_label, with_body=True, limit=12):
+    page = http_get_text(list_url, headers={"Referer": "https://www.pbc.gov.cn/"})
+    rows = re.findall(
+        r'<a href="([^"]+)"[^>]*?\stitle="([^"]+)"[^>]*>[^<]*</a></font>\s*<span class="hui12">\s*([\d\-]+)\s*</span>',
+        page)
+    items = []
+    for href, title, date in rows[:limit]:
+        if keywords and not any(word in title for word in keywords):
+            continue
+        if "统计表" in title:      # 只有附件表格，正文没有可读内容
+            continue
+        link = urllib.parse.urljoin(list_url, href)
+        summary = "中国人民银行官方发布：%s。" % title
+        if with_body:
+            try:
+                body = _pbc_article_text(link)
+                if len(body) > 40:
+                    summary = body
+            except Exception:
+                pass
+        items.append(make_item(
+            kind="auto",
+            category=category,
+            title=title,
+            url=link,
+            source=source_label,
+            summary=summary,
+            published=date,
+            status="官方发布 · 已核对原文",
+            verified=True,
+            metrics=extract_metrics(summary, 4),
+            dedupe_key=link,
+        ))
+    return items
+
+
+def fetch_pbc_statistics():
+    """央行调查统计司：月度金融统计数据报告、社会融资规模统计表"""
+    return _fetch_pbc_listing(
+        PBC_STATS_URL,
+        ("金融统计数据报告", "社会融资规模", "金融数据"),
+        "金融数据",
+        "中国人民银行 · 调查统计司",
+        with_body=True)
+
+
+def fetch_pbc_news():
+    """央行新闻发布：货币政策执行报告、LPR、降准降息等"""
+    return _fetch_pbc_listing(
+        PBC_NEWS_URL,
+        ("货币政策执行报告", "LPR", "贷款市场报价利率", "降准", "降息", "逆回购",
+         "金融统计数据报告", "社会融资", "金融支持", "结构性货币政策"),
+        "宏观数据",
+        "中国人民银行 · 新闻发布",
+        with_body=True,
+        limit=20)
+
+
+# --------------------------------------------------------------------------
+# 8. 东方财富标题搜索（只匹配标题，避免关键词被拆开后的噪音）
+# --------------------------------------------------------------------------
+def fetch_eastmoney_title_search(keyword, page_size=6):
+    param = {
+        "uid": "", "keyword": keyword,
+        "type": ["cmsArticleWebOld"], "client": "web", "clientType": "web",
+        "clientVersion": "curr",
+        "param": {"cmsArticleWebOld": {
+            "searchScope": "title", "sort": "time",
+            "pageIndex": 1, "pageSize": page_size}},
+    }
+    url = ("https://search-api-web.eastmoney.com/search/jsonp?cb=x&param="
+           + urllib.parse.quote(json.dumps(param, ensure_ascii=False)))
+    data = http_get_json(url, headers={"Referer": "https://so.eastmoney.com/"})
+    rows = ((data.get("result") or {}).get("cmsArticleWebOld")) or []
+    items = []
+    for row in rows:
+        title = clean(row.get("title") or "")
+        summary = clean(row.get("content") or "")
+        code = row.get("code") or ""
+        if not title or not code:
+            continue
+        link = "https://finance.eastmoney.com/a/%s.html" % code
+        items.append(make_item(
+            kind="auto",
+            category=guess_category(title + " " + summary, "东方财富"),
+            title=title,
+            url=link,
+            source="东方财富 · 标题搜索（%s）" % keyword,
+            summary=summary,
+            published=(row.get("date") or "")[:16],
+            status="自动抓取 · 待核验",
+            metrics=extract_metrics(title + " " + summary),
+            dedupe_key=link,
+        ))
+    return items
+
+
+# --------------------------------------------------------------------------
+# 9. 微信公众号（经搜狗微信检索）
+#   公众号没有公开接口，这里只取标题、公众号名、时间和摘要；
+#   原文链接给出搜狗检索页，点开即可在微信里阅读。
+# --------------------------------------------------------------------------
+def fetch_wechat_search(keyword, max_items=5, max_age_days=10):
+    url = ("https://weixin.sogou.com/weixin?type=2&query="
+           + urllib.parse.quote(keyword))
+    page = http_get_text(url, headers={
+        "Referer": "https://weixin.sogou.com/",
+        "Accept": "text/html,application/xhtml+xml",
+    })
+    if "用户您好，您的访问过于频繁" in page or "验证码" in page:
+        raise RuntimeError("搜狗微信要求验证，稍后重试")
+    blocks = re.split(r'<li id="sogou_vr_', page)[1:]
+    cutoff = time.time() - max_age_days * 86400
+    items = []
+    for block in blocks:
+        m_title = re.search(r'<h3>\s*<a[^>]*>(.*?)</a>', block, re.S)
+        m_sum = re.search(r'<p class="txt-info"[^>]*>(.*?)</p>', block, re.S)
+        m_acct = re.search(r'<span class="all-time-y2">(.*?)</span>', block)
+        m_ts = re.search(r"timeConvert\('(\d+)'\)", block)
+        if not (m_title and m_acct and m_ts):
+            continue
+        title = clean(m_title.group(1))
+        if not title or len(title) < 4:
+            continue
+        ts = int(m_ts.group(1))
+        if ts < cutoff:
+            continue
+        account = clean(m_acct.group(1))
+        summary = clean(m_sum.group(1)) if m_sum else ""
+        items.append(make_item(
+            kind="auto",
+            category=guess_category(title + " " + summary, account),
+            title=title,
+            url="https://weixin.sogou.com/weixin?type=2&query=" + urllib.parse.quote(title),
+            source="微信公众号 · %s" % account,
+            summary=summary,
+            published=fmt_ts(ts),
+            status="公众号转载 · 点开可在微信中阅读全文",
+            verified=False,
+            metrics=extract_metrics(title + " " + summary),
+            dedupe_key="wx-%s-%s" % (account, norm_title(title)),
+        ))
+        if len(items) >= max_items:
+            break
+    return items
+
+
+# --------------------------------------------------------------------------
 # 编排
 # --------------------------------------------------------------------------
 def fetch_all(cfg):
@@ -567,6 +745,12 @@ def fetch_all(cfg):
     run("华尔街见闻7x24", fetch_wallstreetcn_lives, cfg.get("live_limit", 40))
     run("同花顺7x24", fetch_ths_lives, cfg.get("live_limit", 40))
     run("国家统计局", fetch_stats_releases)
+    run("央行·统计数据", fetch_pbc_statistics)
+    run("央行·新闻发布", fetch_pbc_news)
+
+    for keyword in cfg.get("finance_keywords", []):
+        run("东方财富标题·" + keyword, fetch_eastmoney_title_search, keyword, 6)
+        run("华尔街见闻·" + keyword, fetch_wallstreetcn_search, keyword, 5)
 
     for keyword in cfg.get("tracked_companies", []):
         run("东方财富·" + keyword, fetch_eastmoney_search, keyword, 6)
@@ -574,6 +758,17 @@ def fetch_all(cfg):
 
     for keyword in cfg.get("macro_keywords", []):
         run("东方财富·" + keyword, fetch_eastmoney_search, keyword, 5)
+
+    for idx, query in enumerate(cfg.get("wechat_queries", [])):
+        try:
+            if idx:
+                time.sleep(2.5)      # 搜狗微信限速，关键词之间留间隔
+            got = fetch_wechat_search(query, 5)
+            stats["微信·" + query] = len(got)
+            items.extend(got)
+        except Exception as exc:
+            errors.append("微信·%s：%s" % (query, exc))
+            stats["微信·" + query] = 0
 
     try:
         videos, video_errors = fetch_bilibili_videos(cfg.get("video_keywords", []))

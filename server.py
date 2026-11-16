@@ -132,13 +132,17 @@ def visible_items():
 
 
 def prune_auto(items):
-    """按保留天数和条数上限裁剪自动抓取的条目"""
+    """按保留天数和条数上限裁剪自动抓取的条目；官方发布保留更久"""
     days = int(CFG.get("retention_days", 10))
-    cutoff = (datetime.now(CN) - timedelta(days=days)).strftime("%Y-%m-%d")
+    verified_days = int(CFG.get("verified_retention_days", 90))
+    now = datetime.now(CN)
+    cutoff = (now - timedelta(days=days)).strftime("%Y-%m-%d")
+    verified_cutoff = (now - timedelta(days=verified_days)).strftime("%Y-%m-%d")
     kept = []
     for item in items:
         published = (item.get("published") or "")[:10]
-        if published and published < cutoff:
+        limit = verified_cutoff if item.get("verified") else cutoff
+        if published and published < limit:
             continue
         kept.append(item)
     limit = int(CFG.get("max_auto_items", 500))
