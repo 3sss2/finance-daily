@@ -130,7 +130,13 @@ def main():
         status_note = ""
 
     now = datetime.now(CN)
-    items = list(seed) + [i for i in merged if i.get("kind") == "auto"]
+    # 整理稿里已经收过的同一篇，不再重复出现（例如用户给的安佑那篇）
+    seed_titles = {i.get("norm_title") or fetchers.norm_title(i.get("title", ""))
+                   for i in seed}
+    auto_items = [i for i in merged if i.get("kind") == "auto"
+                  and (i.get("norm_title") or fetchers.norm_title(i.get("title", "")))
+                  not in seed_titles]
+    items = list(seed) + auto_items
     items.sort(key=sort_stamp, reverse=True)
 
     meta = {

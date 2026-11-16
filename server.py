@@ -120,6 +120,12 @@ def visible_items():
     """seed（整理稿）+ 手动 + 自动，按发布时间倒序"""
     with LOCK:
         merged = list(SEED) + list(MANUAL) + list(AUTO)
+    seed_titles = {i.get("norm_title") or fetchers.norm_title(i.get("title", ""))
+                   for i in SEED}
+    merged = [i for i in merged
+              if i.get("kind") != "auto"
+              or (i.get("norm_title") or fetchers.norm_title(i.get("title", "")))
+              not in seed_titles]
     seen, out = set(), []
     for item in merged:
         key = item_key(item)
