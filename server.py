@@ -145,7 +145,8 @@ def visible_items():
     out.sort(key=sort_stamp, reverse=True)
 
     # 单一来源不许刷屏（整理稿和手动收录不受限）
-    cap = int(CFG.get("max_per_source", 120))
+    default_cap = int(CFG.get("max_per_source", 120))
+    source_caps = CFG.get("source_caps") or {}
     kept, per_source = [], {}
     for item in out:
         source = (item.get("source") or "").split(" · ")[0]
@@ -154,6 +155,7 @@ def visible_items():
                 or item.get("category") == "金融数据"):
             kept.append(item)
             continue
+        cap = int(source_caps.get(source, default_cap))
         if per_source.get(source, 0) >= cap:
             continue
         per_source[source] = per_source.get(source, 0) + 1

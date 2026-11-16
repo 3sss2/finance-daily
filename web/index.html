@@ -149,6 +149,7 @@ dialog textarea{height:110px;resize:vertical}
     <button data-filter="公司动态">公司动态</button>
     <button data-filter="视频财经">视频财经</button>
     <button data-filter="市场快讯">市场快讯</button>
+    <button data-filter="自媒体">自媒体</button>
     <input class="search" id="search" placeholder="搜索公司、指标或关键词" oninput="state.q=this.value.trim().toLowerCase();render()">
     <a id="export-link" href="/api/export" download><button type="button">导出 JSON</button></a>
   </div>
@@ -368,7 +369,9 @@ function dayLabel(i){
 function visibleItems(){
   const d = state.data; if(!d) return [];
   return d.items.filter(i=>{
+    const selfMedia = /^(微信公众号|B站|抖音|微博)/.test(i.source || '');
     if(state.filter === '精选'){ if(i.category === '市场快讯') return false; }
+    else if(state.filter === '自媒体'){ if(!selfMedia) return false; }
     else if(state.filter !== '全部' && i.category !== state.filter) return false;
     if(state.onlyBrief && i.kind === 'auto' && !i.verified) return false;
     if(state.q){

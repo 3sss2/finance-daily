@@ -156,7 +156,8 @@ def main():
     items.sort(key=lambda i: (sort_stamp(i), i.get("id") or ""), reverse=True)
 
     # 单一来源不许刷屏：每个来源最多留 N 条（整理稿不受限）
-    cap = int(cfg.get("max_per_source", 120))
+    default_cap = int(cfg.get("max_per_source", 120))
+    source_caps = cfg.get("source_caps") or {}
     kept, per_source = [], {}
     for item in items:
         source = (item.get("source") or "").split(" · ")[0]
@@ -165,6 +166,7 @@ def main():
                 or item.get("category") == "金融数据"):
             kept.append(item)
             continue
+        cap = int(source_caps.get(source, default_cap))
         if per_source.get(source, 0) >= cap:
             continue
         per_source[source] = per_source.get(source, 0) + 1
