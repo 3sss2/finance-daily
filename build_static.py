@@ -120,7 +120,8 @@ def main():
     cfg.setdefault("retention_days", 10)
 
     previous_payload = load_json(OUT_DATA, {})
-    previous = previous_payload.get("items") or []
+    previous = [i for i in (previous_payload.get("items") or [])
+                if not fetchers.is_broken_link(i.get("url"))]
     previous_meta = previous_payload.get("meta") or {}
 
     live_only = os.environ.get("FETCH_MODE", "full").lower() == "live"

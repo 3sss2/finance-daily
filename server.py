@@ -93,7 +93,8 @@ def empty_meta():
     }
 
 
-AUTO = load_json(AUTO_FILE, {"items": []}).get("items", [])
+AUTO = [i for i in load_json(AUTO_FILE, {"items": []}).get("items", [])
+        if not fetchers.is_broken_link(i.get("url"))]
 MANUAL = load_json(MANUAL_FILE, {"items": []}).get("items", [])
 SEED = load_json(SEED_FILE, {"items": []}).get("items", [])
 META = {**empty_meta(), **load_json(META_FILE, {})}
@@ -130,9 +131,10 @@ def visible_items():
     seed_titles = {i.get("norm_title") or fetchers.norm_title(i.get("title", ""))
                    for i in SEED}
     merged = [i for i in merged
-              if i.get("kind") != "auto"
-              or (i.get("norm_title") or fetchers.norm_title(i.get("title", "")))
-              not in seed_titles]
+              if not fetchers.is_broken_link(i.get("url"))
+              and (i.get("kind") != "auto"
+                   or (i.get("norm_title") or fetchers.norm_title(i.get("title", "")))
+                   not in seed_titles)]
     seen, out = set(), []
     for item in merged:
         key = item_key(item)

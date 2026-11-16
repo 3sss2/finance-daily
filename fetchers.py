@@ -137,6 +137,16 @@ def norm_title(text):
     return text[:70]
 
 
+BROKEN_URL_MARKERS = (
+    "/detail/152/",      # 早期按 id 拼的同花顺 7x24 详情，实际是 404
+)
+
+
+def is_broken_link(url):
+    url = url or ""
+    return any(marker in url for marker in BROKEN_URL_MARKERS)
+
+
 def make_id(prefix, key):
     return prefix + ":" + hashlib.sha1(key.encode("utf-8")).hexdigest()[:16]
 
@@ -300,11 +310,20 @@ def fetch_ths_lives(size=40):
             continue
         title, summary = flash_title_summary(text)
         lead = bool(lead)
+        # 详情页地址在 docurl 里；早先按 id 拼的 /detail/152/xxx 是 404
+        docurl = (row.get("docurl") or "").strip()
+        if not docurl:
+            try:
+                docurl = (json.loads(row.get("ext") or "{}") or {}).get("docurl") or ""
+            except (ValueError, TypeError):
+                docurl = ""
+        if not docurl.startswith("http"):
+            docurl = "https://zhibo.sina.com.cn/"
         items.append(make_item(
             kind="auto",
             category=guess_category(text, "同花顺"),
             title=title,
-            url="https://zhibo.sina.com.cn/detail/152/%s" % row.get("id"),
+            url=docurl,
             source="同花顺财经 · 7x24",
             summary=summary,
             published=(row.get("create_time") or "")[:16],
