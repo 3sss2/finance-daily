@@ -814,6 +814,76 @@ def fetch_douyin_hot():
 
 
 # --------------------------------------------------------------------------
+# 12. 网易财经 · 滚动新闻
+# --------------------------------------------------------------------------
+def fetch_sina_roll(num=20):
+    url = ("https://feed.mix.sina.com.cn/api/roll/get"
+           "?pageid=153&lid=2516&num=%d&page=1" % num)
+    data = http_get_json(url, headers={"Referer": "https://money.sina.com.cn/"})
+    rows = ((data.get("result") or {}).get("data")) or []
+    items = []
+    for row in rows:
+        title = clean(row.get("title") or "")
+        link = row.get("url") or ""
+        if not title or not link.startswith("http"):
+            continue
+        summary = clean(row.get("summary") or row.get("intro") or "")
+        items.append(make_item(
+            kind="auto",
+            category=guess_category(title + " " + summary, "网易财经"),
+            title=title,
+            url=link,
+            source="网易财经 · %s" % (row.get("media_name") or "滚动新闻"),
+            summary=summary,
+            published=fmt_ts(row.get("ctime")),
+            status="自动抓取 · 待核验",
+            metrics=extract_metrics(title + " " + summary),
+            dedupe_key=link,
+        ))
+    return items
+
+
+# --------------------------------------------------------------------------
+# 13. 36 氪 · 快讯（经 RSSHub 公共实例）
+# --------------------------------------------------------------------------
+def fetch_36kr_flash(limit=15):
+    url = "https://rsshub.rssforever.com/36kr/newsflashes"
+    raw = http_get_text(url, headers={"Referer": "https://rsshub.rssforever.com/"})
+    import xml.etree.ElementTree as ET
+    root = ET.fromstring(raw)
+    items = []
+    for node in root.iter("item"):
+        title = clean(node.findtext("title") or "")
+        link = (node.findtext("link") or "").strip()
+        desc = clean(node.findtext("description") or "")
+        pub = (node.findtext("pubDate") or "").strip()
+        published = ""
+        if pub:
+            try:
+                from email.utils import parsedate_to_datetime
+                published = parsedate_to_datetime(pub).astimezone(CN).strftime("%Y-%m-%d %H:%M")
+            except (TypeError, ValueError):
+                published = pub[:16]
+        if not title or not link.startswith("http"):
+            continue
+        items.append(make_item(
+            kind="auto",
+            category=guess_category(title + " " + desc, "36氪"),
+            title=title,
+            url=link,
+            source="36氪 · 快讯",
+            summary=desc,
+            published=published,
+            status="自动抓取 · 待核验",
+            metrics=extract_metrics(title + " " + desc),
+            dedupe_key=link,
+        ))
+        if len(items) >= limit:
+            break
+    return items
+
+
+# --------------------------------------------------------------------------
 # 编排
 # --------------------------------------------------------------------------
 def fetch_all(cfg, live_only=False):
@@ -843,6 +913,8 @@ def fetch_all(cfg, live_only=False):
 
     run("国家统计局", fetch_stats_releases)
     run("抖音热榜", fetch_douyin_hot)
+    run("网易财经", fetch_sina_roll, 20)
+    run("36氪快讯", fetch_36kr_flash)
     run("央行·统计数据", fetch_pbc_statistics)
     run("央行·新闻发布", fetch_pbc_news)
 
