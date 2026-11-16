@@ -143,7 +143,20 @@ def visible_items():
         seen.add(key)
         out.append(item)
     out.sort(key=sort_stamp, reverse=True)
-    return out
+
+    # 单一来源不许刷屏（整理稿和手动收录不受限）
+    cap = int(CFG.get("max_per_source", 120))
+    kept, per_source = [], {}
+    for item in out:
+        source = (item.get("source") or "").split(" · ")[0]
+        if item.get("kind") != "auto":
+            kept.append(item)
+            continue
+        if per_source.get(source, 0) >= cap:
+            continue
+        per_source[source] = per_source.get(source, 0) + 1
+        kept.append(item)
+    return kept
 
 
 def prune_auto(items):

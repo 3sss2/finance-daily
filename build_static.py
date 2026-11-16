@@ -149,6 +149,20 @@ def main():
     items = list(seed) + auto_items
     items.sort(key=lambda i: (sort_stamp(i), i.get("id") or ""), reverse=True)
 
+    # 单一来源不许刷屏：每个来源最多留 N 条（整理稿不受限）
+    cap = int(cfg.get("max_per_source", 120))
+    kept, per_source = [], {}
+    for item in items:
+        source = (item.get("source") or "").split(" · ")[0]
+        if item.get("kind") != "auto":
+            kept.append(item)
+            continue
+        if per_source.get(source, 0) >= cap:
+            continue
+        per_source[source] = per_source.get(source, 0) + 1
+        kept.append(item)
+    items = kept
+
     with open(os.path.join(WEB_DIR, "index.html"), "rb") as fh:
         html_sha = hashlib.sha256(fh.read()).hexdigest()
     changed = (item_fingerprint(items) != item_fingerprint(previous)

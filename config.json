@@ -96,5 +96,6 @@
     "民生宏观"
   ],
   "wechat_query_slots": 4,
-  "video_total": 20
+  "video_total": 20,
+  "max_per_source": 120
 }
