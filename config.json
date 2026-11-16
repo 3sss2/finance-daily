@@ -131,7 +131,7 @@
     "投行小兵",
     "小兵研究"
   ],
-  "wechat_query_slots": 5,
+  "wechat_query_slots": 4,
   "video_total": 30,
   "max_per_source": 120,
   "wechat_pinned": [

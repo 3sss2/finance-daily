@@ -909,9 +909,17 @@ def fetch_wechat_accounts(accounts, slots=3, max_age_days=14):
     for idx, account in enumerate(picked):
         try:
             if idx:
-                time.sleep(10)     # 搜狗对同 IP 有频控，间隔拉长一点
+                time.sleep(12)     # 搜狗对同 IP 有频控，间隔拉长一点
             items.extend(fetch_wechat_search(account, 4, max_age_days=max_age_days))
         except Exception as exc:
+            msg = str(exc)
+            if "验证" in msg or "频繁" in msg:
+                time.sleep(30)     # 被要求验证时等一会儿再试一次
+                try:
+                    items.extend(fetch_wechat_search(account, 4, max_age_days=max_age_days))
+                    continue
+                except Exception as exc2:
+                    exc = exc2
             errors.append("微信·%s：%s" % (account, exc))
     return items, errors, picked
 
