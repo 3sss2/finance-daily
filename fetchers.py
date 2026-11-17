@@ -345,10 +345,13 @@ def enrich_images(items, limit=20, only_prefix="东方财富"):
 
 
 def normalize_categories(item):
-    """历史数据里的热榜条目当时被归成「市场快讯」，统一改成「社媒热议」"""
+    """历史数据里的热榜条目当时被归成「市场快讯」，统一改成「社媒热议」；
+    微博热搜的旧链接是失效的桌面搜索页，改成移动搜索页。"""
     source = item.get("source") or ""
     if source.startswith(("抖音", "微博")):
         item["category"] = "社媒热议"
+    if source.startswith("微博") and item.get("title"):
+        item["url"] = 微博_SEARCH + urllib.parse.quote(item["title"])
     return item
 
 
@@ -936,6 +939,9 @@ def fetch_wechat_accounts(accounts, slots=3, max_age_days=14):
 # 11. 抖音热榜（不需要登录的公开接口）
 #   只有话题词，没有单个博主的视频；用财经关键词过滤，保留市场相关的条目。
 # --------------------------------------------------------------------------
+微博_SEARCH = ("https://m.weibo.cn/search?containerid="
+                    "100103type%3D1%26q%3D")
+
 DOUYIN_FINANCE_WORDS = ("股", "黄金", "金价", "油价", "原油", "央行", "降息", "降准",
                         "汇率", "人民币", "房价", "楼市", "地产", "基金", "债",
                         "保险", "银行", "茅台", "比亚迪", "宁德", "腾讯", "阿里",
@@ -1062,7 +1068,7 @@ def fetch_微博_hot():
             kind="auto",
             category="社媒热议",
             title=word,
-            url="https://s.weibo.com/微博?q=" + urllib.parse.quote("#%s#" % word),
+            url=微博_SEARCH + urllib.parse.quote(word),
             source="微博 · 热搜",
             summary="微博 热搜话题，讨论量约 %s。点开看大家在聊什么。" % (
                 ("%.1f 万" % (num / 10000.0)) if num else "未知"),
